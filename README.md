@@ -11,11 +11,11 @@
 
 ### Prerequisites
 
-Cargo >= 1.71.0
-CMake >= 3.23
-Ninja >= 1.11
-Python >= 3.6
-SCons >= 4.5.2
+* Cargo >= 1.71.0
+* CMake >= 3.23
+* Ninja >= 1.11
+* Python >= 3.6
+* SCons >= 4.5.2
 
 ### Installation
 
