@@ -61,9 +61,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Niklas Elmqvist - [@NElmqvist](https://x.com/NElmqvist)
-Clemens Klokmose - [@cklokmose](https://x.com/cklokmose)
-Jason Kankiewicz - [@jkankiewicz](https://github.com/jkankiewicz)
+* Niklas Elmqvist - [@NElmqvist](https://x.com/NElmqvist)
+* Clemens Klokmose - [@cklokmose](https://x.com/cklokmose)
+* Jason Kankiewicz - [@jkankiewicz](https://github.com/jkankiewicz)
 
 Project Link: [https://github.com/cavi-au/RealityMerge](https://github.com/cavi-au/RealityMerge)
 
