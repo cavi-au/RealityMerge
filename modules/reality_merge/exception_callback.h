@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* exception_callback.h                                                   */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,38 +27,18 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-// regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#ifndef REALITY_MERGE_EXC_CALLBACK_H
+#define REALITY_MERGE_EXC_CALLBACK_H
 
-// local
-#include "automerge.h"
-#include "register_types.h"
+struct AMstack;
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+/// \brief Examines the result at the top of the given stack and, if it's
+///        invalid, deallocates all results in the stack and throws an exception.
+///
+/// \param[in,out] p_stack A pointer to a pointer to an `AMstack` struct.
+/// \param[in] p_data A pointer to an owned `AMstackCallbackData` struct or `nullptr`.
+/// \return `true` if the top `AMresult` in \p p_stack is valid, `false` otherwise.
+/// \pre \p p_stack `!= nullptr`.
+bool exc_cb(AMstack** p_stack, void* p_data);
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
-    GDREGISTER_CLASS(Automerge);
-
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
-
-	resource_saver_automerge.instantiate();
-	ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
-
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
-
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
-
-	ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-	resource_saver_automerge.unref();
-}
+#endif  // REALITY_MERGE_EXC_CALLBACK_H

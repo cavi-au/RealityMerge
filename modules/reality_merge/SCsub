@@ -11,50 +11,68 @@ env_reality_merge = env_modules.Clone()
 module_path = Dir('.').srcnode().abspath
 thirdparty_dir = os.path.join(module_path, 'thirdparty', 'automerge', 'rust', 'automerge-c')
 
-# Defer building the third-party library to CMake.
+# Delegate building the third-party library to CMake.
 build_dir = os.path.join(thirdparty_dir, 'build')
 source_dir = os.path.join(thirdparty_dir, 'src')
-bindings_name = 'automerge_core'
+bindings_name = 'bindings'
 bindings_basename = bindings_name + env.subst('$LIBSUFFIX')
 bindings_filename = os.path.join(build_dir, bindings_basename)
-env_reality_merge.AppendENVPath('INCLUDE', os.path.join(os.path.join(build_dir, 'include')))
+library_name = 'automerge'
+library_basename = library_name + env.subst('$LIBSUFFIX')
+library_filename = os.path.join(build_dir, library_basename)
+env_reality_merge.AppendENVPath('INCLUDE', [
+    os.path.join(thirdparty_dir, 'include'),
+    os.path.join(build_dir, 'include'),
+])
 cmake_build_type = {
     'editor': 'RelWithDebInfo',
     'template_debug': 'Debug',
     'template_release': 'Release',
 }[env['target']]
 cmake_command = '"{}"'.format(os.environ.get('CMAKE_COMMAND', 'cmake'))
+libraries = [bindings_filename, library_filename]
 env_reality_merge.Command(
-    target=[bindings_filename],
+    target=libraries,
     source=os.path.join(thirdparty_dir, 'CMakeLists.txt'),
     action=[
         # Make the out-of-source build directory for CMake in order to dictate
         # the output directory for its build products.
         Mkdir(build_dir),
-        # Remove CMake's cached settings so that it's forced to reconfigure.
-        Delete(os.path.join(build_dir, 'CMakeCache.txt')),
-        # Generate the project's build system, overriding the library's name
-        # with the one that SCons expects to find.
+        # Generate the project's build system, overriding the libraries names
+        # with the ones that SCons expects to find.
         (cmake_command + ' -B ' + build_dir + ' -S ' + thirdparty_dir + ' -G Ninja' +
-            ' -DCMAKE_BUILD_TYPE=' + cmake_build_type + ' -DBINDINGS_NAME=' + bindings_name + 
-            ' -DLIBRARY_PREFIX=' + env.subst('$LIBPREFIX') + ' -DLIBRARY_SUFFIX=' + env.subst('$LIBSUFFIX') +
-            ' -DBUILD_TESTING=OFF'),
+            ' -DCMAKE_BUILD_TYPE=' + cmake_build_type + ' -DBINDINGS_NAME=' + bindings_name +
+            ' -DLIBRARY_NAME=' + library_name + ' -DLIBRARY_PREFIX=' + env.subst('$LIBPREFIX') +
+            ' -DLIBRARY_SUFFIX=' + env.subst('$LIBSUFFIX') + ' -DBUILD_TESTING=OFF'),
+        # Force the library files to be rebuilt.
+        Delete('$TARGET'),
         # Build the project's library target.
-        cmake_command + ' --build ' + build_dir + ' --target ' + bindings_name + '_artifacts',
+        cmake_command + ' --build ' + build_dir + ' --target ' + library_name,
     ],
 )
 
-env.Append(LIBPATH=[build_dir], 
-           LIBS=[bindings_name])
+env.Append(LIBPATH=[build_dir], LIBS=libraries)
 
 if env['platform'] == 'windows' and env.msvc:
-    env.Append(LINKFLAGS=[bindings_basename])
+    env.Append(LINKFLAGS=[
+        bindings_basename,
+        library_basename,
+        # Exclude the C runtime library.
+        '/NODEFAULTLIB:msvcrt.lib',
+        # \todo Render ignorance unnecessary.
+        '/IGNORE:4217',
+        '/IGNORE:4286',
+])
 
 # Godot source files
 module_obj = []
 
-env_reality_merge.add_source_files(module_obj, '*.cpp')
+env_reality_merge.add_source_files(module_obj, [
+    'automerge.cpp',
+    'exception_callback.cpp',
+    'register_types.cpp',
+])
 env.modules_sources += module_obj
 
-# Force rebuilding of the module files when the third-party library is updated.
-env.Depends(module_obj, [bindings_filename])
+# Force rebuilding of the module files when the third-party libraries are updated.
+env.Depends(module_obj, libraries)
