@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_GENERATOR_PLATFORM x64)
 
-set(CMAKE_BUILD_PARALLEL_LEVEL 6 CACHE STRING "The maximum number of concurrent build processes")
+set(CMAKE_BUILD_PARALLEL_LEVEL "10" CACHE STRING "The maximum number of concurrent build processes")
 
 set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Godot's \"editor\" build -> \"RelWithDebInfo\"")
 
@@ -35,26 +35,24 @@ file(GLOB_RECURSE MODULE_SOURCES modules/*.h**)
 
 add_custom_target(${PROJECT_NAME}_scons
                   ALL
-                  COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} target=${GODOT_TARGET} custom_modules=../modules -j ${CMAKE_BUILD_PARALLEL_LEVEL} platform=${GODOT_PLATFORM} showbuild=1
+                  COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} target=${GODOT_TARGET} custom_modules=../modules -j ${CMAKE_BUILD_PARALLEL_LEVEL} platform=${GODOT_PLATFORM} showbuild=1 debug_symbols=yes
                   SOURCES ${GODOT_SOURCES} ${GODOT_HEADERS}
-                  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/godot
+                  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/godot
                   VERBATIM
 )
-
 
 set_property(TARGET ${PROJECT_NAME}_scons
     APPEND
     PROPERTY ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}.dir"
 )
 
-
 add_executable(${PROJECT_NAME} EXCLUDE_FROM_ALL ${GODOT_SOURCES} ${GODOT_HEADERS} ${MODULE_SOURCES} ${MODULE_SOURCES})
 
 target_include_directories(${PROJECT_NAME}
                            SYSTEM PUBLIC
-                           "${CMAKE_CURRENT_SOURCE_DIR}/godot"
-                           "${CMAKE_CURRENT_SOURCE_DIR}/godot/platform/${GODOT_PLATFORM}"
-                           "${CMAKE_CURRENT_SOURCE_DIR}/modules/reality_merge"
-                           "${CMAKE_CURRENT_SOURCE_DIR}/modules/reality_merge/thirdparty/automerge/rust/automerge-c/build/include"
+                           "${CMAKE_SOURCE_DIR}/godot"
+                           "${CMAKE_SOURCE_DIR}/godot/platform/${GODOT_PLATFORM}"
+                           "${CMAKE_SOURCE_DIR}/modules/reality_merge"
+                           "${CMAKE_SOURCE_DIR}/modules/reality_merge/thirdparty/automerge/rust/automerge-c/include"
+                           "${CMAKE_SOURCE_DIR}/modules/reality_merge/thirdparty/automerge/rust/automerge-c/build/include"
 )
-
