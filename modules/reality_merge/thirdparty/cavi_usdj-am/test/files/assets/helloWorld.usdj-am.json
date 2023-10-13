@@ -1,0 +1,556 @@
+[
+  {
+    "ops": [
+      {
+        "action": "makeMap",
+        "obj": "_root",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "1@954fb18c05f44670bf78ab27b67be178",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@954fb18c05f44670bf78ab27b67be178",
+        "key": "identifier",
+        "value": "defaultPrim",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@954fb18c05f44670bf78ab27b67be178",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@954fb18c05f44670bf78ab27b67be178",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@954fb18c05f44670bf78ab27b67be178",
+        "key": "value",
+        "value": "hello",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "1@954fb18c05f44670bf78ab27b67be178",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "_root",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "9@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "10@954fb18c05f44670bf78ab27b67be178",
+        "key": "defType",
+        "value": "Xform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "10@954fb18c05f44670bf78ab27b67be178",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "10@954fb18c05f44670bf78ab27b67be178",
+        "key": "name",
+        "value": "hello",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "10@954fb18c05f44670bf78ab27b67be178",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "14@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "15@954fb18c05f44670bf78ab27b67be178",
+        "key": "defineType",
+        "value": "double3",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "15@954fb18c05f44670bf78ab27b67be178",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "15@954fb18c05f44670bf78ab27b67be178",
+        "key": "keyword",
+        "value": "custom",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "15@954fb18c05f44670bf78ab27b67be178",
+        "key": "reference",
+        "value": "xformOp:translate",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "15@954fb18c05f44670bf78ab27b67be178",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "15@954fb18c05f44670bf78ab27b67be178",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "21@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 4,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "21@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "22@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "datatype": "int",
+        "value": 5,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "21@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "23@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "datatype": "int",
+        "value": 6,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "14@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "15@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "25@954fb18c05f44670bf78ab27b67be178",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "25@954fb18c05f44670bf78ab27b67be178",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "25@954fb18c05f44670bf78ab27b67be178",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "25@954fb18c05f44670bf78ab27b67be178",
+        "key": "reference",
+        "value": "xformOpOrder",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "25@954fb18c05f44670bf78ab27b67be178",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "25@954fb18c05f44670bf78ab27b67be178",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "31@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "value": "xformOp:translate",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "14@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "25@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@954fb18c05f44670bf78ab27b67be178",
+        "key": "defType",
+        "value": "Sphere",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@954fb18c05f44670bf78ab27b67be178",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@954fb18c05f44670bf78ab27b67be178",
+        "key": "name",
+        "value": "world",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "33@954fb18c05f44670bf78ab27b67be178",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "37@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "38@954fb18c05f44670bf78ab27b67be178",
+        "key": "defineType",
+        "value": "float3[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "38@954fb18c05f44670bf78ab27b67be178",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "38@954fb18c05f44670bf78ab27b67be178",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "38@954fb18c05f44670bf78ab27b67be178",
+        "key": "reference",
+        "value": "extent",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "38@954fb18c05f44670bf78ab27b67be178",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "38@954fb18c05f44670bf78ab27b67be178",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "44@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "45@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": -2,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "45@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "46@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "datatype": "int",
+        "value": -2,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "45@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "47@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "datatype": "int",
+        "value": -2,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "44@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "45@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "49@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 2,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "49@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "50@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "datatype": "int",
+        "value": 2,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "49@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "51@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "datatype": "int",
+        "value": 2,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "37@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "38@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "53@954fb18c05f44670bf78ab27b67be178",
+        "key": "defineType",
+        "value": "color3f[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "53@954fb18c05f44670bf78ab27b67be178",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "53@954fb18c05f44670bf78ab27b67be178",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "53@954fb18c05f44670bf78ab27b67be178",
+        "key": "reference",
+        "value": "primvars:displayColor",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "53@954fb18c05f44670bf78ab27b67be178",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "53@954fb18c05f44670bf78ab27b67be178",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "59@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "60@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "60@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "61@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "60@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "62@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "37@954fb18c05f44670bf78ab27b67be178",
+        "elemId": "53@954fb18c05f44670bf78ab27b67be178",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "64@954fb18c05f44670bf78ab27b67be178",
+        "key": "defineType",
+        "value": "double",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "64@954fb18c05f44670bf78ab27b67be178",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "64@954fb18c05f44670bf78ab27b67be178",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "64@954fb18c05f44670bf78ab27b67be178",
+        "key": "reference",
+        "value": "radius",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "64@954fb18c05f44670bf78ab27b67be178",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "64@954fb18c05f44670bf78ab27b67be178",
+        "key": "value",
+        "datatype": "int",
+        "value": 2,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@954fb18c05f44670bf78ab27b67be178",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@954fb18c05f44670bf78ab27b67be178",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "10@954fb18c05f44670bf78ab27b67be178",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "10@954fb18c05f44670bf78ab27b67be178",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "_root",
+        "key": "version",
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      }
+    ],
+    "actor": "954fb18c05f44670bf78ab27b67be178",
+    "hash": "633e07ac873c5790a35df49df46a2b5b174ac105b2b9c4c6bacf0d149f17de14",
+    "seq": 1,
+    "startOp": 1,
+    "time": 0,
+    "message": null,
+    "deps": []
+  }
+]

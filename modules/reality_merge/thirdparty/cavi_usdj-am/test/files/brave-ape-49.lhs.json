@@ -1,0 +1,136 @@
+{
+  "descriptor": {
+    "assignments": [
+      {
+        "identifier": "defaultPrim",
+        "keyword": null,
+        "type": "assignment",
+        "value": "world"
+      },
+      {
+        "identifier": "metersPerUnit",
+        "keyword": null,
+        "type": "assignment",
+        "value": 1
+      },
+      {
+        "identifier": "upAxis",
+        "keyword": null,
+        "type": "assignment",
+        "value": "Y"
+      }
+    ],
+    "description": null
+  },
+  "statements": [
+    {
+      "defType": "Xform",
+      "descriptor": {
+        "assignments": [
+          {
+            "identifier": "kind",
+            "keyword": null,
+            "type": "assignment",
+            "value": "assembly"
+          }
+        ],
+        "description": null
+      },
+      "name": "world",
+      "statements": [
+        {
+          "defType": null,
+          "descriptor": {
+            "assignments": [
+              {
+                "identifier": "references",
+                "keyword": "prepend",
+                "type": "assignment",
+                "value": {
+                  "referenceFile": {
+                    "descriptor": null,
+                    "src": "/cube.usda",
+                    "type": "externalReferenceSrc"
+                  },
+                  "toImport": null,
+                  "type": "externalReference"
+                }
+              }
+            ],
+            "description": null
+          },
+          "name": "myFirstCube",
+          "statements": [
+            {
+              "defineType": "color3f[]",
+              "descriptor": null,
+              "keyword": null,
+              "reference": "primvars:displayColor",
+              "type": "declaration",
+              "value": [
+                [
+                  0,
+                  0,
+                  0.6666667
+                ]
+              ]
+            },
+            {
+              "defineType": "float3",
+              "descriptor": null,
+              "keyword": null,
+              "reference": "xformOp:rotateXYZ",
+              "type": "declaration",
+              "value": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "defineType": "float3",
+              "descriptor": null,
+              "keyword": null,
+              "reference": "xformOp:scale",
+              "type": "declaration",
+              "value": [
+                1,
+                1,
+                1
+              ]
+            },
+            {
+              "defineType": "double3",
+              "descriptor": null,
+              "keyword": null,
+              "reference": "xformOp:translate",
+              "type": "declaration",
+              "value": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "defineType": "token[]",
+              "descriptor": null,
+              "keyword": "uniform",
+              "reference": "xformOpOrder",
+              "type": "declaration",
+              "value": [
+                "xformOp:translate",
+                "xformOp:rotateXYZ",
+                "xformOp:scale"
+              ]
+            }
+          ],
+          "subType": "def",
+          "type": "definition"
+        }
+      ],
+      "subType": "def",
+      "type": "definition"
+    }
+  ],
+  "version": 1
+}

@@ -1,0 +1,1509 @@
+[
+  {
+    "ops": [
+      {
+        "action": "makeMap",
+        "obj": "_root",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "1@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "defaultPrim",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "value": "World",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "3@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "endTimeCode",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "datatype": "int",
+        "value": 100,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "8@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "13@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "metersPerUnit",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "13@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "13@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "13@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "datatype": "float64",
+        "value": 0.01,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "13@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "18@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "startTimeCode",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "18@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "18@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "18@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "18@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "23@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "timeCodesPerSecond",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "23@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "23@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "23@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "datatype": "int",
+        "value": 24,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "23@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "28@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "upAxis",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "28@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "28@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "28@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "value": "Z",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "28@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "kilogramsPerUnit",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "33@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "1@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "_root",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "39@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defType",
+        "value": "Xform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "name",
+        "value": "World",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "40@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "44@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "45@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defType",
+        "value": "PhysicsScene",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "45@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "45@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "name",
+        "value": "PhysicsScene",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "45@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "45@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "45@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "44@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "45@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "52@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defType",
+        "value": "Cube",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "52@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "54@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "55@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "56@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "56@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "56@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "56@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "60@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "value": "PhysicsCollisionAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "60@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "61@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "value": "PhysicsRigidBodyAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "54@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "52@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "name",
+        "value": "BoxActor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "52@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "65@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "66@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "vector3f",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "66@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "66@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "66@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "physics:velocity",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "66@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "66@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "72@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 2,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "72@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "73@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "72@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "74@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 2,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "65@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "66@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "76@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "vector3f",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "76@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "76@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "76@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "physics:angularVelocity",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "76@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "76@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "82@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "82@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "83@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "82@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "84@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "65@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "76@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "86@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "color3f[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "86@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "86@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "86@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "primvars:displayColor",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "86@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "86@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "92@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "93@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "float64",
+        "value": 0.2784314,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "93@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "94@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "float64",
+        "value": 0.4117647,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "93@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "95@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "65@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "86@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "97@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "double",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "97@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "97@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "97@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "size",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "97@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "97@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "datatype": "int",
+        "value": 25,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "65@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "97@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "104@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "double3",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "104@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "104@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "104@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "xformOp:translate",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "104@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "104@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "110@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "110@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "111@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "110@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "112@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 500,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "65@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "104@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "114@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "114@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "114@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "114@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "xformOpOrder",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "114@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "114@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "120@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "value": "xformOp:translate",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "52@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "52@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "44@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "52@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "124@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defType",
+        "value": "Cube",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "124@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "126@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "127@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "128@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "128@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "128@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "128@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "132@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "value": "PhysicsCollisionAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "126@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "124@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "name",
+        "value": "Ground",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "124@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "136@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "137@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "color3f[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "137@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "137@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "137@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "primvars:displayColor",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "137@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "137@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "143@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "144@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "float64",
+        "value": 0.5,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "144@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "145@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "float64",
+        "value": 0.5,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "144@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "146@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "float64",
+        "value": 0.5,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "136@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "137@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "148@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "float3",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "148@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "148@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "148@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "xformOp:scale",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "148@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "148@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "154@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 750,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "154@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "155@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 750,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "154@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "156@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 10,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "136@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "148@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "158@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "158@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "158@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "158@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "xformOpOrder",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "158@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "158@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "164@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "value": "xformOp:scale",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "124@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "124@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "44@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "124@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "168@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defType",
+        "value": "SphereLight",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "168@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "168@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "name",
+        "value": "SphereLight",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "168@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "172@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "173@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "float",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "173@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "173@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "173@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "intensity",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "173@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "173@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "datatype": "int",
+        "value": 30000,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "172@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "173@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "180@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "float",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "180@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "180@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "180@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "radius",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "180@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "180@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "datatype": "int",
+        "value": 150,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "172@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "180@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "187@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "double3",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "187@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "187@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "187@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "xformOp:translate",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "187@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "187@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "193@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 650,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "193@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "194@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "193@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "195@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "datatype": "int",
+        "value": 1150,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "172@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "187@bd562d0ee4c84eca970f9abd7d3f948a",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "197@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "197@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "197@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "197@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "reference",
+        "value": "xformOpOrder",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "197@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "197@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "203@bd562d0ee4c84eca970f9abd7d3f948a",
+        "elemId": "_head",
+        "insert": true,
+        "value": "xformOp:translate",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "168@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "168@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@bd562d0ee4c84eca970f9abd7d3f948a",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "_root",
+        "key": "version",
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      }
+    ],
+    "actor": "bd562d0ee4c84eca970f9abd7d3f948a",
+    "hash": "cc73a046fb002f6a401e91db60f79f5c5c810d54dca4226669a6cb3b27f161f7",
+    "seq": 1,
+    "startOp": 1,
+    "time": 0,
+    "message": null,
+    "deps": []
+  }
+]

@@ -1,0 +1,5539 @@
+[
+  {
+    "ops": [
+      {
+        "action": "set",
+        "obj": "_root",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "_root",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "SkelAnimation",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Anim1",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "3@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "7@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "blendShapes",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "8@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "8@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "14@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "override",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "14@4332e023c65441c0a02315cef482fab6",
+        "elemId": "15@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "value": "shape",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "3@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "3@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "19@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "SkelAnimation",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "19@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "19@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Anim2",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "19@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "19@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "19@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "19@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "26@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "SkelAnimation",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "26@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "28@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "29@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "30@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "active",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "30@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "30@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "30@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": false,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "28@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "26@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "InactiveAnim",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "26@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "26@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "26@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "26@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Skel1",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "40@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "40@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "40@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "47@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "47@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "47@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Skel2",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "47@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "47@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "47@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "47@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "54@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "54@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "56@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "57@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "58@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "active",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "58@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "58@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "58@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": false,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "56@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "54@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "InactiveSkel",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "54@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "54@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "54@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "54@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "68@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Scope",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "68@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "70@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "71@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "72@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "instanceable",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "72@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "72@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "72@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "70@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "68@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "InstancedModelAnimBindings",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "68@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "79@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "80@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "SkelAnimation",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "80@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "80@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Anim",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "80@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "80@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "80@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "79@4332e023c65441c0a02315cef482fab6",
+        "elemId": "80@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "87@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "87@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "87@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Inherit",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "87@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "87@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "87@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "79@4332e023c65441c0a02315cef482fab6",
+        "elemId": "87@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "94@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "94@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "96@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "97@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "98@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "98@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "98@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "98@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "102@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "96@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "94@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Override",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "94@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "106@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "107@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "107@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "107@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "107@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:animationSource",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "107@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "107@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "113@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "113@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "../Anim",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "113@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "94@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "94@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "68@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "68@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "68@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "121@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "SkelRoot",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "121@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "121@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "AnimBinding",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "121@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "125@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "126@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Scope",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "126@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "128@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "129@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "130@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "130@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "130@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "130@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "134@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "128@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "126@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Scope",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "126@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "138@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "139@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "139@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "139@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "139@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:animationSource",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "139@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "139@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "145@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "145@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/Anim1",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "145@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "138@4332e023c65441c0a02315cef482fab6",
+        "elemId": "139@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "149@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "149@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "149@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Inherit",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "149@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "149@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "149@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "138@4332e023c65441c0a02315cef482fab6",
+        "elemId": "149@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "156@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "156@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "158@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "159@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "160@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "160@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "160@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "160@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "164@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "158@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "156@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Override",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "156@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "168@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "169@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "169@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "169@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "169@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:animationSource",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "169@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "169@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "175@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "175@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/Anim2",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "175@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "156@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "156@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "138@4332e023c65441c0a02315cef482fab6",
+        "elemId": "156@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "181@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "181@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "183@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "184@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "185@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "185@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "185@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "185@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "189@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "183@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "181@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Block",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "181@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "193@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "194@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "194@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "194@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "194@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:animationSource",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "194@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "194@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "181@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "181@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "126@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "126@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "125@4332e023c65441c0a02315cef482fab6",
+        "elemId": "126@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "205@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "205@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "205@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Unbound",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "205@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "205@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "205@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "125@4332e023c65441c0a02315cef482fab6",
+        "elemId": "205@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "212@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "212@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "214@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "215@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "216@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "216@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "216@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "216@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "220@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "214@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "212@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "BoundToInactiveAnim",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "212@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "224@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "225@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "225@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "225@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "225@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:animationSource",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "225@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "225@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "231@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "231@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/InactiveAnim",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "231@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "212@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "212@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "125@4332e023c65441c0a02315cef482fab6",
+        "elemId": "212@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "237@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "237@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "239@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "240@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "241@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "references",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "241@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "add",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "241@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "241@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "245@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "245@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/InstancedModelAnimBindings",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "245@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "240@4332e023c65441c0a02315cef482fab6",
+        "elemId": "241@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "249@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "249@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "249@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "249@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "253@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "239@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "237@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Instance",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "237@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "257@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "258@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "258@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "258@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "258@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:animationSource",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "258@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "258@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "264@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "264@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/Anim1",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "264@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "237@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "over",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "237@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "121@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "121@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "121@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "272@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Scope",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "272@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "274@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "275@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "276@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "instanceable",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "276@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "276@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "276@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "274@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "272@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "InstancedModelSkelBindings",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "272@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "283@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "284@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "284@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "284@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Skel",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "284@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "284@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "284@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "283@4332e023c65441c0a02315cef482fab6",
+        "elemId": "284@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "291@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Mesh",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "291@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "291@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Inherit",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "291@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "291@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "291@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "283@4332e023c65441c0a02315cef482fab6",
+        "elemId": "291@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "298@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Mesh",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "298@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "300@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "301@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "302@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "302@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "302@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "302@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "306@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "300@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "298@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Override",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "298@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "310@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "311@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "311@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "311@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "311@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "311@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "311@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "317@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "317@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "../Skel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "317@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "310@4332e023c65441c0a02315cef482fab6",
+        "elemId": "311@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "321@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "matrix4d",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "321@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "321@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "321@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:geomBindTransform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "321@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "321@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "327@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "328@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "328@4332e023c65441c0a02315cef482fab6",
+        "elemId": "329@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "328@4332e023c65441c0a02315cef482fab6",
+        "elemId": "330@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "328@4332e023c65441c0a02315cef482fab6",
+        "elemId": "331@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "327@4332e023c65441c0a02315cef482fab6",
+        "elemId": "328@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "333@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "333@4332e023c65441c0a02315cef482fab6",
+        "elemId": "334@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "333@4332e023c65441c0a02315cef482fab6",
+        "elemId": "335@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "333@4332e023c65441c0a02315cef482fab6",
+        "elemId": "336@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "327@4332e023c65441c0a02315cef482fab6",
+        "elemId": "333@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "338@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "338@4332e023c65441c0a02315cef482fab6",
+        "elemId": "339@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "338@4332e023c65441c0a02315cef482fab6",
+        "elemId": "340@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "338@4332e023c65441c0a02315cef482fab6",
+        "elemId": "341@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "327@4332e023c65441c0a02315cef482fab6",
+        "elemId": "338@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "343@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "343@4332e023c65441c0a02315cef482fab6",
+        "elemId": "344@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "343@4332e023c65441c0a02315cef482fab6",
+        "elemId": "345@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "343@4332e023c65441c0a02315cef482fab6",
+        "elemId": "346@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "310@4332e023c65441c0a02315cef482fab6",
+        "elemId": "321@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "348@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "int[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "348@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "348@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "348@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointIndices",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "348@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "348@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "310@4332e023c65441c0a02315cef482fab6",
+        "elemId": "348@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "355@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "float[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "355@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "355@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "355@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointWeights",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "355@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "355@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "310@4332e023c65441c0a02315cef482fab6",
+        "elemId": "355@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "362@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "362@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "362@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "362@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:joints",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "362@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "362@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "368@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "override",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "310@4332e023c65441c0a02315cef482fab6",
+        "elemId": "362@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "370@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "370@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "370@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "370@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapes",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "370@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "370@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "376@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "override",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "310@4332e023c65441c0a02315cef482fab6",
+        "elemId": "370@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "378@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "378@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "378@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "378@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapeTargets",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "378@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "378@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "298@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "298@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "272@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "272@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "2@4332e023c65441c0a02315cef482fab6",
+        "elemId": "272@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "389@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "SkelRoot",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "389@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "389@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "SkelBinding",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "389@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "393@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "394@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "394@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "394@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "394@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:animationSource",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "394@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "394@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "400@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "400@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/Anim1",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "400@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "393@4332e023c65441c0a02315cef482fab6",
+        "elemId": "394@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "404@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Scope",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "404@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "406@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "407@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "408@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "408@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "408@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "408@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "412@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "406@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "404@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Scope",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "404@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "417@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "417@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "417@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "417@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "417@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "417@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "423@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "423@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/Skel1",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "423@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "417@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "427@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "matrix4d",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "427@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "427@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "427@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:geomBindTransform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "427@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "427@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "433@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "434@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "434@4332e023c65441c0a02315cef482fab6",
+        "elemId": "435@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "434@4332e023c65441c0a02315cef482fab6",
+        "elemId": "436@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "434@4332e023c65441c0a02315cef482fab6",
+        "elemId": "437@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "433@4332e023c65441c0a02315cef482fab6",
+        "elemId": "434@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "439@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "439@4332e023c65441c0a02315cef482fab6",
+        "elemId": "440@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "439@4332e023c65441c0a02315cef482fab6",
+        "elemId": "441@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "439@4332e023c65441c0a02315cef482fab6",
+        "elemId": "442@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "433@4332e023c65441c0a02315cef482fab6",
+        "elemId": "439@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "444@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "444@4332e023c65441c0a02315cef482fab6",
+        "elemId": "445@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "444@4332e023c65441c0a02315cef482fab6",
+        "elemId": "446@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "444@4332e023c65441c0a02315cef482fab6",
+        "elemId": "447@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "433@4332e023c65441c0a02315cef482fab6",
+        "elemId": "444@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "449@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "449@4332e023c65441c0a02315cef482fab6",
+        "elemId": "450@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "449@4332e023c65441c0a02315cef482fab6",
+        "elemId": "451@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "449@4332e023c65441c0a02315cef482fab6",
+        "elemId": "452@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "427@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "454@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "int[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "454@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "454@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "454@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointIndices",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "454@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "454@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "454@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "461@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "float[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "461@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "461@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "461@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointWeights",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "461@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "461@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "461@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "468@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "468@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "468@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "468@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:joints",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "468@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "468@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "474@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "scope",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "468@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "476@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "476@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "476@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "476@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapes",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "476@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "476@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "482@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "ignored",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "476@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "484@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "484@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "484@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "484@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapeTargets",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "484@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "484@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "484@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "491@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Mesh",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "491@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "491@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Inherit",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "491@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "491@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "491@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "491@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "498@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Mesh",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "498@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "500@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "501@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "502@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "502@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "502@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "502@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "506@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "500@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "498@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Override",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "498@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "510@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "511@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "511@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "511@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "511@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "511@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "511@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "517@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "517@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/Skel2",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "517@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "510@4332e023c65441c0a02315cef482fab6",
+        "elemId": "511@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "521@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "matrix4d",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "521@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "521@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "521@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:geomBindTransform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "521@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "521@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "527@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "528@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "528@4332e023c65441c0a02315cef482fab6",
+        "elemId": "529@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "528@4332e023c65441c0a02315cef482fab6",
+        "elemId": "530@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "528@4332e023c65441c0a02315cef482fab6",
+        "elemId": "531@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "527@4332e023c65441c0a02315cef482fab6",
+        "elemId": "528@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "533@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "533@4332e023c65441c0a02315cef482fab6",
+        "elemId": "534@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "533@4332e023c65441c0a02315cef482fab6",
+        "elemId": "535@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "533@4332e023c65441c0a02315cef482fab6",
+        "elemId": "536@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "527@4332e023c65441c0a02315cef482fab6",
+        "elemId": "533@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "538@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "538@4332e023c65441c0a02315cef482fab6",
+        "elemId": "539@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "538@4332e023c65441c0a02315cef482fab6",
+        "elemId": "540@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "538@4332e023c65441c0a02315cef482fab6",
+        "elemId": "541@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "527@4332e023c65441c0a02315cef482fab6",
+        "elemId": "538@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "543@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "543@4332e023c65441c0a02315cef482fab6",
+        "elemId": "544@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "543@4332e023c65441c0a02315cef482fab6",
+        "elemId": "545@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "543@4332e023c65441c0a02315cef482fab6",
+        "elemId": "546@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "510@4332e023c65441c0a02315cef482fab6",
+        "elemId": "521@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "548@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "int[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "548@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "548@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "548@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointIndices",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "548@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "548@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "510@4332e023c65441c0a02315cef482fab6",
+        "elemId": "548@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "555@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "float[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "555@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "555@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "555@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointWeights",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "555@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "555@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "510@4332e023c65441c0a02315cef482fab6",
+        "elemId": "555@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "562@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "562@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "562@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "562@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:joints",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "562@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "562@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "568@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "override",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "510@4332e023c65441c0a02315cef482fab6",
+        "elemId": "562@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "570@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "570@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "570@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "570@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapes",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "570@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "570@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "576@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "shape",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "510@4332e023c65441c0a02315cef482fab6",
+        "elemId": "570@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "578@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "578@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "578@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "578@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapeTargets",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "578@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "578@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "498@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "498@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "416@4332e023c65441c0a02315cef482fab6",
+        "elemId": "498@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "587@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Mesh",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "587@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "589@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "590@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "591@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "591@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "591@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "591@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "595@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "589@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "587@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Block",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "587@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "599@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "600@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "600@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "600@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "600@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "600@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "600@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "599@4332e023c65441c0a02315cef482fab6",
+        "elemId": "600@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "607@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "matrix4d",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "607@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "607@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "607@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:geomBindTransform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "607@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "607@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "599@4332e023c65441c0a02315cef482fab6",
+        "elemId": "607@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "614@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "int[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "614@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "614@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "614@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointIndices",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "614@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "614@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "599@4332e023c65441c0a02315cef482fab6",
+        "elemId": "614@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "621@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "float[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "621@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "621@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "621@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointWeights",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "621@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "621@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "599@4332e023c65441c0a02315cef482fab6",
+        "elemId": "621@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "628@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "628@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "628@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "628@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:joints",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "628@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "628@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "599@4332e023c65441c0a02315cef482fab6",
+        "elemId": "628@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "635@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "635@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "635@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "635@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapes",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "635@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "635@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "599@4332e023c65441c0a02315cef482fab6",
+        "elemId": "635@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "642@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "642@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "642@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "642@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapeTargets",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "642@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "642@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "587@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "587@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "404@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "404@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "393@4332e023c65441c0a02315cef482fab6",
+        "elemId": "404@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "653@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Mesh",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "653@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "653@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Unbound",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "653@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "653@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "653@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "393@4332e023c65441c0a02315cef482fab6",
+        "elemId": "653@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "660@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": "Mesh",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "660@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "662@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "663@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "664@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "664@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "664@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "664@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "668@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "662@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "660@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "BoundToInactiveSkel",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "660@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "672@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "673@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "673@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "673@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "673@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "673@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "673@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "679@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "679@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/InactiveSkel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "679@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "660@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "660@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "393@4332e023c65441c0a02315cef482fab6",
+        "elemId": "660@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "685@4332e023c65441c0a02315cef482fab6",
+        "key": "defType",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "685@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "687@4332e023c65441c0a02315cef482fab6",
+        "key": "assignments",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "688@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "689@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "references",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "689@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "add",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "689@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "689@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "693@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "693@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/InstancedModelSkelBindings",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "693@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "688@4332e023c65441c0a02315cef482fab6",
+        "elemId": "689@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "697@4332e023c65441c0a02315cef482fab6",
+        "key": "identifier",
+        "value": "apiSchemas",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "697@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "prepend",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "697@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "assignment",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "697@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "701@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "SkelBindingAPI",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "687@4332e023c65441c0a02315cef482fab6",
+        "key": "description",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "685@4332e023c65441c0a02315cef482fab6",
+        "key": "name",
+        "value": "Instance",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "685@4332e023c65441c0a02315cef482fab6",
+        "key": "statements",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "705@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "706@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "706@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "706@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "706@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:skeleton",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "706@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "706@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "712@4332e023c65441c0a02315cef482fab6",
+        "key": "field",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "712@4332e023c65441c0a02315cef482fab6",
+        "key": "importPath",
+        "value": "/Skel1",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "712@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "externalReferenceImport",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "705@4332e023c65441c0a02315cef482fab6",
+        "elemId": "706@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "716@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "matrix4d",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "716@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "716@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "716@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:geomBindTransform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "716@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "716@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "722@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "723@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "723@4332e023c65441c0a02315cef482fab6",
+        "elemId": "724@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "723@4332e023c65441c0a02315cef482fab6",
+        "elemId": "725@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "723@4332e023c65441c0a02315cef482fab6",
+        "elemId": "726@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "722@4332e023c65441c0a02315cef482fab6",
+        "elemId": "723@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "728@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "728@4332e023c65441c0a02315cef482fab6",
+        "elemId": "729@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "728@4332e023c65441c0a02315cef482fab6",
+        "elemId": "730@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "728@4332e023c65441c0a02315cef482fab6",
+        "elemId": "731@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "722@4332e023c65441c0a02315cef482fab6",
+        "elemId": "728@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "733@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "733@4332e023c65441c0a02315cef482fab6",
+        "elemId": "734@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "733@4332e023c65441c0a02315cef482fab6",
+        "elemId": "735@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "733@4332e023c65441c0a02315cef482fab6",
+        "elemId": "736@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "722@4332e023c65441c0a02315cef482fab6",
+        "elemId": "733@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "738@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "738@4332e023c65441c0a02315cef482fab6",
+        "elemId": "739@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "738@4332e023c65441c0a02315cef482fab6",
+        "elemId": "740@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 0,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "738@4332e023c65441c0a02315cef482fab6",
+        "elemId": "741@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "705@4332e023c65441c0a02315cef482fab6",
+        "elemId": "716@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "743@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "int[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "743@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "743@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "743@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointIndices",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "743@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "743@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "705@4332e023c65441c0a02315cef482fab6",
+        "elemId": "743@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "750@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "float[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "750@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "750@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "750@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "primvars:skel:jointWeights",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "750@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "750@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "705@4332e023c65441c0a02315cef482fab6",
+        "elemId": "750@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "757@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "757@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "757@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "757@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:joints",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "757@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "757@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "763@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "instance",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "705@4332e023c65441c0a02315cef482fab6",
+        "elemId": "757@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "765@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "token[]",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "765@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "765@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": "uniform",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "765@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapes",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "765@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "765@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "771@4332e023c65441c0a02315cef482fab6",
+        "elemId": "_head",
+        "insert": true,
+        "value": "ignored",
+        "pred": []
+      },
+      {
+        "action": "makeMap",
+        "obj": "705@4332e023c65441c0a02315cef482fab6",
+        "elemId": "765@4332e023c65441c0a02315cef482fab6",
+        "insert": true,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "773@4332e023c65441c0a02315cef482fab6",
+        "key": "defineType",
+        "value": "rel",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "773@4332e023c65441c0a02315cef482fab6",
+        "key": "descriptor",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "773@4332e023c65441c0a02315cef482fab6",
+        "key": "keyword",
+        "value": null,
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "773@4332e023c65441c0a02315cef482fab6",
+        "key": "reference",
+        "value": "skel:blendShapeTargets",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "773@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "declaration",
+        "pred": []
+      },
+      {
+        "action": "makeList",
+        "obj": "773@4332e023c65441c0a02315cef482fab6",
+        "key": "value",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "685@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "over",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "685@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "389@4332e023c65441c0a02315cef482fab6",
+        "key": "subType",
+        "value": "def",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "389@4332e023c65441c0a02315cef482fab6",
+        "key": "type",
+        "value": "definition",
+        "pred": []
+      },
+      {
+        "action": "set",
+        "obj": "_root",
+        "key": "version",
+        "datatype": "int",
+        "value": 1,
+        "pred": []
+      }
+    ],
+    "actor": "4332e023c65441c0a02315cef482fab6",
+    "hash": "58299f552b1b20afa4db5da6468faff9300a120f1a117e9ced3b2b1035885c1e",
+    "seq": 1,
+    "startOp": 1,
+    "time": 0,
+    "message": null,
+    "deps": []
+  }
+]
