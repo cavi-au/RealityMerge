@@ -27,6 +27,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#include <memory>
 #include <sstream>
 #include <stdexcept>
 #include <typeinfo>
