@@ -114,9 +114,9 @@ constexpr AssignmentType Assignment::get_type() const {
     return AssignmentType::ASSIGNMENT;
 }
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::AssignmentType& out);
+std::istream& operator>>(std::istream& is, AssignmentType& out);
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::AssignmentType const& in);
+std::ostream& operator<<(std::ostream& os, AssignmentType const& in);
 
 }  // namespace usdj_am
 }  // namespace cavi

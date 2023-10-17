@@ -61,9 +61,9 @@ enum class DeclarationKeyword : std::uint8_t {
     SIZE_ = END_ - BEGIN_
 };
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::DeclarationKeyword& out);
+std::istream& operator>>(std::istream& is, DeclarationKeyword& out);
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::DeclarationKeyword const& in);
+std::ostream& operator<<(std::ostream& os, DeclarationKeyword const& in);
 
 }  // namespace usdj_am
 }  // namespace cavi

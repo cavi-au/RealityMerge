@@ -57,9 +57,9 @@ enum class StatementType : std::uint8_t {
     SIZE_ = END_ - BEGIN_
 };
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::StatementType& out);
+std::istream& operator>>(std::istream& is, StatementType& out);
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::StatementType const& in);
+std::ostream& operator<<(std::ostream& os, StatementType const& in);
 
 }  // namespace usdj_am
 }  // namespace cavi

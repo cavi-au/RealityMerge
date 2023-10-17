@@ -50,7 +50,7 @@ static std::map<DeclarationKeyword, std::string_view> const LABELS = {
 namespace cavi {
 namespace usdj_am {
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::DeclarationKeyword& out) {
+std::istream& operator>>(std::istream& is, DeclarationKeyword& out) {
     std::string token;
     is >> token;
     bool is_label = false;
@@ -67,7 +67,7 @@ std::istream& operator>>(std::istream& is, cavi::usdj_am::DeclarationKeyword& ou
     return is;
 }
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::DeclarationKeyword const& in) {
+std::ostream& operator<<(std::ostream& os, DeclarationKeyword const& in) {
     os << LABELS.at(in);
     return os;
 }

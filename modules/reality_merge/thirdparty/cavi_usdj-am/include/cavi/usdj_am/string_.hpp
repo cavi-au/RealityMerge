@@ -84,13 +84,9 @@ inline AMdoc const* String::get_document() const {
     return m_document;
 }
 
+std::ostream& operator<<(std::ostream& os, String const& in);
+
 }  // namespace usdj_am
 }  // namespace cavi
-
-namespace std {
-
-ostream& operator<<(ostream& os, cavi::usdj_am::String const& in);
-
-}  // namespace std
 
 #endif  // CAVI_USDJ_AM_STRING_HPP

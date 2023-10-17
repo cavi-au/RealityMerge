@@ -64,7 +64,7 @@ public:
 
     Item& operator=(Item&&) = default;
 
-    operator AMitem*() const;
+    operator AMitem const*() const;
 
 private:
     using ResultPtr = std::shared_ptr<AMresult>;
@@ -73,12 +73,20 @@ private:
     AMdoc const* const m_document;
     Results m_results;
 
+    friend bool operator==(Item const& lhs, Item const& rhs);
+
     friend Item& operator/(Item&, std::string const&);
 
     friend Item& operator/(Item&, std::uint64_t const);
 
     friend std::ostream& operator<<(std::ostream& os, Item const& in);
 };
+
+bool operator==(Item const& lhs, Item const& rhs);
+
+inline bool operator!=(Item const& lhs, Item const& rhs) {
+    return !operator==(lhs, rhs);
+}
 
 /// \brief Appends a string index to the given item.
 ///
@@ -96,7 +104,7 @@ Item& operator/(Item& item, std::string const& key);
 /// \throws std::invalid_argument
 Item& operator/(Item& item, std::uint64_t const pos);
 
-// std::ostream& operator<<(std::ostream& os, cavi::usdj_am::utils::Item const& in);
+std::ostream& operator<<(std::ostream& os, Item const& in);
 
 }  // namespace utils
 }  // namespace usdj_am

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
 
 project(cavi_usdj_am VERSION 0.0.1
                      LANGUAGES CXX
-                     DESCRIPTION "A C++ USDJ-AM node proxy library")
+                     DESCRIPTION "A C++ USDJ-AM node adapter library")
                      
 include(CTest)
 
@@ -28,23 +28,36 @@ set(LIBRARY_SUFFIX "${CMAKE_STATIC_LIBRARY_SUFFIX}" CACHE STRING "An output libr
 
 add_library(${LIBRARY_NAME})
 
-if(WIN32)
-    target_compile_definitions(${LIBRARY_NAME} PRIVATE _SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING)
-endif()
-
 target_compile_features(${LIBRARY_NAME} PRIVATE cxx_std_17)
 
-target_link_libraries(${LIBRARY_NAME}
-    PUBLIC automerge_core
-           automerge
-)
+target_link_libraries(${LIBRARY_NAME} PUBLIC automerge)
 
 target_include_directories(${LIBRARY_NAME}
     PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${CMAKE_INSTALL_INCLUDEDIR}>"
            "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-add_dependencies(${LIBRARY_NAME} automerge_core automerge)
+add_dependencies(${LIBRARY_NAME} automerge)
+
+if(WIN32)
+    find_program(LIB_TOOL lib)
+
+    if(LIB_TOOL)
+        add_custom_command(
+            TARGET ${LIBRARY_NAME}
+            POST_BUILD
+            COMMAND
+                ${CMAKE_COMMAND} -E echo "Merging its dependent libraries into \"$<TARGET_FILE:${LIBRARY_NAME}>\"..."
+            COMMAND
+                ${LIB_TOOL} /OUT:$<TARGET_FILE:${LIBRARY_NAME}> $<TARGET_FILE:automerge> $<TARGET_FILE:${LIBRARY_NAME}>
+            WORKING_DIRECTORY
+                ${CMAKE_CURRENT_BINARY_DIR}
+            COMMENT
+                "Consolidating the library..."
+            VERBATIM
+        )
+    endif()
+endif()
 
 # Enable an external build tool to find the library in the root of the
 # out-of-source build directory when it has overridden an aspect of its name.

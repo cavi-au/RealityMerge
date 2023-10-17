@@ -203,7 +203,7 @@ Value Assignment::get_value() const {
     return get_object_property<Value>("value");
 }
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::AssignmentType& out) {
+std::istream& operator>>(std::istream& is, AssignmentType& out) {
     std::string token;
     is >> token;
     bool is_label = false;
@@ -220,7 +220,7 @@ std::istream& operator>>(std::istream& is, cavi::usdj_am::AssignmentType& out) {
     return is;
 }
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::AssignmentType const& in) {
+std::ostream& operator<<(std::ostream& os, AssignmentType const& in) {
     os << LABELS.at(in);
     return os;
 }

@@ -57,8 +57,18 @@ Item::Item(AMdoc const* const document) : m_document{document} {
     }
 }
 
-Item::operator AMitem*() const {
+Item::operator AMitem const*() const {
     return (!m_results.empty()) ? AMresultItem(m_results.back().get()) : nullptr;
+}
+
+bool operator==(Item const& lhs, Item const& rhs) {
+    if (lhs.m_document != rhs.m_document) {
+        return false;
+    }
+    /// \note `AMitemEqual(nullptr, nullptr) == false`.
+    AMitem const* const lhs_item = lhs;
+    AMitem const* const rhs_item = rhs;
+    return (lhs_item == rhs_item) || AMitemEqual(lhs_item, rhs_item);
 }
 
 Item& operator/(Item& item, std::string const& key) {
@@ -110,11 +120,11 @@ Item& operator/(Item& item, std::uint64_t const pos) {
     }
     if (arguments.str().empty()) {
         Item::ResultPtr result{AMlistGet(item.m_document, obj_id, pos, nullptr), AMresultFree};
-        if (AMresultStatus(item.m_results.back().get()) == AM_STATUS_OK) {
-            item.m_results.emplace_back(result);
-        } else {
+        if (AMresultStatus(item.m_results.back().get()) != AM_STATUS_OK) {
             arguments << "AMresultError(AMlistGet(..., AMitemObjId(" << item << "), " << pos << ", nullptr)) == \""
                       << from_bytes(AMresultError(result.get())) << "\"";
+        } else {
+            item.m_results.emplace_back(result);
         }
     }
     if (!arguments.str().empty()) {
@@ -125,12 +135,14 @@ Item& operator/(Item& item, std::uint64_t const pos) {
     return item;
 }
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::utils::Item const& in) {
+std::ostream& operator<<(std::ostream& os, Item const& in) {
     AMbyteSpan key;
     std::uint64_t pos;
     // The root of a document is a map object.
     AMvalType val_type = AM_VAL_TYPE_OBJ_TYPE;
-    os << typeid(in).name() << "{" << std::hex << in.m_document << "}";
+    auto const fmtflags = os.flags();
+    os << typeid(in).name() << "{" << std::showbase << std::hex << in.m_document << "}";
+    os.setf(fmtflags);
     for (auto result : in.m_results) {
         os << "/";
         AMitem const* const c_item = AMresultItem(result.get());

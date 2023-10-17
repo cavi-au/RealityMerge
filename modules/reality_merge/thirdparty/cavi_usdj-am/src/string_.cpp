@@ -42,15 +42,6 @@ extern "C" {
 // local
 #include "string_.hpp"
 
-namespace std {
-
-ostream& operator<<(ostream& os, cavi::usdj_am::String const& in) {
-    os << in.get_view();
-    return os;
-}
-
-}  // namespace std
-
 namespace cavi {
 namespace usdj_am {
 
@@ -102,6 +93,11 @@ std::string_view String::get_view() const {
     AMbyteSpan str = {0};
     assert(AMitemToStr(AMresultItem(m_results[ITEM].get()), &str) == true);
     return std::string_view{reinterpret_cast<std::string_view::const_pointer>(str.src), str.count};
+}
+
+std::ostream& operator<<(std::ostream& os, String const& in) {
+    os << in.get_view();
+    return os;
 }
 
 }  // namespace usdj_am

@@ -30,6 +30,8 @@
 #ifndef CAVI_USDJ_AM_INPUT_RANGE
 #define CAVI_USDJ_AM_INPUT_RANGE
 
+#include <algorithm>
+
 // local
 #include "input_iterator.hpp"
 
@@ -72,6 +74,16 @@ private:
     AMdoc const* const m_document;
     typename ConstInputIterator<T>::ResultPtr m_result;
 };
+
+template <typename T>
+inline bool operator==(ConstInputRange<T> const& lhs, ConstInputRange<T> const& rhs) {
+    return (lhs.size() == rhs.size()) && std::equal(lhs.begin(), lhs.end(), rhs.begin());
+}
+
+template <typename T>
+inline bool operator!=(ConstInputRange<T> const& lhs, ConstInputRange<T> const& rhs) {
+    return !operator==(lhs, rhs);
+}
 
 template <typename T>
 ConstInputRange<T>::ConstInputRange(AMdoc const* const document, AMitem const* const list_object)

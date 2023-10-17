@@ -75,9 +75,9 @@ enum class AssignmentKeyword : std::uint8_t {
     SIZE_ = END_ - BEGIN_
 };
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::AssignmentKeyword& out);
+std::istream& operator>>(std::istream& is, AssignmentKeyword& out);
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::AssignmentKeyword const& in);
+std::ostream& operator<<(std::ostream& os, AssignmentKeyword const& in);
 
 }  // namespace usdj_am
 }  // namespace cavi

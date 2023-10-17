@@ -87,10 +87,6 @@ public:
 
     reference operator*();
 
-    bool operator==(ConstInputIterator<T> const& other) const;
-
-    bool operator!=(ConstInputIterator<T> const& other) const;
-
 private:
     enum Result { BEGIN_, ITEMS = BEGIN_, OBJ_ID, END_, SIZE_ = END_ - BEGIN_ };
 
@@ -100,6 +96,9 @@ private:
     mutable std::optional<T> m_value;
 
     static reference dummy();
+
+    template <typename T>
+    friend bool operator==(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs);
 };
 
 template <typename T>
@@ -165,23 +164,24 @@ typename ConstInputIterator<T>::reference ConstInputIterator<T>::operator*() {
 }
 
 template <typename T>
-bool ConstInputIterator<T>::operator==(ConstInputIterator<T> const& other) const {
-    AMitem const* const lhs_item = (m_items) ? AMitemsNext(const_cast<AMitems*>(m_items.operator->()), 0) : nullptr;
+typename ConstInputIterator<T>::reference ConstInputIterator<T>::dummy() {
+    static char const value[sizeof(T)] = {0};
+    return *reinterpret_cast<T const*>(value);
+}
+
+template <typename T>
+bool operator==(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs) {
+    AMitem const* const lhs_item =
+        (lhs.m_items) ? AMitemsNext(const_cast<AMitems*>(lhs.m_items.operator->()), 0) : nullptr;
     AMitem const* const rhs_item =
-        (other.m_items) ? AMitemsNext(const_cast<AMitems*>(other.m_items.operator->()), 0) : nullptr;
-    /// \note AMitemEqual(nullptr, nullptr) == false.
+        (rhs.m_items) ? AMitemsNext(const_cast<AMitems*>(rhs.m_items.operator->()), 0) : nullptr;
+    /// \note `AMitemEqual(nullptr, nullptr) == false`.
     return (lhs_item == rhs_item) || AMitemEqual(lhs_item, rhs_item);
 }
 
 template <typename T>
-inline bool ConstInputIterator<T>::operator!=(ConstInputIterator<T> const& other) const {
-    return !operator==(other);
-}
-
-template <typename T>
-typename ConstInputIterator<T>::reference ConstInputIterator<T>::dummy() {
-    static char const value[sizeof(T)] = {0};
-    return *reinterpret_cast<T const*>(value);
+inline bool operator!=(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs) {
+    return !operator==(lhs, rhs);
 }
 
 }  // namespace usdj_am

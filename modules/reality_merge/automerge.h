@@ -67,7 +67,6 @@ private:
 
     friend bool operator==(Automerge const& lhs, Automerge const& rhs);
 
-    friend bool operator!=(Automerge const& lhs, Automerge const& rhs);
 };
 
 _FORCE_INLINE_ Automerge::operator AMdoc*() const {

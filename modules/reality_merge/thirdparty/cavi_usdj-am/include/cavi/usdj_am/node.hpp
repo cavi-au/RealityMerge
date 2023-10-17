@@ -38,7 +38,6 @@
 #include <stdexcept>
 #include <string>
 #include <string_view>
-#include <strstream>
 
 // third-party
 extern "C" {
@@ -162,8 +161,6 @@ protected:
     ObjectT get_object_property(std::string const& key) const;
 
     AMdoc const* const m_document;
-    /// \note It is assumed that all key values are static strings passed from
-    ///       within subclass member functions.
     mutable std::map<std::string, ResultPtr> m_results;
 };
 
@@ -205,11 +202,9 @@ EnumT Node::get_enum_property(std::string const& key) const {
     std::ostringstream arguments;
     try {
         String string{m_document, AMresultItem(iter->second.get())};
-        std::string buffer{string.get_view()};
-        std::istrstream is(buffer.data(), buffer.size());
         EnumT tag;
-        is >> tag;
-        if (!is.fail()) {
+        std::istringstream iss{std::string{string.get_view()}};
+        if (iss >> tag) {
             return tag;
         } else {
             arguments << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \"" << string << "\"";
@@ -272,14 +267,5 @@ extern template Value Node::get_object_property<Value>(std::string const&) const
 
 }  // namespace usdj_am
 }  // namespace cavi
-
-// extern template std::optional<cavi::usdj_am::String>
-// cavi::usdj_am::Node::get_nullable_object_property<cavi::usdj_am::String>(std::string const&) const;
-
-// extern template cavi::usdj_am::String cavi::usdj_am::Node::get_object_property<cavi::usdj_am::String>(
-//     std::string const&) const;
-
-// extern template cavi::usdj_am::Value cavi::usdj_am::Node::get_object_property<cavi::usdj_am::Value>(
-//     std::string const&) const;
 
 #endif  // CAVI_USDJ_AM_NODE_HPP

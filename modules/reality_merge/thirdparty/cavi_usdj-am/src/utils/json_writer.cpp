@@ -304,9 +304,11 @@ void JsonWriter::visit(Value const& value) {
                 m_os << "undefined";
             else if constexpr (std::is_same_v<T, std::unique_ptr<String> >)
                 m_os << "\"" << *alt << "\"";
-            else if constexpr (std::is_same_v<T, bool>)
-                m_os << std::boolalpha << alt << std::noboolalpha;
-            else if constexpr (std::is_same_v<T, Number>) {
+            else if constexpr (std::is_same_v<T, bool>) {
+                auto const fmtflags = m_os.flags();
+                m_os << std::boolalpha << alt;
+                m_os.setf(fmtflags);
+            } else if constexpr (std::is_same_v<T, Number>) {
                 auto const precision = m_os.precision();
                 m_os << std::setprecision(m_precision) << alt << std::setprecision(precision);
             } else if constexpr (std::is_same_v<T, std::unique_ptr<ConstInputRange<Value> > >)

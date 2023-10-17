@@ -55,9 +55,9 @@ enum class ValueType : std::uint8_t {
     SIZE_ = END_ - BEGIN_
 };
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::ValueType& out);
+std::istream& operator>>(std::istream& is, ValueType& out);
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::ValueType const& in);
+std::ostream& operator<<(std::ostream& os, ValueType const& in);
 
 }  // namespace usdj_am
 }  // namespace cavi

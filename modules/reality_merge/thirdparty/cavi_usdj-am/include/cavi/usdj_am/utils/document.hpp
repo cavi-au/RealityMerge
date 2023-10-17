@@ -32,6 +32,7 @@
 
 #include <filesystem>
 #include <memory>
+#include <string>
 
 // local
 #include "item.hpp"
@@ -49,7 +50,7 @@ class Document {
 public:
     using ResultPtr = std::unique_ptr<AMresult, void (*)(AMresult*)>;
 
-    static Document load(std::filesystem::path const& path);
+    static Document load(std::filesystem::path const& filename);
 
     Document() = delete;
 
@@ -73,7 +74,14 @@ public:
     /// \brief Gets the root map object of the document.
     ///
     /// \return An `Item`.
-    Item get_root() const;
+    Item get_item() const;
+
+    /// \brief Gets the item at an absolute POSIX path within the document.
+    ///
+    /// \param[in] posix_path An absolute POSIX path string.
+    /// \return An `Item`.
+    /// \throws std::invalid_argument
+    Item get_item(std::string const& posix_path) const;
 
 private:
     AMdoc* m_document;
@@ -84,7 +92,7 @@ inline Document::operator AMdoc*() const {
     return m_document;
 }
 
-inline Item Document::get_root() const {
+inline Item Document::get_item() const {
     return Item(m_document);
 }
 

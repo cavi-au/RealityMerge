@@ -5,6 +5,7 @@
 #include <stdexcept>
 
 // third-party
+#include <cavi/usdj_am/descriptor.hpp>
 #include <cavi/usdj_am/file.hpp>
 #include <cavi/usdj_am/utils/document.hpp>
 #include <cavi/usdj_am/utils/item.hpp>
@@ -62,7 +63,7 @@ TEST_CASE("Validate nested `File` with USDA.JSON files", "[File]") {
     auto usdj_am_path = ROOT / (STEM + ".automerge");
     auto document = utils::Document::load(usdj_am_path);
     CHECK(document != static_cast<AMdoc*>(nullptr));
-    auto file = File{document, document.get_root() / "data" / "scene"};
+    auto file = File{document, document.get_item() / "data" / "scene"};
     // Match the indenting of the example USDA JSON files.
     utils::JsonWriter json_writer{utils::JsonWriter::Indenter{' ', 2}};
     file.accept(json_writer);
@@ -102,4 +103,45 @@ TEST_CASE("Validate nested `File` with USDA.JSON files", "[File]") {
     rhs_jq_json.assign(std::istreambuf_iterator<std::ifstream::char_type>(rhs_fs),
                        std::istreambuf_iterator<std::ifstream::char_type>());
     CHECK(lhs_jq_json == rhs_jq_json);
+}
+
+TEST_CASE("Validate `Item` path parsing with key leaf", "[utils::Item]") {
+    using namespace cavi::usdj_am;
+
+    auto document = utils::Document::load(ROOT / "brave-ape-49.automerge");
+    CHECK(document != static_cast<AMdoc*>(nullptr));
+    CHECK_THROWS_AS(document.get_item(""), std::invalid_argument);
+    CHECK(AMitemObjId(document.get_item("/")) == AM_ROOT);
+    CHECK(document.get_item("/") == document.get_item());
+    auto unparsed_item = document.get_item() / "data" / "scene" / "descriptor" / "assignments";
+    CHECK(unparsed_item.operator AMitem const*());
+    auto assignments = Descriptor::Assignments{document, unparsed_item};
+    CHECK_THROWS_AS(document.get_item("data/scene/descriptor/assignments"), std::invalid_argument);
+    auto parsed_item = document.get_item("/data/scene/descriptor/assignments");
+    CHECK(parsed_item == unparsed_item);
+    auto unparsed_assignments = Descriptor::Assignments{document, unparsed_item};
+    auto parsed_assignments = Descriptor::Assignments{document, parsed_item};
+    CHECK(parsed_assignments.get_document() == unparsed_assignments.get_document());
+    CHECK(AMobjIdEqual(parsed_assignments.get_object_id(), unparsed_assignments.get_object_id()));
+}
+
+TEST_CASE("Validate `Item` path parsing with pos leaf", "[utils::Item]") {
+    using namespace cavi::usdj_am;
+
+    auto document = utils::Document::load(ROOT / "brave-ape-49.automerge");
+    CHECK(document != static_cast<AMdoc*>(nullptr));
+    CHECK_THROWS_AS(document.get_item(""), std::invalid_argument);
+    CHECK(AMitemObjId(document.get_item("/")) == AM_ROOT);
+    CHECK(document.get_item("/") == document.get_item());
+    auto unparsed_item = document.get_item() / "data" / "scene" / "descriptor" / "assignments" / 0;
+    CHECK(unparsed_item.operator AMitem const*());
+    auto assignments = Descriptor::Assignments{document, unparsed_item};
+    CHECK_THROWS_AS(document.get_item("data/scene/descriptor/assignments/0"), std::invalid_argument);
+    CHECK_THROWS_AS(document.get_item("data/scene/descriptor/assignments/zero"), std::invalid_argument);
+    auto parsed_item = document.get_item("/data/scene/descriptor/assignments/0");
+    CHECK(parsed_item == unparsed_item);
+    auto unparsed_assignment = Assignment{document, unparsed_item};
+    auto parsed_assignment = Assignment{document, parsed_item};
+    CHECK(parsed_assignment.get_document() == unparsed_assignment.get_document());
+    CHECK(AMobjIdEqual(parsed_assignment.get_object_id(), unparsed_assignment.get_object_id()));
 }

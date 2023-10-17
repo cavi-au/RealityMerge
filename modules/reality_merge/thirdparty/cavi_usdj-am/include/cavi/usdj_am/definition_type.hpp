@@ -50,9 +50,9 @@ namespace usdj_am {
 ///        string within an Automerge document.
 enum class DefinitionType : std::uint8_t { BEGIN_ = 1, DEF = BEGIN_, OVER, END_, SIZE_ = END_ - BEGIN_ };
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::DefinitionType& out);
+std::istream& operator>>(std::istream& is, DefinitionType& out);
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::DefinitionType const& in);
+std::ostream& operator<<(std::ostream& os, DefinitionType const& in);
 
 }  // namespace usdj_am
 }  // namespace cavi

@@ -50,7 +50,7 @@ static std::map<ValueType, std::string_view> const LABELS = {
 namespace cavi {
 namespace usdj_am {
 
-std::istream& operator>>(std::istream& is, cavi::usdj_am::ValueType& out) {
+std::istream& operator>>(std::istream& is, ValueType& out) {
     std::string token;
     is >> token;
     bool is_label = false;
@@ -67,7 +67,7 @@ std::istream& operator>>(std::istream& is, cavi::usdj_am::ValueType& out) {
     return is;
 }
 
-std::ostream& operator<<(std::ostream& os, cavi::usdj_am::ValueType const& in) {
+std::ostream& operator<<(std::ostream& os, ValueType const& in) {
     os << LABELS.at(in);
     return os;
 }
