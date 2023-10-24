@@ -17,31 +17,41 @@
 * Python >= 3.6
 * SCons >= 4.5.2
 
+#### Test Prerequisites
+
+* Catch2 >= 2.13.8
+* jq >= 1.6
+
 ### Installation
 
 1. Install the Cargo, CMake, Ninja, Python and SCons tools for your platform.
 
 2. Clone the project's Git repository including its submodules e.g.
+
 ```
 git clone --recurse-submodules https://github.com/cavi-au/RealityMerge.git
 ```
 
 3. Enter the directory for the repository clone e.g.
+
 ```
 cd RealityMerge
 ```
 
 3. Make a directory for the project's CMake build configuration e.g.
+
 ```
 cmake -E make_directory build
 ```
 
 4. Create the project's CMake build configuration e.g.
+
 ```
 cmake -B build -S .
 ```
 
 5. Build the project's extended version of Godot >= 4.1 e.g.
+
 ```
 cmake --build build
 ```
@@ -49,6 +59,7 @@ cmake --build build
 ## Usage
 
 Launch the project's extended version of Godot >= 4.1 e.g.
+
 ```
 godot\bin\godot.windows.editor.x86_64.exe
 ```
