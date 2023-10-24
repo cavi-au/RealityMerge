@@ -5,7 +5,14 @@
 #include <stdexcept>
 
 // third-party
+#if defined(_MSC_VER)
+
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/generators/catch_generators.hpp>
+#else
+
 #include <catch2/catch.hpp>
+#endif
 
 // regional
 #include <cavi/usdj_am/descriptor.hpp>
