@@ -75,9 +75,11 @@ private:
 
     friend bool operator==(Item const& lhs, Item const& rhs);
 
-    friend Item& operator/(Item&, std::string const&);
+    friend Item operator/(Item const& lhs, Item const& rhs);
 
-    friend Item& operator/(Item&, std::uint64_t const);
+    friend Item operator/(Item const&, std::string const&);
+
+    friend Item operator/(Item const&, std::uint64_t const);
 
     friend std::ostream& operator<<(std::ostream& os, Item const& in);
 };
@@ -88,21 +90,29 @@ inline bool operator!=(Item const& lhs, Item const& rhs) {
     return !operator==(lhs, rhs);
 }
 
+/// \brief Appends another item to the given item.
+///
+/// \param lhs[in] An `Item` to which \p rhs will be appended.
+/// \param rhs[in] An `Item` to append.
+/// \return A new `Item`.
+/// \throws std::invalid_argument
+Item operator/(Item const& lhs, Item const& rhs);
+
 /// \brief Appends a string index to the given item.
 ///
-/// \param item[in] An `Item` to which index \p key will be appended.
+/// \param lhs[in] An `Item` to which index \p key will be appended.
 /// \param key[in] A key within a map object.
-/// \return \p item
+/// \return A new `Item`.
 /// \throws std::invalid_argument
-Item& operator/(Item& item, std::string const& key);
+Item operator/(Item const& lhs, std::string const& key);
 
 /// \brief Appends an integer index to the given item.
 ///
-/// \param item[in] An `Item` to which index \p pos will be appended.
+/// \param lhs[in] An `Item` to which index \p pos will be appended.
 /// \param pos[in] A position within a list object.
-/// \return \p item
+/// \return A new `Item`.
 /// \throws std::invalid_argument
-Item& operator/(Item& item, std::uint64_t const pos);
+Item operator/(Item const& lhs, std::uint64_t const pos);
 
 std::ostream& operator<<(std::ostream& os, Item const& in);
 

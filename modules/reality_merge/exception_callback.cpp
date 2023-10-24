@@ -48,22 +48,22 @@ extern "C" {
 using CharPtr = std::unique_ptr<char, void (*)(void*)>;
 using DataPtr = std::unique_ptr<AMstackCallbackData, void (*)(void*)>;
 
-bool exc_cb(AMstack** stack, void* data) {
-    DataPtr const data_ptr{static_cast<AMstackCallbackData*>(data), std::free};
+bool exc_cb(AMstack** p_stack, void* p_data) {
+    DataPtr const data_ptr{static_cast<AMstackCallbackData*>(p_data), std::free};
     std::ostringstream msg;
-    if (!stack) {
-        msg << '`' << typeid(stack).name();
-    } else if (!*stack) {
-        msg << '`' << typeid(*stack).name();
-    } else if (!(*stack)->result) {
-        msg << '`' << typeid((*stack)->result).name();
+    if (!p_stack) {
+        msg << '`' << typeid(p_stack).name();
+    } else if (!*p_stack) {
+        msg << '`' << typeid(*p_stack).name();
+    } else if (!(*p_stack)->result) {
+        msg << '`' << typeid((*p_stack)->result).name();
     }
     if (!msg.str().empty()) {
         msg << " == nullptr`.";
         throw std::invalid_argument(msg.str());
         return false;
     }
-    AMstatus const status = AMresultStatus((*stack)->result);
+    AMstatus const status = AMresultStatus((*p_stack)->result);
     switch (status) {
         case AM_STATUS_ERROR: {
             msg << "Error";
@@ -80,15 +80,14 @@ bool exc_cb(AMstack** stack, void* data) {
         }
     }
     if (!msg.str().empty()) {
-        CharPtr const c_msg{AMstrdup(AMresultError((*stack)->result), nullptr), std::free};
+        CharPtr const c_msg{AMstrdup(AMresultError((*p_stack)->result), nullptr), std::free};
         msg << "; " << c_msg.get() << ".";
         throw std::runtime_error(msg.str());
         return false;
     }
-    if (data) {
-        auto const tag = AMitemValType(AMresultItem((*stack)->result));
+    if (p_data) {
+        auto const tag = AMitemValType(AMresultItem((*p_stack)->result));
         if (!(tag & data_ptr->bitmask)) {
-            std::ostringstream msg;
             msg << "Unexpected value type `" << AMvalTypeToString(tag) << "` (" << tag << ") at " << data_ptr->file
                 << ":" << data_ptr->line << ".";
             throw std::runtime_error(msg.str());

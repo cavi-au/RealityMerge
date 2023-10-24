@@ -49,6 +49,12 @@ extern "C" {
 namespace cavi {
 namespace usdj_am {
 
+template <typename T>
+class ConstInputIterator;
+
+template <typename T>
+bool operator==(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs);
+
 /// \brief Represents a read-only array value in a synxtax tree that was parsed
 ///        out of a USDA document, encoded as JSON and stored within an
 ///        Automerge document.
@@ -97,8 +103,7 @@ private:
 
     static reference dummy();
 
-    template <typename T>
-    friend bool operator==(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs);
+    friend bool operator==<T>(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs);
 };
 
 template <typename T>

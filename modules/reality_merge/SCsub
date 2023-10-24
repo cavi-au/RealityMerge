@@ -3,38 +3,44 @@
 import os
 import os.path
 
-Import('env')
-Import('env_modules')
+Import("env")
+Import("env_modules")
 
 env_reality_merge = env_modules.Clone()
 
-module_path = Dir('.').srcnode().abspath
-thirdparty_dir = os.path.join(module_path, 'thirdparty')
-usdj_am_dir = os.path.join(thirdparty_dir, 'cavi_usdj-am')
+module_path = Dir(".").srcnode().abspath
+thirdparty_dir = os.path.join(module_path, "thirdparty")
+usdj_am_dir = os.path.join(thirdparty_dir, "cavi_usdj-am")
 
 # Delegate the building of the third-party library to CMake.
-build_dir = os.path.join(usdj_am_dir, 'build',)
-source_dir = os.path.join(usdj_am_dir, 'src')
-library_name = 'cavi_usdj_am'
-library_basename = library_name + env.subst('$LIBSUFFIX')
+build_dir = os.path.join(
+    usdj_am_dir,
+    "build",
+)
+source_dir = os.path.join(usdj_am_dir, "src")
+library_name = "cavi_usdj-am"
+library_basename = env.subst("$LIBPREFIX") + library_name + env.subst("$LIBSUFFIX")
 library_filename = os.path.join(build_dir, library_basename)
-env_reality_merge.AppendENVPath('INCLUDE', [
-    os.path.join(usdj_am_dir, 'include'),
-    os.path.join(thirdparty_dir, 'automerge', 'rust', 'automerge-c', 'include'),
-    os.path.join(build_dir, 'include'),
-    os.path.join(build_dir, 'automerge-c', 'include'),
-])
+env_reality_merge.Prepend(
+    CPPPATH=[
+        os.path.join(usdj_am_dir, "include"),
+        os.path.join(thirdparty_dir, "automerge", "rust", "automerge-c", "include"),
+        os.path.join(build_dir, "include"),
+        os.path.join(build_dir, "automerge-c", "include"),
+    ],
+)
 cmake_build_type = {
-    'editor': 'RelWithDebInfo',
-    'template_debug': 'Debug',
-    'template_release': 'Release',
-}[env['target']]
-cmake_command = '"{}"'.format(os.environ.get('CMAKE_COMMAND', 'cmake'))
+    "editor": "RelWithDebInfo",
+    "template_debug": "Debug",
+    "template_release": "Release",
+}[env["target"]]
+cmake_command = '"{}"'.format(os.environ.get("CMAKE_COMMAND", "cmake"))
 libraries = [library_filename]
 env_reality_merge.Command(
     target=libraries,
-    source=os.path.join(usdj_am_dir, 'CMakeLists.txt'),
+    source=os.path.join(usdj_am_dir, "CMakeLists.txt"),
     action=[
+        # fmt: off
         # Make the out-of-source build directory for CMake in order to dictate
         # the output directory for its build products.
         Mkdir(build_dir),
@@ -48,29 +54,38 @@ env_reality_merge.Command(
         cmake_command + ' --build ' + build_dir + ' --target clean',
         # Build the project's library target.
         cmake_command + ' --build ' + build_dir + ' --target ' + library_name,
+        # fmt: on
     ],
 )
 
-env.Append(LIBPATH=[build_dir], LIBS=libraries)
+env.Append(
+    LIBPATH=[build_dir],
+    LIBS=[library_name],
+)
 
-if env['platform'] == 'windows' and env.msvc:
-    env.Append(LINKFLAGS=[
-        library_basename,
-        # Exclude the C runtime library.
-        '/NODEFAULTLIB:msvcrt.lib',
-        # \todo Render ignorance unnecessary.
-        '/IGNORE:4217',
-        '/IGNORE:4286',
-    ])
+if env["platform"] == "windows" and env.msvc:
+    env.Append(
+        LINKFLAGS=[
+            library_basename,
+            # Exclude the C runtime library.
+            "/NODEFAULTLIB:msvcrt.lib",
+            # \todo Render ignorance unnecessary.
+            "/IGNORE:4217",
+            "/IGNORE:4286",
+        ]
+    )
 
 # Godot source files
 module_obj = []
 
-env_reality_merge.add_source_files(module_obj, [
-    'automerge.cpp',
-    'exception_callback.cpp',
-    'register_types.cpp',
-])
+env_reality_merge.add_source_files(
+    module_obj,
+    [
+        "automerge.cpp",
+        "exception_callback.cpp",
+        "register_types.cpp",
+    ],
+)
 env.modules_sources += module_obj
 
 # Force rebuilding of the module files when the third-party libraries are updated.

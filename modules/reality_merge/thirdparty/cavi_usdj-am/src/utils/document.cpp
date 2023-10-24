@@ -54,21 +54,30 @@ namespace utils {
 Document Document::load(std::filesystem::path const& filename) {
     ResultPtr result{nullptr, AMresultFree};
     std::ostringstream arguments;
-    std::basic_ifstream<std::uint8_t> file(filename, std::ios::in | std::ios::binary | std::ios::ate);
-    if (file) {
-        std::vector<std::uint8_t> buffer(file.tellg());
-        file.seekg(0, std::ios::beg);
-        if (file.read(buffer.data(), buffer.size())) {
-            result = ResultPtr{AMload(buffer.data(), buffer.size()), AMresultFree};
-            if (AMresultStatus(result.get()) != AM_STATUS_OK) {
-                arguments << "AMresultError(AMload(..., ...)) == \"" << from_bytes(AMresultError(result.get())) << "\"";
+    if (!filename.empty()) {
+        std::ifstream file(filename, std::ios::in | std::ios::binary | std::ios::ate);
+        if (file) {
+            std::vector<std::uint8_t> buffer;
+            std::streampos const size = file.tellg();
+            buffer.reserve(size);
+            file.seekg(0, std::ios::beg);
+            buffer.insert(buffer.end(), std::istreambuf_iterator<std::ifstream::char_type>(file),
+                          std::istreambuf_iterator<std::ifstream::char_type>());
+            if (buffer.size() == size) {
+                result = ResultPtr{AMload(buffer.data(), buffer.size()), AMresultFree};
+                if (AMresultStatus(result.get()) != AM_STATUS_OK) {
+                    arguments << "AMresultError(AMload(..., ...)) == \"" << from_bytes(AMresultError(result.get()))
+                              << "\"";
+                }
+            } else {
+                arguments << typeid(decltype(file)).name() << "(" << filename
+                          << ").read(..., ...) == " << std::boolalpha << false;
             }
         } else {
-            arguments << typeid(decltype(file)).name() << "(" << filename << ").read(..., ...) == " << std::boolalpha
-                      << false;
+            arguments << typeid(decltype(file)).name() << "(" << filename << ").fail()";
         }
     } else {
-        arguments << typeid(decltype(file)).name() << "(" << filename << ").fail()";
+        arguments << "filename == " << typeid(filename).name() << "{}";
     }
     if (!arguments.str().empty()) {
         std::ostringstream what;
@@ -119,9 +128,9 @@ Item Document::get_item(std::string const& posix_path) const {
                 std::istringstream iss{element.string()};
                 auto pos = std::numeric_limits<std::uint64_t>::max();
                 if (iss >> pos) {
-                    *item / pos;
+                    item.emplace(*item / pos);
                 } else {
-                    *item / iss.str();
+                    item.emplace(*item / iss.str());
                 }
             }
         }

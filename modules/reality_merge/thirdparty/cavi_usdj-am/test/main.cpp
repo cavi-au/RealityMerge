@@ -5,15 +5,14 @@
 #include <stdexcept>
 
 // third-party
+#include <catch2/catch.hpp>
+
+// regional
 #include <cavi/usdj_am/descriptor.hpp>
 #include <cavi/usdj_am/file.hpp>
 #include <cavi/usdj_am/utils/document.hpp>
 #include <cavi/usdj_am/utils/item.hpp>
 #include <cavi/usdj_am/utils/json_writer.hpp>
-
-// local
-#include <catch2/catch_test_macros.hpp>
-#include <catch2/generators/catch_generators.hpp>
 
 using std::filesystem::exists;
 using std::filesystem::path;

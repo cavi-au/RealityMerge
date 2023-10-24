@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
 
 project(godot LANGUAGES CXX DESCRIPTION "2D and 3D cross-platform game engine")
- 
+
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_GENERATOR_PLATFORM x64)
@@ -18,7 +18,11 @@ endif()
 
 message(STATUS "SCons: ${SCONS_PROGRAM}")
 
-set(GODOT_PLATFORM "windows" CACHE STRING "The Godot engine build platform")
+if(WIN32)
+    set(GODOT_PLATFORM "windows")
+else()
+    set(GODOT_PLATFORM "linuxbsd")
+endif()
 
 set(GODOT_TARGET "editor")
 
@@ -37,7 +41,7 @@ add_custom_target(${PROJECT_NAME}_scons
                   ALL
                   COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} target=${GODOT_TARGET} custom_modules=../modules -j ${CMAKE_BUILD_PARALLEL_LEVEL} platform=${GODOT_PLATFORM} showbuild=1 debug_symbols=yes
                   SOURCES ${GODOT_SOURCES} ${GODOT_HEADERS}
-                  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/godot
+                  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/godot
                   VERBATIM
 )
 
@@ -48,11 +52,15 @@ set_property(TARGET ${PROJECT_NAME}_scons
 
 add_executable(${PROJECT_NAME} EXCLUDE_FROM_ALL ${GODOT_SOURCES} ${GODOT_HEADERS} ${MODULE_SOURCES} ${MODULE_SOURCES})
 
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+
 target_include_directories(${PROJECT_NAME}
                            SYSTEM PUBLIC
-                           "${CMAKE_SOURCE_DIR}/godot"
-                           "${CMAKE_SOURCE_DIR}/godot/platform/${GODOT_PLATFORM}"
-                           "${CMAKE_SOURCE_DIR}/modules/reality_merge"
-                           "${CMAKE_SOURCE_DIR}/modules/reality_merge/thirdparty/automerge/rust/automerge-c/include"
-                           "${CMAKE_SOURCE_DIR}/modules/reality_merge/thirdparty/automerge/rust/automerge-c/build/include"
+                           "${PROJECT_SOURCE_DIR}/godot"
+                           "${PROJECT_SOURCE_DIR}/godot/platform/${GODOT_PLATFORM}"
+                           "${PROJECT_SOURCE_DIR}/modules/reality_merge"
+                           "${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/include"
+                           "${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/build/include"
+                           "${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/automerge/rust/automerge-c/include"
+                           "${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/build/automerge-c/include"
 )

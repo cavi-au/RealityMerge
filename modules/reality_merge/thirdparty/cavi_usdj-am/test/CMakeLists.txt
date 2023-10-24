@@ -28,7 +28,9 @@ if(BUILD_SHARED_LIBS AND WIN32)
     )
 endif()
 
-add_test(NAME ${LIBRARY_NAME}_test COMMAND ${LIBRARY_NAME}_test)
+add_test(NAME ${LIBRARY_NAME}_test
+         COMMAND ${LIBRARY_NAME}_test
+         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 
 add_custom_command(
     TARGET ${LIBRARY_NAME}_test
