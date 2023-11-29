@@ -33,22 +33,17 @@
 #include <cstdint>
 #include <iosfwd>
 
+// export enum USDA_DefinitionType {
+//     Def = 'def',
+//     Over = 'over',
+// }
+
 namespace cavi {
 namespace usdj_am {
 
-// export enum USDA_DefinitionType {
-//     Varying = 'varying',
-//     Uniform = 'uniform',
-//     Custom = 'custom',
-//     Prepend = 'prepend',
-//     Append = 'append',
-//     Delete = 'delete',
-//     Add = 'add',
-// }
-
 /// \brief An enum representing a "USDA_DefinitionType" tag stored as a
 ///        string within an Automerge document.
-enum class DefinitionType : std::uint8_t { BEGIN_ = 1, DEF = BEGIN_, OVER, END_, SIZE_ = END_ - BEGIN_ };
+enum class DefinitionType : std::uint8_t { BEGIN__ = 1, DEF = BEGIN__, OVER, END__, SIZE__ = END__ - BEGIN__ };
 
 std::istream& operator>>(std::istream& is, DefinitionType& out);
 

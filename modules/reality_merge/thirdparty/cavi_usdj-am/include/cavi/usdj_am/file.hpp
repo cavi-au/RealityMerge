@@ -39,14 +39,14 @@
 #include "number.hpp"
 #include "statement.hpp"
 
-namespace cavi {
-namespace usdj_am {
-
 // export interface USDA_File {
 //     version: number;
 //     descriptor: USDA_Descriptor | null;
 //     statements: USDA_Statement[];
 // }
+
+namespace cavi {
+namespace usdj_am {
 
 class Descriptor;
 

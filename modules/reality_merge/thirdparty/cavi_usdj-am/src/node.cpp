@@ -46,48 +46,46 @@ namespace cavi {
 namespace usdj_am {
 
 Node::Node(AMdoc const* const document) : m_document{document} {
-    std::ostringstream arguments;
+    std::ostringstream args;
     if (!document) {
-        arguments << "document == nullptr";
+        args << "document == nullptr";
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
 }
 
 Node::Node(AMdoc const* const document, AMitem const* const map_object, int const map_size) : m_document{document} {
-    std::ostringstream arguments;
+    std::ostringstream args;
     if (!document) {
-        arguments << "document == nullptr, ..., ...";
+        args << "document == nullptr, ..., ...";
     } else if (!map_object) {
-        arguments << "..., map_object == nullptr, ...";
+        args << "..., map_object == nullptr, ...";
     } else if (!(map_size > 0)) {
-        arguments << "..., ..., map_size == " << map_size;
+        args << "..., ..., map_size == " << map_size;
     } else {
         AMvalType const val_type = AMitemValType(map_object);
         if (val_type != AM_VAL_TYPE_OBJ_TYPE) {
-            arguments << "..., "
-                      << "AMitemValType(map_object) == " << AMvalTypeToString(val_type) << ", ...";
+            args << "..., "
+                 << "AMitemValType(map_object) == " << AMvalTypeToString(val_type) << ", ...";
         } else {
             AMobjId const* const obj_id = AMitemObjId(map_object);
             AMobjType const obj_type = AMobjObjType(document, obj_id);
             if (obj_type != AM_OBJ_TYPE_MAP) {
-                arguments << "AMobjObjType(document, AMitemObjId(map_object)) == " << AMobjTypeToString(obj_type)
-                          << ", ...";
+                args << "AMobjObjType(document, AMitemObjId(map_object)) == " << AMobjTypeToString(obj_type) << ", ...";
             } else {
                 std::size_t const obj_size = AMobjSize(document, obj_id, nullptr);
                 if (obj_size != map_size) {
-                    arguments << "AMobjSize(document, AMitemObjId(map_object), nullptr) == " << obj_size << ", "
-                              << map_size;
+                    args << "AMobjSize(document, AMitemObjId(map_object), nullptr) == " << obj_size << ", " << map_size;
                 }
             }
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
     // Preserve the AMitem storing the node's object ID.
@@ -98,21 +96,21 @@ Node::Node(AMdoc const* const document, AMitem const* const map_object, int cons
 Node::~Node() {}
 
 void Node::check_string_property(std::string const& key, std::string const& value) const {
-    std::ostringstream arguments;
+    std::ostringstream args;
     try {
         auto const property = get_object_property<String>(key);
-        if (property.get_view() != std::string(value)) {
-            arguments << "AMmapGet(m_document, get_object_id, AMstr(\"" << key << "\"), nullptr) == \"" << property
-                      << "\", \"" << value << "\"";
+        if (property != value) {
+            args << "AMmapGet(m_document, get_object_id, AMstr(\"" << key << "\"), nullptr) == \"" << property
+                 << "\", \"" << value << "\"";
         }
     } catch (std::invalid_argument const& thrown) {
-        arguments << thrown.what();
+        args << thrown.what();
     }
     // Free the AMresult because we're finished with it.
     m_results.erase(key);
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
 }

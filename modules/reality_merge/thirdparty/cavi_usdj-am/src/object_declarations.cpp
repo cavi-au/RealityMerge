@@ -48,10 +48,10 @@ namespace cavi {
 namespace usdj_am {
 
 ObjectDeclarations::ObjectDeclarations(AMdoc const* const document, AMitem const* const map_object) {
-    enum { BEGIN_, LIST = BEGIN_, ENTRIES, END_, SIZE_ = END_ - BEGIN_ };
+    enum { BEGIN__, LIST = BEGIN__, ENTRIES, END__, SIZE__ = END__ - BEGIN__ };
 
-    std::ostringstream arguments;
-    for (std::size_t index = BEGIN_; index != END_; ++index) {
+    std::ostringstream args;
+    for (std::size_t index = BEGIN__; index != END__; ++index) {
         try {
             switch (index) {
                 case LIST: {
@@ -65,18 +65,18 @@ ObjectDeclarations::ObjectDeclarations(AMdoc const* const document, AMitem const
                     break;
                 }
             }
-            arguments.str("");
+            args.str("");
             break;
         } catch (std::invalid_argument const& thrown) {
-            if (!arguments.str().empty()) {
-                arguments << " | ";
+            if (!args.str().empty()) {
+                args << " | ";
             }
-            arguments << thrown.what();
+            args << thrown.what();
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
 }

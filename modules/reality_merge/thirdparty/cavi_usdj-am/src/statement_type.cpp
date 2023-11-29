@@ -39,10 +39,10 @@ namespace {
 
 using cavi::usdj_am::StatementType;
 
-static std::map<StatementType, std::string_view> const LABELS = {
-    {StatementType::DECLARATION, "declaration"}, {StatementType::CLASS_DEFINITION, "classDefinition"},
-    {StatementType::DEFINITION, "definition"},   {StatementType::VARIANT_SET, "variantSet"},
-    {StatementType::VARIANT_DEF, "variantDef"},
+static std::map<std::string_view, StatementType> const TAGS = {
+    {"declaration", StatementType::DECLARATION}, {"classDefinition", StatementType::CLASS_DEFINITION},
+    {"definition", StatementType::DEFINITION},   {"variantSet", StatementType::VARIANT_SET},
+    {"variantDef", StatementType::VARIANT_DEF},
 };
 
 }  // namespace
@@ -52,23 +52,25 @@ namespace usdj_am {
 
 std::istream& operator>>(std::istream& is, StatementType& out) {
     std::string token;
-    is >> token;
-    bool is_label = false;
-    for (auto item : LABELS) {
-        if (item.second == token) {
-            out = item.first;
-            is_label = true;
-            break;
+    if (is >> token) {
+        auto const match = TAGS.find(token);
+        if (match != TAGS.end()) {
+            out = match->second;
+            return is;
         }
     }
-    if (!is_label) {
-        is.setstate(std::ios::failbit);
-    }
+    is.setstate(std::ios::failbit);
     return is;
 }
 
 std::ostream& operator<<(std::ostream& os, StatementType const& in) {
-    os << LABELS.at(in);
+    for (auto item : TAGS) {
+        if (item.second == in) {
+            os << item.first;
+            return os;
+        }
+    }
+    os << "???";
     return os;
 }
 

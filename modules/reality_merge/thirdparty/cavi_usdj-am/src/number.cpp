@@ -46,7 +46,7 @@ namespace cavi {
 namespace usdj_am {
 
 Number::Number(AMdoc const* const document, AMitem const* const item) {
-    std::ostringstream arguments;
+    std::ostringstream args;
     AMvalType const val_type = AMitemValType(item);
     switch (val_type) {
         case AM_VAL_TYPE_F64: {
@@ -54,7 +54,7 @@ Number::Number(AMdoc const* const document, AMitem const* const item) {
             if (AMitemToF64(item, &f64)) {
                 this->emplace<double>(f64);
             } else {
-                arguments << "..., AMitemToF64(item, ...) == " << std::boolalpha << false;
+                args << "..., AMitemToF64(item, ...) == " << std::boolalpha << false;
             }
             break;
         }
@@ -63,7 +63,7 @@ Number::Number(AMdoc const* const document, AMitem const* const item) {
             if (AMitemToInt(item, &int_)) {
                 this->emplace<std::int64_t>(int_);
             } else {
-                arguments << "..., AMitemToInt(item, ...) == " << std::boolalpha << false;
+                args << "..., AMitemToInt(item, ...) == " << std::boolalpha << false;
             }
             break;
         }
@@ -72,18 +72,18 @@ Number::Number(AMdoc const* const document, AMitem const* const item) {
             if (AMitemToUint(item, &uint)) {
                 this->emplace<std::uint64_t>(uint);
             } else {
-                arguments << "..., AMitemToUint(item, ...) == " << std::boolalpha << false;
+                args << "..., AMitemToUint(item, ...) == " << std::boolalpha << false;
             }
             break;
         }
         default: {
-            arguments << "..., AMitemValType(item) == " << AMvalTypeToString(val_type);
+            args << "..., AMitemValType(item) == " << AMvalTypeToString(val_type);
             break;
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
 }

@@ -39,20 +39,20 @@
 #include "node.hpp"
 #include "value.hpp"
 
-namespace cavi {
-namespace usdj_am {
-
 // export enum AssignmentType {
 //     Assignment = 'assignment',
 // }
 
+namespace cavi {
+namespace usdj_am {
+
 /// \brief An enum representing an "AssignmentType" tag stored as a string
 ///        within an Automerge document.
 enum class AssignmentType : std::uint8_t {
-    BEGIN_ = 1,
-    ASSIGNMENT = BEGIN_,
-    END_,
-    SIZE_ = END_ - BEGIN_,
+    BEGIN__ = 1,
+    ASSIGNMENT = BEGIN__,
+    END__,
+    SIZE__ = END__ - BEGIN__,
 };
 
 // export interface USDA_Assignment<T extends USDA_ValueTypes> {

@@ -51,8 +51,8 @@ namespace usdj_am {
 ClassDeclaration::ClassDeclaration(AMdoc const* const document, AMitem const* const map_object) {
     using Index = typename std::underlying_type<StatementType>::type;
 
-    std::ostringstream arguments;
-    for (Index index = static_cast<Index>(StatementType::BEGIN_); index != static_cast<Index>(StatementType::END_);
+    std::ostringstream args;
+    for (Index index = static_cast<Index>(StatementType::BEGIN__); index != static_cast<Index>(StatementType::END__);
          ++index) {
         try {
             switch (static_cast<StatementType>(index)) {
@@ -67,18 +67,18 @@ ClassDeclaration::ClassDeclaration(AMdoc const* const document, AMitem const* co
                 default:
                     continue;
             }
-            arguments.str("");
+            args.str("");
             break;
         } catch (std::invalid_argument const& thrown) {
-            if (!arguments.str().empty()) {
-                arguments << " | ";
+            if (!args.str().empty()) {
+                args << " | ";
             }
-            arguments << thrown.what();
+            args << thrown.what();
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
 }

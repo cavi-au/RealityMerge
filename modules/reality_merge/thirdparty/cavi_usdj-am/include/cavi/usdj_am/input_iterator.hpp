@@ -27,8 +27,8 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#ifndef CAVI_USDJ_AM_INPUT_ITERATOR
-#define CAVI_USDJ_AM_INPUT_ITERATOR
+#ifndef CAVI_USDJ_AM_INPUT_ITERATOR_HPP
+#define CAVI_USDJ_AM_INPUT_ITERATOR_HPP
 
 #include <cassert>
 #include <functional>
@@ -55,7 +55,7 @@ class ConstInputIterator;
 template <typename T>
 bool operator==(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs);
 
-/// \brief Represents a read-only array value in a synxtax tree that was parsed
+/// \brief Represents a read-only array value in a syntax tree that was parsed
 ///        out of a USDA document, encoded as JSON and stored within an
 ///        Automerge document.
 ///
@@ -94,11 +94,11 @@ public:
     reference operator*();
 
 private:
-    enum Result { BEGIN_, ITEMS = BEGIN_, OBJ_ID, END_, SIZE_ = END_ - BEGIN_ };
+    enum Result { BEGIN__, ITEMS = BEGIN__, OBJ_ID, END__, SIZE__ = END__ - BEGIN__ };
 
     AMdoc const* const m_document;
     std::optional<AMitems> m_items;
-    std::array<ResultPtr, SIZE_> m_results;
+    std::array<ResultPtr, SIZE__> m_results;
     mutable std::optional<T> m_value;
 
     static reference dummy();
@@ -112,27 +112,27 @@ ConstInputIterator<T>::ConstInputIterator() : m_document{nullptr} {}
 template <typename T>
 ConstInputIterator<T>::ConstInputIterator(AMdoc const* const document, AMitem const* const list_object)
     : m_document{document} {
-    std::ostringstream arguments;
+    std::ostringstream args;
     if (!document) {
-        arguments << "document == nullptr, ..., ...";
+        args << "document == nullptr, ..., ...";
     } else if (!list_object) {
-        arguments << "..., list_object == nullptr, ...";
+        args << "..., list_object == nullptr, ...";
     } else {
         AMvalType const val_type = AMitemValType(list_object);
         if (val_type != AM_VAL_TYPE_OBJ_TYPE) {
-            arguments << "..., "
-                      << "AMitemValType(list_object) == " << AMvalTypeToString(val_type) << ", ...";
+            args << "..., "
+                 << "AMitemValType(list_object) == " << AMvalTypeToString(val_type) << ", ...";
         } else {
             AMobjType const obj_type = AMobjObjType(document, AMitemObjId(list_object));
             if (obj_type != AM_OBJ_TYPE_LIST) {
-                arguments << "AMobjObjType(document, AMitemObjId(list_object)) == " << AMobjTypeToString(obj_type)
-                          << ", ...";
+                args << "AMobjObjType(document, AMitemObjId(list_object)) == " << AMobjTypeToString(obj_type)
+                     << ", ...";
             }
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
     // Preserve the AMitem storing the list object's ID.
@@ -192,4 +192,4 @@ inline bool operator!=(ConstInputIterator<T> const& lhs, ConstInputIterator<T> c
 }  // namespace usdj_am
 }  // namespace cavi
 
-#endif  // CAVI_USDJ_AM_INPUT_ITERATOR
+#endif  // CAVI_USDJ_AM_INPUT_ITERATOR_HPP

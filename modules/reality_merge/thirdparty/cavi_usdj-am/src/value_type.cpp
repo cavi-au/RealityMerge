@@ -39,11 +39,11 @@ namespace {
 
 using cavi::usdj_am::ValueType;
 
-static std::map<ValueType, std::string_view> const LABELS = {
-    {ValueType::EXTERNAL_REFERENCE, "externalReference"},
-    {ValueType::EXTERNAL_REFERENCE_IMPORT, "externalReferenceImport"},
-    {ValueType::EXTERNAL_REFERENCE_SRC, "externalReferenceSrc"},
-    {ValueType::OBJECT_VALUE, "objectValue"}};
+static std::map<std::string_view, ValueType> const TAGS = {
+    {"externalReference", ValueType::EXTERNAL_REFERENCE},
+    {"externalReferenceImport", ValueType::EXTERNAL_REFERENCE_IMPORT},
+    {"externalReferenceSrc", ValueType::EXTERNAL_REFERENCE_SRC},
+    {"objectValue", ValueType::OBJECT_VALUE}};
 
 }  // namespace
 
@@ -52,23 +52,25 @@ namespace usdj_am {
 
 std::istream& operator>>(std::istream& is, ValueType& out) {
     std::string token;
-    is >> token;
-    bool is_label = false;
-    for (auto item : LABELS) {
-        if (item.second == token) {
-            out = item.first;
-            is_label = true;
-            break;
+    if (is >> token) {
+        auto const match = TAGS.find(token);
+        if (match != TAGS.end()) {
+            out = match->second;
+            return is;
         }
     }
-    if (!is_label) {
-        is.setstate(std::ios::failbit);
-    }
+    is.setstate(std::ios::failbit);
     return is;
 }
 
 std::ostream& operator<<(std::ostream& os, ValueType const& in) {
-    os << LABELS.at(in);
+    for (auto item : TAGS) {
+        if (item.second == in) {
+            os << item.first;
+            return os;
+        }
+    }
+    os << "???";
     return os;
 }
 

@@ -39,11 +39,11 @@ namespace {
 
 using cavi::usdj_am::AssignmentKeyword;
 
-static std::map<AssignmentKeyword, std::string_view> const LABELS = {
-    {AssignmentKeyword::PREPEND, "prepend"},
-    {AssignmentKeyword::ADD, "add"},
-    {AssignmentKeyword::APPEND, "append"},
-    {AssignmentKeyword::DELETE, "delete"},
+static std::map<std::string_view, AssignmentKeyword> const TAGS = {
+    {"prepend", AssignmentKeyword::PREPEND},
+    {"add", AssignmentKeyword::ADD},
+    {"append", AssignmentKeyword::APPEND},
+    {"delete", AssignmentKeyword::DELETE},
 };
 
 }  // namespace
@@ -53,23 +53,25 @@ namespace usdj_am {
 
 std::istream& operator>>(std::istream& is, AssignmentKeyword& out) {
     std::string token;
-    is >> token;
-    bool is_label = false;
-    for (auto item : LABELS) {
-        if (item.second == token) {
-            out = item.first;
-            is_label = true;
-            break;
+    if (is >> token) {
+        auto const match = TAGS.find(token);
+        if (match != TAGS.end()) {
+            out = match->second;
+            return is;
         }
     }
-    if (!is_label) {
-        is.setstate(std::ios::failbit);
-    }
+    is.setstate(std::ios::failbit);
     return is;
 }
 
 std::ostream& operator<<(std::ostream& os, AssignmentKeyword const& in) {
-    os << LABELS.at(in);
+    for (auto item : TAGS) {
+        if (item.second == in) {
+            os << item.first;
+            return os;
+        }
+    }
+    os << "???";
     return os;
 }
 

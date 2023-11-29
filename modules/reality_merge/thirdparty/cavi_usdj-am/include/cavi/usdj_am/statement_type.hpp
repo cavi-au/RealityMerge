@@ -33,9 +33,6 @@
 #include <cstdint>
 #include <iosfwd>
 
-namespace cavi {
-namespace usdj_am {
-
 // export enum USDA_StatementType {
 //     Declaration = 'declaration',
 //     ClassDefinition = 'classDefinition',
@@ -44,17 +41,20 @@ namespace usdj_am {
 //     VariantDef = 'variantDef',
 // }
 
+namespace cavi {
+namespace usdj_am {
+
 /// \brief An enum representing a "USDA_StatementType" tag stored as a string
 ///        within an Automerge document.
 enum class StatementType : std::uint8_t {
-    BEGIN_ = 1,
-    DECLARATION = BEGIN_,
+    BEGIN__ = 1,
+    DECLARATION = BEGIN__,
     CLASS_DEFINITION,
     DEFINITION,
     VARIANT_SET,
     VARIANT_DEF,
-    END_,
-    SIZE_ = END_ - BEGIN_
+    END__,
+    SIZE__ = END__ - BEGIN__
 };
 
 std::istream& operator>>(std::istream& is, StatementType& out);

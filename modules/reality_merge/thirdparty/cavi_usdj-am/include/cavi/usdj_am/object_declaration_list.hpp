@@ -33,13 +33,9 @@
 // local
 #include "input_range.hpp"
 #include "node.hpp"
-// #include "number.hpp"
 #include "object_declaration_list_value.hpp"
 #include "string_.hpp"
 #include "value.hpp"
-
-namespace cavi {
-namespace usdj_am {
 
 // export type USDA_ObjectDeclarationList<T extends USDA_ValueTypes> = {
 //     type: 'objectDeclarationList',
@@ -48,6 +44,9 @@ namespace usdj_am {
 //         value: T
 //     }[],
 // };
+
+namespace cavi {
+namespace usdj_am {
 
 /// \brief Represents a "USDA_ObjectDeclarationList" node in a syntax tree that
 ///        was parsed out of a USDA document, encoded as JSON and stored within

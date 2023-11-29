@@ -33,9 +33,6 @@
 #include <cstdint>
 #include <iosfwd>
 
-namespace cavi {
-namespace usdj_am {
-
 // export enum USDA_AssignmentKeyword {
 //     /**
 //      * https://graphics.pixar.com/usd/release/tut_xforms.html
@@ -63,16 +60,19 @@ namespace usdj_am {
 //     Delete = 'delete',
 // }
 
+namespace cavi {
+namespace usdj_am {
+
 /// \brief An enum representing a "USDA_AssignmentKeyword" tag stored as a
 ///        string within an Automerge document.
 enum class AssignmentKeyword : std::uint8_t {
-    BEGIN_ = 1,
-    PREPEND = BEGIN_,
+    BEGIN__ = 1,
+    PREPEND = BEGIN__,
     ADD,
     APPEND,
     DELETE,
-    END_,
-    SIZE_ = END_ - BEGIN_
+    END__,
+    SIZE__ = END__ - BEGIN__
 };
 
 std::istream& operator>>(std::istream& is, AssignmentKeyword& out);

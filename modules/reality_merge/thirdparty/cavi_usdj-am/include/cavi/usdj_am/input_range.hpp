@@ -27,8 +27,8 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#ifndef CAVI_USDJ_AM_INPUT_RANGE
-#define CAVI_USDJ_AM_INPUT_RANGE
+#ifndef CAVI_USDJ_AM_INPUT_RANGE_HPP
+#define CAVI_USDJ_AM_INPUT_RANGE_HPP
 
 #include <algorithm>
 
@@ -117,4 +117,4 @@ AMobjId const* ConstInputRange<T>::get_object_id() const {
 }  // namespace usdj_am
 }  // namespace cavi
 
-#endif  // CAVI_USDJ_AM_INPUT_RANGE
+#endif  // CAVI_USDJ_AM_INPUT_RANGE_HPP

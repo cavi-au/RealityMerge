@@ -33,9 +33,6 @@
 #include <cstdint>
 #include <iosfwd>
 
-namespace cavi {
-namespace usdj_am {
-
 // export enum USDA_ValueType {
 //     ExternalReference = 'externalReference',
 //     ExternalReferenceImport = 'externalReferenceImport',
@@ -43,16 +40,19 @@ namespace usdj_am {
 //     ObjectValue = 'objectValue',
 // }
 
+namespace cavi {
+namespace usdj_am {
+
 /// \brief An enum representing a "USDA_ValueType" tag stored as a string within
 ///        an Automerge document.
 enum class ValueType : std::uint8_t {
-    BEGIN_ = 1,
-    EXTERNAL_REFERENCE = BEGIN_,
+    BEGIN__ = 1,
+    EXTERNAL_REFERENCE = BEGIN__,
     EXTERNAL_REFERENCE_IMPORT,
     EXTERNAL_REFERENCE_SRC,
     OBJECT_VALUE,
-    END_,
-    SIZE_ = END_ - BEGIN_
+    END__,
+    SIZE__ = END__ - BEGIN__
 };
 
 std::istream& operator>>(std::istream& is, ValueType& out);

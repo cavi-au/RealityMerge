@@ -63,25 +63,49 @@ public:
 
     String& operator=(String const&&) = delete;
 
+    operator std::string_view() const;
+
     AMdoc const* get_document() const;
 
     AMobjId const* get_object_id() const;
 
-    std::string_view get_view() const;
-
 private:
-    enum Result { BEGIN_, ITEM = BEGIN_, OBJ_ID, END_, SIZE_ = END_ - BEGIN_ };
+    enum Result { BEGIN__, ITEM = BEGIN__, OBJ_ID, END__, SIZE__ = END__ - BEGIN__ };
 
     using ResultPtr = std::shared_ptr<AMresult>;
 
     AMdoc const* const m_document;
-    std::array<ResultPtr, SIZE_> m_results;
+    std::array<ResultPtr, SIZE__> m_results;
 };
 
 inline String::String() : m_document{nullptr}, m_results{} {}
 
 inline AMdoc const* String::get_document() const {
     return m_document;
+}
+
+inline bool operator<(String const& lhs, std::string_view const& rhs) {
+    return lhs.operator std::string_view() < rhs;
+}
+
+inline bool operator<=(String const& lhs, std::string_view const& rhs) {
+    return !operator>(lhs, rhs);
+}
+
+inline bool operator>(String const& lhs, std::string_view const& rhs) {
+    return lhs.operator std::string_view() > rhs;
+}
+
+inline bool operator>=(String const& lhs, std::string_view const& rhs) {
+    return !operator<(lhs, rhs);
+}
+
+inline bool operator==(String const& lhs, std::string_view const& rhs) {
+    return lhs.operator std::string_view() == rhs;
+}
+
+inline bool operator!=(String const& lhs, std::string_view const& rhs) {
+    return !operator==(lhs, rhs);
 }
 
 std::ostream& operator<<(std::ostream& os, String const& in);

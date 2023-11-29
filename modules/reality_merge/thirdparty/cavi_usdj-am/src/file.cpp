@@ -47,29 +47,28 @@ namespace usdj_am {
 File::File(AMdoc const* const document, AMitem const* const map_object) : Node(document) {
     static const std::size_t MAP_SIZE = 3;
 
-    std::ostringstream arguments;
+    std::ostringstream args;
     if (!document) {
-        arguments << "document == nullptr, ...";
+        args << "document == nullptr, ...";
     } else {
         AMobjId const* obj_id = AM_ROOT;
         if (map_object) {
             AMvalType const val_type = AMitemValType(map_object);
             if (val_type != AM_VAL_TYPE_OBJ_TYPE) {
-                arguments << "..., "
-                          << "AMitemValType(map_object) == " << AMvalTypeToString(val_type);
+                args << "..., "
+                     << "AMitemValType(map_object) == " << AMvalTypeToString(val_type);
             } else {
                 obj_id = AMitemObjId(map_object);
                 AMobjType const obj_type = AMobjObjType(document, obj_id);
                 if (obj_type != AM_OBJ_TYPE_MAP) {
-                    arguments << "AMobjObjType(document, AMitemObjId(map_object)) == " << AMobjTypeToString(obj_type);
+                    args << "AMobjObjType(document, AMitemObjId(map_object)) == " << AMobjTypeToString(obj_type);
                 }
             }
         }
-        if (arguments.str().empty()) {
+        if (args.str().empty()) {
             std::size_t const obj_size = AMobjSize(document, obj_id, nullptr);
             if (obj_size != MAP_SIZE) {
-                arguments << "AMobjSize(document, AMitemObjId(map_object), nullptr) == " << obj_size << ", "
-                          << MAP_SIZE;
+                args << "AMobjSize(document, AMitemObjId(map_object), nullptr) == " << obj_size << ", " << MAP_SIZE;
             } else if (map_object) {
                 // Preserve the AMitem storing the node's object ID.
                 ResultPtr const result{AMitemResult(map_object), AMresultFree};
@@ -77,9 +76,9 @@ File::File(AMdoc const* const document, AMitem const* const map_object) : Node(d
             }
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
 }

@@ -36,12 +36,10 @@
 // local
 #include "input_range.hpp"
 #include "number.hpp"
+#include "string_.hpp"
 
 struct AMdoc;
 struct AMitem;
-
-namespace cavi {
-namespace usdj_am {
 
 // export type USDA_ValueTypes =
 //     | string
@@ -58,11 +56,16 @@ namespace usdj_am {
 // export type USDA_Array<T extends USDA_ValueTypes>
 //     = T[]
 
+namespace cavi {
+namespace usdj_am {
+
 class ExternalReference;
 class ExternalReferenceImport;
-struct ObjectValue;
+class ObjectValue;
 struct Value;
 class Visitor;
+
+using ConstValues = ConstInputRange<Value>;
 
 /// \brief A struct representing a "USDA_ValueTypes" node in a syntax tree that
 ///        was parsed out of a USDA document, encoded as JSON and stored within
@@ -72,7 +75,7 @@ struct Value : public std::variant<std::monostate,           // undefined
                                    bool,                     // boolean
                                    Number,                   // number
                                    // USDA_Array<any>
-                                   std::unique_ptr<ConstInputRange<Value> >,  // Readonly<USDA_Array<any>>
+                                   std::unique_ptr<ConstValues>,              // Readonly<USDA_Array<any>>
                                    std::unique_ptr<ExternalReferenceImport>,  // USDA_ExternalReferenceImport
                                    std::unique_ptr<ExternalReference>,        // USDA_ExternalReference
                                    std::unique_ptr<ObjectValue>,              // USDA_ObjectValue<any>

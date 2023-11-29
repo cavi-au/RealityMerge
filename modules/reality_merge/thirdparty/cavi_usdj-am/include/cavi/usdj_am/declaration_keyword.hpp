@@ -33,9 +33,6 @@
 #include <cstdint>
 #include <iosfwd>
 
-namespace cavi {
-namespace usdj_am {
-
 // export enum USDA_DeclarationKeyword {
 //     Varying = 'varying',
 //     Uniform = 'uniform',
@@ -46,19 +43,22 @@ namespace usdj_am {
 //     Add = 'add',
 // }
 
+namespace cavi {
+namespace usdj_am {
+
 /// \brief An enum representing a "USDA_DeclarationKeyword" tag stored as a
 ///        string within an Automerge document.
 enum class DeclarationKeyword : std::uint8_t {
-    BEGIN_ = 1,
-    VARYING = BEGIN_,
+    BEGIN__ = 1,
+    VARYING = BEGIN__,
     UNIFORM,
     CUSTOM,
     PREPEND,
     APPEND,
     DELETE,
     ADD,
-    END_,
-    SIZE_ = END_ - BEGIN_
+    END__,
+    SIZE__ = END__ - BEGIN__
 };
 
 std::istream& operator>>(std::istream& is, DeclarationKeyword& out);

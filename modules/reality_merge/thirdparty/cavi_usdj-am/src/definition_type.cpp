@@ -39,8 +39,8 @@ namespace {
 
 using cavi::usdj_am::DefinitionType;
 
-static std::map<DefinitionType, std::string_view> const LABELS = {{DefinitionType::DEF, "def"},
-                                                                  {DefinitionType::OVER, "over"}};
+static std::map<std::string_view, DefinitionType> const TAGS = {{"def", DefinitionType::DEF},
+                                                                {"over", DefinitionType::OVER}};
 
 }  // namespace
 
@@ -49,23 +49,25 @@ namespace usdj_am {
 
 std::istream& operator>>(std::istream& is, DefinitionType& out) {
     std::string token;
-    is >> token;
-    bool is_label = false;
-    for (auto item : LABELS) {
-        if (item.second == token) {
-            out = item.first;
-            is_label = true;
-            break;
+    if (is >> token) {
+        auto const match = TAGS.find(token);
+        if (match != TAGS.end()) {
+            out = match->second;
+            return is;
         }
     }
-    if (!is_label) {
-        is.setstate(std::ios::failbit);
-    }
+    is.setstate(std::ios::failbit);
     return is;
 }
 
 std::ostream& operator<<(std::ostream& os, DefinitionType const& in) {
-    os << LABELS.at(in);
+    for (auto item : TAGS) {
+        if (item.second == in) {
+            os << item.first;
+            return os;
+        }
+    }
+    os << "???";
     return os;
 }
 

@@ -51,7 +51,7 @@ namespace cavi {
 namespace usdj_am {
 
 Value::Value(AMdoc const* const document, AMitem const* const item) {
-    std::ostringstream arguments;
+    std::ostringstream args;
     try {
         AMvalType const val_type = AMitemValType(item);
         switch (val_type) {
@@ -60,7 +60,7 @@ Value::Value(AMdoc const* const document, AMitem const* const item) {
                 if (AMitemToBool(item, &bool_)) {
                     this->emplace<bool>(bool_);
                 } else {
-                    arguments << "..., AMitemToBool(item, ...) == " << std::boolalpha << false;
+                    args << "..., AMitemToBool(item, ...) == " << std::boolalpha << false;
                 }
                 break;
             }
@@ -78,15 +78,14 @@ Value::Value(AMdoc const* const document, AMitem const* const item) {
                 AMobjType const obj_type = AMobjObjType(document, AMitemObjId(item));
                 switch (obj_type) {
                     case AM_OBJ_TYPE_LIST: {
-                        this->emplace<std::unique_ptr<ConstInputRange<Value>>>(
-                            std::make_unique<ConstInputRange<Value>>(document, item));
+                        this->emplace<std::unique_ptr<ConstValues>>(std::make_unique<ConstValues>(document, item));
                         break;
                     }
                     case AM_OBJ_TYPE_MAP: {
                         using Index = typename std::underlying_type<ValueType>::type;
 
-                        for (Index index = static_cast<Index>(ValueType::BEGIN_);
-                             index != static_cast<Index>(ValueType::END_); ++index) {
+                        for (Index index = static_cast<Index>(ValueType::BEGIN__);
+                             index != static_cast<Index>(ValueType::END__); ++index) {
                             try {
                                 switch (static_cast<ValueType>(index)) {
                                     case ValueType::EXTERNAL_REFERENCE: {
@@ -107,13 +106,13 @@ Value::Value(AMdoc const* const document, AMitem const* const item) {
                                     default:
                                         continue;
                                 }
-                                arguments.str("");
+                                args.str("");
                                 break;
                             } catch (std::invalid_argument const& thrown) {
-                                if (!arguments.str().empty()) {
-                                    arguments << " | ";
+                                if (!args.str().empty()) {
+                                    args << " | ";
                                 }
-                                arguments << thrown.what();
+                                args << thrown.what();
                             }
                         }
                         break;
@@ -134,16 +133,16 @@ Value::Value(AMdoc const* const document, AMitem const* const item) {
                 break;
             }
             default: {
-                arguments << "..., AMitemValType(item) == " << AMvalTypeToString(val_type);
+                args << "..., AMitemValType(item) == " << AMvalTypeToString(val_type);
                 break;
             }
         }
     } catch (std::invalid_argument const& thrown) {
-        arguments << thrown.what();
+        args << thrown.what();
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
 }

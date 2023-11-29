@@ -46,11 +46,11 @@ namespace cavi {
 namespace usdj_am {
 
 String::String(AMdoc const* const document, AMitem const* const item) : m_document{document} {
-    std::ostringstream arguments;
+    std::ostringstream args;
     if (!document) {
-        arguments << "document == nullptr, ...";
+        args << "document == nullptr, ...";
     } else if (!item) {
-        arguments << "..., item == nullptr";
+        args << "..., item == nullptr";
     } else {
         AMvalType const val_type = AMitemValType(item);
         switch (val_type) {
@@ -63,7 +63,7 @@ String::String(AMdoc const* const document, AMitem const* const item) : m_docume
                     // Preserve the AMitem storing the text object's contents.
                     m_results[ITEM] = ResultPtr{AMtext(m_document, obj_id, nullptr), AMresultFree};
                 } else {
-                    arguments << "AMobjObjType(document, AMitemObjId(item)) == " << AMobjTypeToString(obj_type);
+                    args << "AMobjObjType(document, AMitemObjId(item)) == " << AMobjTypeToString(obj_type);
                 }
                 break;
             }
@@ -73,30 +73,30 @@ String::String(AMdoc const* const document, AMitem const* const item) : m_docume
                 break;
             }
             default: {
-                arguments << "..., AMitemValType(item) == " << AMvalTypeToString(val_type);
+                args << "..., AMitemValType(item) == " << AMvalTypeToString(val_type);
                 break;
             }
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
+}
+
+String::operator std::string_view() const {
+    AMbyteSpan str = {0};
+    assert(AMitemToStr(AMresultItem(m_results[ITEM].get()), &str) == true);
+    return std::string_view{reinterpret_cast<std::string_view::const_pointer>(str.src), str.count};
 }
 
 AMobjId const* String::get_object_id() const {
     return AMitemObjId(AMresultItem(m_results[OBJ_ID].get()));
 }
 
-std::string_view String::get_view() const {
-    AMbyteSpan str = {0};
-    assert(AMitemToStr(AMresultItem(m_results[ITEM].get()), &str) == true);
-    return std::string_view{reinterpret_cast<std::string_view::const_pointer>(str.src), str.count};
-}
-
 std::ostream& operator<<(std::ostream& os, String const& in) {
-    os << in.get_view();
+    os << in.operator std::string_view();
     return os;
 }
 

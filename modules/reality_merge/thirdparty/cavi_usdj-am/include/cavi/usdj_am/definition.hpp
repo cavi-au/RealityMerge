@@ -40,9 +40,6 @@
 #include "statement_type.hpp"
 #include "string_.hpp"
 
-namespace cavi {
-namespace usdj_am {
-
 // export interface USDA_Definition {
 //     type: USDA_StatementType.Definition;
 //     subType: USDA_DefinitionType;
@@ -52,6 +49,9 @@ namespace usdj_am {
 //     statements: USDA_DefinitionStatement[];
 // }
 
+namespace cavi {
+namespace usdj_am {
+
 class Descriptor;
 
 /// \brief Represents a "USDA_Definition" node in a syntax tree that was parsed
@@ -59,7 +59,7 @@ class Descriptor;
 ///        Automerge document.
 class Definition : public Node {
 public:
-    using DefinitionStatements = ConstInputRange<DefinitionStatement>;
+    using Statements = ConstInputRange<DefinitionStatement>;
 
     Definition() = delete;
 
@@ -104,7 +104,7 @@ public:
     /// \brief Gets the `.statements` property.
     ///
     /// \throws std::invalid_argument
-    DefinitionStatements get_statements() const;
+    Statements get_statements() const;
 
     /// \brief Gets the `.subType` property.
     ///

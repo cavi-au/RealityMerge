@@ -55,8 +55,8 @@ String Definition::get_name() const {
     return get_object_property<String>("name");
 }
 
-Definition::DefinitionStatements Definition::get_statements() const {
-    return get_array_property<DefinitionStatements>("statements");
+Definition::Statements Definition::get_statements() const {
+    return get_array_property<Statements>("statements");
 }
 
 DefinitionType Definition::get_sub_type() const {

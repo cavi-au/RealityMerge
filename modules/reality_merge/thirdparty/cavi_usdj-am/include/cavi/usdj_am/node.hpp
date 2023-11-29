@@ -166,20 +166,20 @@ protected:
 
 template <typename EnumT>
 void Node::check_enum_property(std::string const& key, EnumT const tag) const {
-    std::ostringstream arguments;
+    std::ostringstream args;
     try {
         if (get_enum_property<EnumT>(key) != tag) {
-            arguments << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \""
-                      << get_object_property<String>(key) << "\", \"" << tag << "\"";
+            args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \""
+                 << get_object_property<String>(key) << "\", \"" << tag << "\"";
         }
     } catch (std::invalid_argument const& thrown) {
-        arguments << thrown.what();
+        args << thrown.what();
     }
     // Free the AMresult because we're finished with it.
     m_results.erase(std::string{key});
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
 }
@@ -198,23 +198,28 @@ InputRangeT Node::get_array_property(std::string const& key) const {
 template <typename EnumT>
 EnumT Node::get_enum_property(std::string const& key) const {
     ResultPtr const result{AMmapGet(m_document, get_object_id(), utils::to_bytes(key), nullptr), AMresultFree};
-    auto [iter, inserted] = m_results.insert_or_assign(key, result);
-    std::ostringstream arguments;
-    try {
-        String string{m_document, AMresultItem(iter->second.get())};
-        EnumT tag;
-        std::istringstream iss{std::string{string.get_view()}};
-        if (iss >> tag) {
-            return tag;
-        } else {
-            arguments << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \"" << string << "\"";
+    std::ostringstream args;
+    if (!result) {
+        args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == nullptr";
+    } else {
+        auto [iter, inserted] = m_results.insert_or_assign(key, result);
+        try {
+            String string{m_document, AMresultItem(iter->second.get())};
+            EnumT tag;
+            auto const buffer = std::string{string};
+            std::istringstream iss{buffer};
+            if (iss >> tag) {
+                return tag;
+            } else {
+                args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \"" << string << "\"";
+            }
+        } catch (std::invalid_argument const& thrown) {
+            args << thrown.what();
         }
-    } catch (std::invalid_argument const& thrown) {
-        arguments << thrown.what();
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << arguments.str() << ")";
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
     return EnumT{};
