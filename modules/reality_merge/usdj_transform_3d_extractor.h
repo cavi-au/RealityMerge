@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_transform_3d_extractor.h                                          */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,48 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-// regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#ifndef REALITY_MERGE_USDJ_TRANSFORM_3D_EXTRACTOR_H
+#define REALITY_MERGE_USDJ_TRANSFORM_3D_EXTRACTOR_H
 
-// local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+#include <memory>
+#include <optional>
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+// third-party
+#include <cavi/usdj_am/visitor.hpp>
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
-    }
-    GDREGISTER_CLASS(AutomergeResource);
+struct Transform3D;
 
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
+/// \brief An extractor of a transform value embedded within a "USDA_Definition"
+///        node.
+class UsdjTransform3dExtractor : public cavi::usdj_am::Visitor {
+public:
+    UsdjTransform3dExtractor() = delete;
 
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
+    UsdjTransform3dExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
+    UsdjTransform3dExtractor(UsdjTransform3dExtractor const&) = delete;
 
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
+    UsdjTransform3dExtractor(UsdjTransform3dExtractor&&) = default;
 
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+    ~UsdjTransform3dExtractor();
+
+    UsdjTransform3dExtractor& operator=(UsdjTransform3dExtractor const&) = delete;
+
+    UsdjTransform3dExtractor& operator=(UsdjTransform3dExtractor&&) = default;
+
+    std::optional<Transform3D> operator()();
+
+    void visit(cavi::usdj_am::Definition const& definition) override;
+
+    void visit(cavi::usdj_am::DefinitionStatement const& definition_statement) override;
+
+    void visit(cavi::usdj_am::Declaration const& declaration) override;
+
+private:
+    struct Data;
+
+    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    std::unique_ptr<Data> m_data;
+};
+
+#endif  // REALITY_MERGE_USDJ_TRANSFORM_3D_EXTRACTOR_H

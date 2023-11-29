@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_box_size_extractor.h                                              */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,54 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-// regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#ifndef REALITY_MERGE_USDJ_BOX_SIZE_EXTRACTOR_H
+#define REALITY_MERGE_USDJ_BOX_SIZE_EXTRACTOR_H
 
-// local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+#include <memory>
+#include <optional>
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+// third-party
+#include <cavi/usdj_am/visitor.hpp>
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
-    }
-    GDREGISTER_CLASS(AutomergeResource);
+struct Vector3;
 
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
+/// \brief An extractor of a box's size value embedded within a "USDA_Definition"
+///        node.
+class UsdjBoxSizeExtractor : public cavi::usdj_am::Visitor {
+public:
+    UsdjBoxSizeExtractor() = delete;
 
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
+    UsdjBoxSizeExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
+    UsdjBoxSizeExtractor(UsdjBoxSizeExtractor const&) = delete;
 
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
+    UsdjBoxSizeExtractor(UsdjBoxSizeExtractor&&) = default;
 
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+    ~UsdjBoxSizeExtractor();
+
+    UsdjBoxSizeExtractor& operator=(UsdjBoxSizeExtractor const&) = delete;
+
+    UsdjBoxSizeExtractor& operator=(UsdjBoxSizeExtractor&&) = default;
+
+    std::optional<Vector3> operator()();
+
+    void visit(cavi::usdj_am::Assignment const& assignment) override;
+
+    void visit(cavi::usdj_am::Declaration const& declaration) override;
+
+    void visit(cavi::usdj_am::Definition const& definition) override;
+
+    void visit(cavi::usdj_am::DefinitionStatement const& definition_statement) override;
+
+    void visit(cavi::usdj_am::Descriptor const& descriptor) override;
+
+    void visit(cavi::usdj_am::ExternalReference const& external_reference) override;
+
+    void visit(cavi::usdj_am::ReferenceFile const& reference_file) override;
+
+private:
+    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    std::optional<Vector3> m_size;
+};
+
+#endif  // REALITY_MERGE_USDJ_BOX_SIZE_EXTRACTOR_H

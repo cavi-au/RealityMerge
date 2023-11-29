@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_geometry_extractor.h                                              */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,59 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-// regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#ifndef REALITY_MERGE_USDJ_GEOMETRY_EXTRACTOR_H
+#define REALITY_MERGE_USDJ_GEOMETRY_EXTRACTOR_H
 
-// local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+#include <memory>
+#include <optional>
+#include <utility>
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+// third-party
+#include <cavi/usdj_am/usd/geom/token_type.hpp>
+#include <cavi/usdj_am/usd/physics/token_type.hpp>
+#include <cavi/usdj_am/visitor.hpp>
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
-    }
-    GDREGISTER_CLASS(AutomergeResource);
+class PrimitiveMesh;
+class Shape3D;
+struct Vector3;
 
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
+/// \brief An extractor of a mesh and, optionally, a collision shape embedded
+///        within a "USDA_Definition" node.
+class UsdjGeometryExtractor : public cavi::usdj_am::Visitor {
+public:
+    using MeshPtr = std::unique_ptr<PrimitiveMesh, void (*)(void*)>;
+    using Shape3dPtr = std::unique_ptr<Shape3D, void (*)(void*)>;
 
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
+    UsdjGeometryExtractor() = delete;
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
+    UsdjGeometryExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
 
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
+    UsdjGeometryExtractor(UsdjGeometryExtractor const&) = delete;
 
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+    UsdjGeometryExtractor(UsdjGeometryExtractor&&) = default;
+
+    ~UsdjGeometryExtractor();
+
+    UsdjGeometryExtractor& operator=(UsdjGeometryExtractor const&) = delete;
+
+    UsdjGeometryExtractor& operator=(UsdjGeometryExtractor&&) = default;
+
+    std::pair<MeshPtr, Shape3dPtr> operator()();
+
+    void visit(cavi::usdj_am::Assignment const& assignment) override;
+
+    void visit(cavi::usdj_am::Definition const& definition) override;
+
+    void visit(cavi::usdj_am::Descriptor const& descriptor) override;
+
+    void visit(cavi::usdj_am::ExternalReference const& external_reference) override;
+
+    void visit(cavi::usdj_am::ReferenceFile const& reference_file) override;
+
+private:
+    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    std::optional<cavi::usdj_am::usd::geom::TokenType> m_geom_type;
+    cavi::usdj_am::usd::physics::TokenTypeSet m_physics_apis;
+};
+
+#endif  // REALITY_MERGE_USDJ_GEOMETRY_EXTRACTOR_H

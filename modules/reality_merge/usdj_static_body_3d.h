@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* exception_callback.h                                                   */
+/* usdj_static_body_3d.h                                                  */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,18 +27,66 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#ifndef REALITY_MERGE_EXC_CALLBACK_H
-#define REALITY_MERGE_EXC_CALLBACK_H
+#ifndef REALITY_MERGE_USDJ_STATIC_BODY_3D_H
+#define REALITY_MERGE_USDJ_STATIC_BODY_3D_H
 
-struct AMstack;
+#include <memory>
 
-/// \brief Examines the result at the top of the given stack and, if it's
-///        invalid, deallocates all results in the stack and throws an exception.
-///
-/// \param[in,out] p_stack A pointer to a pointer to an `AMstack` struct.
-/// \param[in] p_data A pointer to an owned `AMstackCallbackData` struct or `nullptr`.
-/// \return `true` if the top `AMresult` in \p p_stack is valid, `false` otherwise.
-/// \pre \p p_stack `!= nullptr`.
-bool exc_cb(AMstack** p_stack, void* p_data);
+// regional
+#include <scene/3d/physics_body_3d.h>
+#include <scene/resources/physics_material.h>
+#include <servers/physics_server_3d.h>
 
-#endif  // REALITY_MERGE_EXC_CALLBACK_H
+struct AMobjId;
+
+namespace cavi {
+namespace usdj_am {
+
+class Definition;
+
+}  // namespace usdj_am
+}  // namespace cavi
+
+class UsdjStaticBody3D : public PhysicsBody3D {
+    GDCLASS(UsdjStaticBody3D, PhysicsBody3D);
+
+private:
+    // Vector3 constant_linear_velocity;
+    // Vector3 constant_angular_velocity;
+
+    Ref<PhysicsMaterial> physics_material_override;
+
+protected:
+    static void _bind_methods();
+
+public:
+    void set_physics_material_override(const Ref<PhysicsMaterial>& p_physics_material_override);
+    Ref<PhysicsMaterial> get_physics_material_override() const;
+
+    void set_constant_linear_velocity(const Vector3& p_vel);
+    void set_constant_angular_velocity(const Vector3& p_vel);
+
+    Vector3 get_constant_linear_velocity() const;
+    Vector3 get_constant_angular_velocity() const;
+
+    UsdjStaticBody3D() = delete;
+
+    /// \throws std::invalid_argument
+    UsdjStaticBody3D(std::unique_ptr<cavi::usdj_am::Definition>&& p_definition,
+                     PhysicsServer3D::BodyMode p_mode = PhysicsServer3D::BODY_MODE_STATIC);
+
+    UsdjStaticBody3D(UsdjStaticBody3D const&) = delete;
+
+    UsdjStaticBody3D(UsdjStaticBody3D&&) = default;
+
+    UsdjStaticBody3D& operator=(UsdjStaticBody3D&&) = default;
+
+    AMobjId const* get_object_id() const;
+
+private:
+    std::shared_ptr<cavi::usdj_am::Definition> m_definition;
+
+    void _reload_physics_characteristics();
+};
+
+#endif  // REALITY_MERGE_USDJ_STATIC_BODY_3D_H

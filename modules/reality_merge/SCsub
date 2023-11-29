@@ -2,6 +2,7 @@
 
 import os
 import os.path
+import re
 
 Import("env")
 Import("env_modules")
@@ -34,6 +35,15 @@ cmake_build_type = {
     "template_debug": "Debug",
     "template_release": "Release",
 }[env["target"]]
+
+msvc_runtime_flag = re.search("/M[TD]d?", env.subst("$CCFLAGS"))
+cmake_msvc_runtime_library = {
+    "/MT": "MultiThreaded",
+    "/MD": "MultiThreadedDLL",
+    "/MTd": "MultiThreadedDebug",
+    "/MDd": "MultiThreadedDebugDLL",
+}.get(msvc_runtime_flag.group(0) if msvc_runtime_flag else None, "")
+
 cmake_command = '"{}"'.format(os.environ.get("CMAKE_COMMAND", "cmake"))
 libraries = [library_filename]
 env_reality_merge.Command(
@@ -46,14 +56,18 @@ env_reality_merge.Command(
         Mkdir(build_dir),
         # Generate the project's build system, overriding the libraries names
         # with the ones that SCons expects to find.
-        (cmake_command + ' -B ' + build_dir + ' -S ' + usdj_am_dir + ' -G Ninja' +
-            ' -DCMAKE_BUILD_TYPE=' + cmake_build_type + ' -DLIBRARY_NAME=' + library_name +
-            ' -DLIBRARY_PREFIX=' + env.subst('$LIBPREFIX') + ' -DLIBRARY_SUFFIX=' + env.subst('$LIBSUFFIX') +
-            ' -DBUILD_TESTING=OFF'),
-        # Force the library files to be rebuilt.
-        cmake_command + ' --build ' + build_dir + ' --target clean',
+        (cmake_command + " -B " + build_dir + " -S " + usdj_am_dir + " -G Ninja" +
+            " -DCMAKE_BUILD_TYPE=" + cmake_build_type +
+            " -DCMAKE_MSVC_RUNTIME_LIBRARY=" + cmake_msvc_runtime_library +
+            " -DLIBRARY_NAME=" + library_name +
+            " -DSTATIC_LIBRARY_PREFIX=" + env.subst("$LIBPREFIX") +
+            " -DSTATIC_LIBRARY_SUFFIX=" + env.subst("$LIBSUFFIX") +
+            # " -DSHARED_LIBRARY_PREFIX=" + env.subst("$SHLIBPREFIX") +
+            # " -DSHARED_LIBRARY_SUFFIX=" + env.subst("$SHLIBSUFFIX") +
+            " -DBUILD_SHARED_LIBS=OFF" +
+            " -DBUILD_TESTING=OFF" + " --fresh"),
         # Build the project's library target.
-        cmake_command + ' --build ' + build_dir + ' --target ' + library_name,
+        cmake_command + " --build " + build_dir + " --target " + library_name,
         # fmt: on
     ],
 )
@@ -67,11 +81,6 @@ if env["platform"] == "windows" and env.msvc:
     env.Append(
         LINKFLAGS=[
             library_basename,
-            # Exclude the C runtime library.
-            "/NODEFAULTLIB:msvcrt.lib",
-            # \todo Render ignorance unnecessary.
-            "/IGNORE:4217",
-            "/IGNORE:4286",
         ]
     )
 
@@ -81,9 +90,26 @@ module_obj = []
 env_reality_merge.add_source_files(
     module_obj,
     [
-        "automerge.cpp",
-        "exception_callback.cpp",
+        "automerge_resource.cpp",
         "register_types.cpp",
+        "usdj_basis.cpp",
+        "usdj_body_updater.cpp",
+        "usdj_color.cpp",
+        "usdj_color_extractor.cpp",
+        "usdj_box_mesh.cpp",
+        "usdj_box_shape_3d.cpp",
+        "usdj_box_size_extractor.cpp",
+        "usdj_geometry_extractor.cpp",
+        "usdj_material.cpp",
+        "usdj_mediator.cpp",
+        "usdj_projection.cpp",
+        "usdj_quaternion.cpp",
+        "usdj_real.cpp",
+        "usdj_reals.cpp",
+        "usdj_static_body_3d.cpp",
+        "usdj_transform_3d_extractor.cpp",
+        "usdj_value.cpp",
+        "usdj_velocity_extractor.cpp",
     ],
 )
 env.modules_sources += module_obj

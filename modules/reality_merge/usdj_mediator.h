@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_mediator.h                                                        */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,52 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#ifndef REALITY_MERGE_USDJ_MEDIATOR_H
+#define REALITY_MERGE_USDJ_MEDIATOR_H
+
 // regional
-#include <core/object/class_db.h>
 #include <core/object/ref_counted.h>
+#include <core/string/ustring.h>
+#include <core/variant/variant.h>
+#include <scene/3d/node_3d.h>
 
 // local
 #include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+class UsdjMediator : public Node3D {
+    GDCLASS(UsdjMediator, Node3D);
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
-    }
-    GDREGISTER_CLASS(AutomergeResource);
+public:
+    UsdjMediator() = default;
 
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
+    ~UsdjMediator();
 
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
+    PackedStringArray get_configuration_warnings() const override;
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
+    /// \returns An AutomergeResource document resource containing a scene description
+    ///          in USDJ format or null.
+    Ref<AutomergeResource> get_automerge_resource() const;
 
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
+    /// \returns The path to a scene description within an AutomergeResource document
+    ///          resource where "/" is the root and "" is invalid.
+    String get_usdj_path() const;
 
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+    /// \param[in] p_usdj_am An AutomergeResource document resource containing a scene
+    ///                      description in USDJ format.
+    void set_automerge_resource(Ref<AutomergeResource> const& p_automerge_resource);
+
+    /// \param[in] p_scene_path The path to a scene description within an
+    ///                         AutomergeResource document resource.
+    void set_usdj_path(String const& p_usdj_path);
+
+protected:
+    static void _bind_methods();
+
+    void _update_bodies();
+
+private:
+    Ref<AutomergeResource> m_automerge_resource;
+    String m_usdj_path;
+};
+
+#endif  // REALITY_MERGE_USDJ_MEDIATOR_H

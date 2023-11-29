@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_vector.h                                                         */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,53 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-// regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#ifndef REALITY_MERGE_USDJ_VECTOR_H
+#define REALITY_MERGE_USDJ_VECTOR_H
 
-// local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+#include <iterator>
+#include <sstream>
+#include <stdexcept>
+#include <typeinfo>
+#include <variant>
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+// third-party
+#include <cavi/usdj_am/value.hpp>
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
+/// \brief Converts a USDJ value into a Godot 3D vector.
+///
+/// \tparam VectorT The class of vector value to return.
+/// \tparam AxisT The type of constituent axis values within \p VectorT.
+/// \param[in] value A USDA-to-JSON `Value`.
+/// \return A Godot \p VectorT instance.
+/// \throws std::invalid_argument
+template <class VectorT, typename AxisT>
+VectorT to_Vector(cavi::usdj_am::Value const& value) {
+    using cavi::usdj_am::ConstValues;
+    using cavi::usdj_am::Number;
+
+    std::ostringstream args;
+    VectorT result{};
+    try {
+        auto const& values_ptr = std::get<std::unique_ptr<ConstValues>>(value);
+        if (values_ptr->size() != VectorT::AXIS_COUNT) {
+            args << "std::get<" << typeid(decltype(values_ptr)).name() << ">(value)->size() == " << values_ptr->size();
+        } else {
+            auto axis = std::begin(result.coord);
+            for (auto const& value : *values_ptr) {
+                auto const& number = std::get<Number>(value);
+                std::visit([&](auto const& alt) { *axis = static_cast<AxisT>(alt); }, number);
+                ++axis;
+            }
+        }
+    } catch (std::bad_variant_access const& thrown) {
+        args << "std::get<std::unique_ptr<ConstValues>>(value): " << thrown.what();
     }
-    GDREGISTER_CLASS(AutomergeResource);
-
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
-
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
+    if (!args.str().empty()) {
+        std::ostringstream what;
+        what << __func__ << "(" << args.str() << ")";
+        std::invalid_argument(what.str());
+    }
+    return result;
 }
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
-
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
-
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+#endif  // REALITY_MERGE_USDJ_VECTOR_H

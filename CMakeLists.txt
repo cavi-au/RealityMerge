@@ -1,12 +1,10 @@
-cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
 project(godot LANGUAGES CXX DESCRIPTION "2D and 3D cross-platform game engine")
 
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_GENERATOR_PLATFORM x64)
-
-set(CMAKE_BUILD_PARALLEL_LEVEL "10" CACHE STRING "The maximum number of concurrent build processes")
 
 set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Godot's \"editor\" build -> \"RelWithDebInfo\"")
 
@@ -39,7 +37,8 @@ file(GLOB_RECURSE MODULE_SOURCES modules/*.h**)
 
 add_custom_target(${PROJECT_NAME}_scons
                   ALL
-                  COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} target=${GODOT_TARGET} custom_modules=../modules -j ${CMAKE_BUILD_PARALLEL_LEVEL} platform=${GODOT_PLATFORM} showbuild=1 debug_symbols=yes
+                  # COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} --clean
+                  COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} target=${GODOT_TARGET} custom_modules=../modules platform=${GODOT_PLATFORM} showbuild=1 debug_symbols=yes dev_build=yes
                   SOURCES ${GODOT_SOURCES} ${GODOT_HEADERS}
                   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/godot
                   VERBATIM
@@ -56,11 +55,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 target_include_directories(${PROJECT_NAME}
                            SYSTEM PUBLIC
-                           "${PROJECT_SOURCE_DIR}/godot"
-                           "${PROJECT_SOURCE_DIR}/godot/platform/${GODOT_PLATFORM}"
-                           "${PROJECT_SOURCE_DIR}/modules/reality_merge"
-                           "${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/include"
-                           "${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/build/include"
-                           "${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/automerge/rust/automerge-c/include"
-                           "${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/build/automerge-c/include"
+                           ${PROJECT_SOURCE_DIR}/godot
+                           ${PROJECT_SOURCE_DIR}/godot/platform/${GODOT_PLATFORM}
+                           ${PROJECT_SOURCE_DIR}/modules/reality_merge
+                           ${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/include
+                           ${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/build/include
+                           ${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/automerge/rust/automerge-c/include
+                           ${PROJECT_SOURCE_DIR}/modules/reality_merge/thirdparty/cavi_usdj-am/build/automerge-c/include
 )

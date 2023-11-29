@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* automerge.h                                                            */
+/* usdj_color_extractor.h                                                 */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,74 +27,49 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#ifndef REALITY_MERGE_AUTOMERGE_H
-#define REALITY_MERGE_AUTOMERGE_H
+#ifndef REALITY_MERGE_USDJ_COLOR_EXTRACTOR_H
+#define REALITY_MERGE_USDJ_COLOR_EXTRACTOR_H
 
 #include <cstdint>
+#include <map>
+#include <memory>
 
-// regional
-#include <core/error/error_list.h>
-#include <core/io/resource.h>
-#include <core/io/resource_loader.h>
-#include <core/io/resource_saver.h>
-#include <core/string/ustring.h>
-#include <core/templates/list.h>
-#include <core/templates/vector.h>
+// third-party
+#include <cavi/usdj_am/visitor.hpp>
 
-struct AMdoc;
-struct AMstack;
+struct Color;
 
-class Automerge : public Resource {
-    GDCLASS(Automerge, Resource);
-
+/// \brief An extractor of a color value embedded within a "USDA_Definition"
+///        node.
+class UsdjColorExtractor : public cavi::usdj_am::Visitor {
 public:
-    Automerge();
+    UsdjColorExtractor() = delete;
 
-    ~Automerge();
+    UsdjColorExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
 
-    operator AMdoc*() const;
+    UsdjColorExtractor(UsdjColorExtractor const&) = delete;
 
-    Error load(Vector<std::uint8_t> const& p_data, String& p_err_msg);
+    UsdjColorExtractor(UsdjColorExtractor&&) = default;
 
-protected:
-    static void _bind_methods();
+    ~UsdjColorExtractor();
+
+    UsdjColorExtractor& operator=(UsdjColorExtractor const&) = delete;
+
+    UsdjColorExtractor& operator=(UsdjColorExtractor&&) = default;
+
+    std::optional<Color> operator()();
+
+    void visit(cavi::usdj_am::Declaration const& declaration) override;
+
+    void visit(cavi::usdj_am::Definition const& definition) override;
+
+    void visit(cavi::usdj_am::DefinitionStatement const& definition_statement) override;
 
 private:
-    AMdoc* m_document;
-    AMstack* m_stack;
+    enum class Component : std::uint8_t { BEGIN__ = 1, R = BEGIN__, G, B, A, END__, SIZE__ = END__ - BEGIN__ };
 
-    friend bool operator<(Automerge const& lhs, Automerge const& rhs);
-
-    friend bool operator==(Automerge const& lhs, Automerge const& rhs);
-
+    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    std::map<Component, float> m_components;
 };
 
-_FORCE_INLINE_ Automerge::operator AMdoc*() const {
-    return m_document;
-}
-
-_FORCE_INLINE_ bool operator!=(Automerge const& lhs, Automerge const& rhs) {
-    return !operator==(lhs, rhs);
-}
-
-class ResourceFormatLoaderAutomerge : public ResourceFormatLoader {
-public:
-    virtual Ref<Resource> load(String const& p_path,
-                               String const& p_original_path = "",
-                               Error* r_error = nullptr,
-                               bool p_use_sub_threads = false,
-                               float* r_progress = nullptr,
-                               CacheMode p_cache_mode = CACHE_MODE_REUSE);
-    virtual bool handles_type(String const& p_type) const;
-    virtual void get_recognized_extensions(List<String>* p_extensions) const;
-    virtual String get_resource_type(String const& p_path) const;
-};
-
-class ResourceFormatSaverAutomerge : public ResourceFormatSaver {
-public:
-    virtual void get_recognized_extensions(Ref<Resource> const& p_resource, List<String>* p_extensions) const;
-    virtual bool recognize(Ref<Resource> const& p_resource) const;
-    virtual Error save(Ref<Resource> const& p_resource, String const& p_path, uint32_t p_flags = 0);
-};
-
-#endif  // REALITY_MERGE_AUTOMERGE_H
+#endif  // REALITY_MERGE_USDJ_COLOR_EXTRACTOR_H

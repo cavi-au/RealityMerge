@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* exception_callback.cpp                                                 */
+/* usdj_real.cpp                                                          */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,72 +27,32 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include <memory>
 #include <sstream>
 #include <stdexcept>
 #include <typeinfo>
 
 // third-party
-extern "C" {
-
-#include <automerge-c/automerge.h>
-#include <automerge-c/utils/enum_string.h>
-#include <automerge-c/utils/stack.h>
-#include <automerge-c/utils/stack_callback_data.h>
-#include <automerge-c/utils/string.h>
-}
+#include <cavi/usdj_am/value.hpp>
 
 // local
-#include "exception_callback.h"
+#include "usdj_real.h"
 
-using CharPtr = std::unique_ptr<char, void (*)(void*)>;
-using DataPtr = std::unique_ptr<AMstackCallbackData, void (*)(void*)>;
+real_t to_real(cavi::usdj_am::Value const& value) {
+    using cavi::usdj_am::ConstValues;
+    using cavi::usdj_am::Number;
 
-bool exc_cb(AMstack** p_stack, void* p_data) {
-    DataPtr const data_ptr{static_cast<AMstackCallbackData*>(p_data), std::free};
-    std::ostringstream msg;
-    if (!p_stack) {
-        msg << '`' << typeid(p_stack).name();
-    } else if (!*p_stack) {
-        msg << '`' << typeid(*p_stack).name();
-    } else if (!(*p_stack)->result) {
-        msg << '`' << typeid((*p_stack)->result).name();
+    std::ostringstream args;
+    real_t result{};
+    try {
+        auto const& number = std::get<Number>(value);
+        std::visit([&](auto const& alt) { result = static_cast<real_t>(alt); }, number);
+    } catch (std::bad_variant_access const& thrown) {
+        args << "std::get<std::unique_ptr<Number>>(value): " << thrown.what();
     }
-    if (!msg.str().empty()) {
-        msg << " == nullptr`.";
-        throw std::invalid_argument(msg.str());
-        return false;
+    if (!args.str().empty()) {
+        std::ostringstream what;
+        what << __func__ << "(" << args.str() << ")";
+        std::invalid_argument(what.str());
     }
-    AMstatus const status = AMresultStatus((*p_stack)->result);
-    switch (status) {
-        case AM_STATUS_ERROR: {
-            msg << "Error";
-            break;
-        }
-        case AM_STATUS_INVALID_RESULT: {
-            msg << "Invalid result";
-            break;
-        }
-        case AM_STATUS_OK:
-            break;
-        default: {
-            msg << "Unknown `" << typeid(status).name() << "` tag " << status;
-        }
-    }
-    if (!msg.str().empty()) {
-        CharPtr const c_msg{AMstrdup(AMresultError((*p_stack)->result), nullptr), std::free};
-        msg << "; " << c_msg.get() << ".";
-        throw std::runtime_error(msg.str());
-        return false;
-    }
-    if (p_data) {
-        auto const tag = AMitemValType(AMresultItem((*p_stack)->result));
-        if (!(tag & data_ptr->bitmask)) {
-            msg << "Unexpected value type `" << AMvalTypeToString(tag) << "` (" << tag << ") at " << data_ptr->file
-                << ":" << data_ptr->line << ".";
-            throw std::runtime_error(msg.str());
-            return false;
-        }
-    }
-    return true;
+    return result;
 }

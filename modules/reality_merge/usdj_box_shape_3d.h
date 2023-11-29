@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_box_shape_3d.h                                                    */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,45 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#ifndef REALITY_MERGE_USDJ_BOX_SHAPE_3D_H
+#define REALITY_MERGE_USDJ_BOX_SHAPE_3D_H
+
+#include <memory>
+
 // regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#include <scene/resources/shape_3d.h>
 
-// local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+namespace cavi {
+namespace usdj_am {
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+class Definition;
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
-    }
-    GDREGISTER_CLASS(AutomergeResource);
+}  // namespace usdj_am
+}  // namespace cavi
 
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
+/// \brief A shape defined by a USD Cube prim.
+class UsdjBoxShape3D : public Shape3D {
+    GDCLASS(UsdjBoxShape3D, Shape3D);
+    // Vector3 size;
+    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
 
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
+protected:
+    static void _bind_methods();
+#ifndef DISABLE_DEPRECATED
+    bool _set(const StringName& p_name, const Variant& p_value);
+    bool _get(const StringName& p_name, Variant& r_property) const;
+#endif  // DISABLE_DEPRECATED
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
+    virtual void _update_shape() override;
 
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
+public:
+    void set_size(const Vector3& p_size);
+    Vector3 get_size() const;
 
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+    virtual Vector<Vector3> get_debug_mesh_lines() const override;
+    virtual real_t get_enclosing_radius() const override;
+
+    UsdjBoxShape3D(std::shared_ptr<cavi::usdj_am::Definition> const& p_definition);
+};
+
+#endif  // REALITY_MERGE_USDJ_BOX_SHAPE_3D_H

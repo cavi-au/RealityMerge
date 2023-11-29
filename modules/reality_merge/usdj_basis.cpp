@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_basis.cpp                                                         */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,54 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#include <iterator>
+#include <sstream>
+#include <stdexcept>
+#include <typeinfo>
+
+// third-party
+#include <cavi/usdj_am/value.hpp>
+
 // regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#include <core/math/vector3.h>
 
 // local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+#include "usdj_basis.h"
+#include "usdj_vector.h"
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+Basis to_Basis(cavi::usdj_am::Value const& value) {
+    using cavi::usdj_am::ConstValues;
+    using cavi::usdj_am::Number;
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
+    std::ostringstream args;
+    Basis result{};
+    try {
+        /// \note A Godot Basis and a USD Matrix3d are both row-major.
+        auto const& rows_ptr = std::get<std::unique_ptr<ConstValues>>(value);
+        if (rows_ptr->size() != 3) {
+            args << "std::get<" << typeid(decltype(rows_ptr)).name() << ">(value)->size() == " << rows_ptr->size();
+        } else {
+            auto result_row = std::begin(result.rows);
+            std::size_t row_index = 0;
+            for (auto const& row : *rows_ptr) {
+                try {
+                    *result_row = to_Vector<Vector3, real_t>(row);
+                } catch (std::invalid_argument const& thrown) {
+                    args << "(*std::get<" << typeid(decltype(rows_ptr)).name() << ">(value))[" << row_index
+                         << "]: " << thrown.what();
+                    break;
+                }
+                ++result_row;
+                ++row_index;
+            }
+        }
+    } catch (std::bad_variant_access const& thrown) {
+        args << "std::get<std::unique_ptr<ConstValues>>(value): " << thrown.what();
     }
-    GDREGISTER_CLASS(AutomergeResource);
-
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
-
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
-
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
+    if (!args.str().empty()) {
+        std::ostringstream what;
+        what << __func__ << "(" << args.str() << ")";
+        std::invalid_argument(what.str());
     }
-
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
-
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
+    return result;
 }

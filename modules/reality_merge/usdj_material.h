@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_material.h                                                        */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,44 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#ifndef REALITY_MERGE_USDJ_MATERIAL_H
+#define REALITY_MERGE_USDJ_MATERIAL_H
+
+#include <cstdint>
+#include <memory>
+#include <optional>
+
 // regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#include "scene/resources/material.h"
 
-// local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+namespace cavi {
+namespace usdj_am {
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+class Definition;
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
-    }
-    GDREGISTER_CLASS(AutomergeResource);
+}  // namespace usdj_am
+}  // namespace cavi
 
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
+class UsdjMaterial : public Material {
+    GDCLASS(UsdjMaterial, Material);
 
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
+private:
+    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    Color emission = Color(0, 0, 0, 0);
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
+protected:
+    static void _bind_methods();
 
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
+public:
+    UsdjMaterial(std::shared_ptr<cavi::usdj_am::Definition> const& p_definition);
 
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+    virtual ~UsdjMaterial();
+
+    void set_albedo(Color p_color);
+    Color get_albedo() const;
+
+    void set_emission(Color p_color);
+    Color get_emission() const;
+};
+
+#endif  // REALITY_MERGE_USDJ_MATERIAL_H

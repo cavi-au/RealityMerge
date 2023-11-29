@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_value.h                                                           */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,52 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#ifndef REALITY_MERGE_USDJ_VALUE_H
+#define REALITY_MERGE_USDJ_VALUE_H
+
+#include <optional>
+#include <variant>
+
 // regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#include <core/math/basis.h>
+#include <core/math/color.h>
+#include <core/math/math_defs.h>
+#include <core/math/projection.h>
+#include <core/math/quaternion.h>
+#include <core/math/vector3.h>
+#include <core/math/vector3i.h>
+#include <core/math/vector4.h>
+#include <core/math/vector4i.h>
 
 // local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+#include "usdj_reals.h"
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+namespace cavi {
+namespace usdj_am {
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
-    }
-    GDREGISTER_CLASS(AutomergeResource);
+class Declaration;
 
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
+}  // namespace usdj_am
+}  // namespace cavi
 
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
+using UsdjValue =
+    std::variant<real_t, Reals, Basis, Color, Projection, Quaternion, Vector3, Vector3i, Vector4, Vector4i>;
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
+/// \brief Extracts the Godot counterpart of a USD value from within the given
+///        USDJ declaration, if any.
+///
+/// \param[in] declaration A "USDA_Declaration" node.
+/// \returns A `UsdjValue` instance or `std::nullopt`.
+/// \throws `std::logic_error` if the type of the embedded USD value isn't supported.
+std::optional<UsdjValue> extract_UsdjValue(cavi::usdj_am::Declaration const& declaration);
 
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
+/// \brief Converts a USDJ declaration into the Godot counterpart of the USD
+///        value embedded within it.
+///
+/// \param[in] declaration A "USDA_Declaration" node.
+/// \return A `UsdjValue` instance.
+/// \throws `std::invalid_argument` if \p declaration doesn't contain a USD value.
+/// \throws `std::logic_error` if the type of the embedded USD value isn't supported.
+UsdjValue to_UsdjValue(cavi::usdj_am::Declaration const& declaration);
 
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+#endif  // REALITY_MERGE_USDJ_VALUE_H

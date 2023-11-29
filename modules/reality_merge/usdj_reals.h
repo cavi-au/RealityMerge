@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* register_types.cpp                                                     */
+/* usdj_reals.h                                                           */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,40 +27,29 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#ifndef REALITY_MERGE_USDJ_REALS_H
+#define REALITY_MERGE_USDJ_REALS_H
+
+#include <vector>
+
 // regional
-#include <core/object/class_db.h>
-#include <core/object/ref_counted.h>
+#include <core/math/math_defs.h>
 
-// local
-#include "automerge_resource.h"
-#include "register_types.h"
-#include "usdj_mediator.h"
+namespace cavi {
+namespace usdj_am {
 
-static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
-static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
+struct Value;
 
-void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        return;
-    }
-    GDREGISTER_CLASS(AutomergeResource);
+}  // namespace usdj_am
+}  // namespace cavi
 
-    resource_loader_automerge.instantiate();
-    ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
+using Reals = std::vector<real_t>;
 
-    resource_saver_automerge.instantiate();
-    ResourceSaver::add_resource_format_saver(resource_saver_automerge);
-}
+/// \brief Converts a USDJ value into a Godot array of reals.
+///
+/// \param[in] value A USDA-to-JSON `Value`.
+/// \return A a vector of Godot `real_t` values.
+/// \throws std::invalid_argument
+Reals to_reals(cavi::usdj_am::Value const& value);
 
-void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        return;
-    }
-
-    ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
-    resource_loader_automerge.unref();
-
-    ResourceSaver::remove_resource_format_saver(resource_saver_automerge);
-    resource_saver_automerge.unref();
-}
+#endif  // REALITY_MERGE_USDJ_REALS_H

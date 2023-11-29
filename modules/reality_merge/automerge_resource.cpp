@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* automerge.cpp                                                          */
+/* automerge_resource.cpp                                                 */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,47 +27,40 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include <algorithm>
-#include <memory>
+#include <filesystem>
 #include <stdexcept>
 
-// third-party
-extern "C" {
-
-#include <automerge-c/automerge.h>
-#include <automerge-c/utils/stack.h>
-#include <automerge-c/utils/stack_callback_data.h>
-#include <automerge-c/utils/string.h>
-}
-
 // regional
+#include <core/config/project_settings.h>
 #include <core/io/file_access.h>
 
 // local
-#include "automerge.h"
-#include "exception_callback.h"
+#include "automerge_resource.h"
 
 namespace {
-char const* CLASS_NAME = "Automerge";
+
+char const* CLASS_NAME = "AutomergeResource";
 char const* FILE_EXT = "automerge";
 }  // namespace
 
-// Automerge
-void Automerge::_bind_methods() {}
+// AutomergeResource
+void AutomergeResource::_bind_methods() {}
 
-Automerge::Automerge() : m_document{nullptr}, m_stack{nullptr} {}
+AutomergeResource::~AutomergeResource() {}
 
-Automerge::~Automerge() {
-    AMstackFree(&m_stack);
+std::optional<std::reference_wrapper<cavi::usdj_am::utils::Document const>> AutomergeResource::get_document() const {
+    if (m_document)
+        return std::cref(*m_document);
+    return std::nullopt;
 }
 
-Error Automerge::load(Vector<std::uint8_t> const& p_data, String& p_err_msg) {
+Error AutomergeResource::load(Vector<std::uint8_t> const& p_data, String& p_err_msg) {
+    using cavi::usdj_am::utils::Document;
+
     auto outcome = Error::OK;
     p_err_msg.clear();
     try {
-        AMitem* const item =
-            AMstackItem(&m_stack, AMload(p_data.ptr(), p_data.size()), exc_cb, AMexpect(AM_VAL_TYPE_DOC));
-        AMitemToDoc(item, &m_document);
+        m_document.emplace(Document::load(p_data.ptr(), p_data.size()));
     } catch (std::invalid_argument const& thrown) {
         outcome = Error::ERR_INVALID_PARAMETER;
         p_err_msg = thrown.what();
@@ -77,14 +70,6 @@ Error Automerge::load(Vector<std::uint8_t> const& p_data, String& p_err_msg) {
     }
     emit_changed();
     return outcome;
-}
-
-bool operator<(Automerge const& lhs, Automerge const& rhs) {
-    return lhs.m_document < rhs.m_document;
-}
-
-bool operator==(Automerge const& lhs, Automerge const& rhs) {
-    return (lhs.m_document == rhs.m_document) || AMequal(lhs.m_document, rhs.m_document);
 }
 
 // ResourceFormatLoaderAutomerge
@@ -114,8 +99,8 @@ Ref<Resource> ResourceFormatLoaderAutomerge::load(String const& p_path,
         return Ref<Resource>();
     }
 
-    Ref<Automerge> automerge;
-    automerge.instantiate();
+    Ref<AutomergeResource> automerge_resource;
+    automerge_resource.instantiate();
 
     Error file_error;
     Vector<std::uint8_t> const bytes = FileAccess::get_file_as_bytes(p_path, &file_error);
@@ -128,7 +113,7 @@ Ref<Resource> ResourceFormatLoaderAutomerge::load(String const& p_path,
         return Ref<Resource>();
     }
     String load_error_msg;
-    auto load_error = automerge->load(bytes, load_error_msg);
+    auto load_error = automerge_resource->load(bytes, load_error_msg);
     if (load_error != Error::OK) {
         String error_msg = "Error loading file at \"" + p_path + "\": " + load_error_msg;
         if (r_error) {
@@ -140,14 +125,14 @@ Ref<Resource> ResourceFormatLoaderAutomerge::load(String const& p_path,
     if (r_error) {
         *r_error = OK;
     }
-    return automerge;
+    return automerge_resource;
 }
 
 // ResourceFormatSaverAutomerge
 void ResourceFormatSaverAutomerge::get_recognized_extensions(Ref<Resource> const& p_resource,
                                                              List<String>* p_extensions) const {
-    Ref<Automerge> automerge = p_resource;
-    if (automerge.is_valid() && automerge->operator AMdoc*()) {
+    Ref<AutomergeResource> automerge_resource = p_resource;
+    if (automerge_resource.is_valid() && automerge_resource->get_document()) {
         // The resource and the document it contains are both valid.
         p_extensions->push_back(FILE_EXT);
     }
@@ -158,26 +143,21 @@ bool ResourceFormatSaverAutomerge::recognize(Ref<Resource> const& p_resource) co
 }
 
 Error ResourceFormatSaverAutomerge::save(Ref<Resource> const& p_resource, String const& p_path, uint32_t p_flags) {
-    Ref<Automerge> automerge = p_resource;
-    AMdoc* const doc = automerge->operator AMdoc*();
-    ERR_FAIL_COND_V(!(p_resource.is_valid() && doc), Error::ERR_INVALID_PARAMETER);
-    std::unique_ptr<AMresult, void (*)(AMresult*)> const result{AMsave(doc), AMresultFree};
-    if (AMresultStatus(result.get()) == AM_STATUS_OK) {
-        AMitem const* const item = AMresultItem(result.get());
-        AMbyteSpan bytes;
-        if (AMitemToBytes(item, &bytes)) {
-            Vector<std::uint8_t> buffer;
-            buffer.resize(bytes.count);
-            std::copy(bytes.src, bytes.src + bytes.count, buffer.begin());
-            Error err;
-            Ref<FileAccess> file = FileAccess::open(p_path, FileAccess::WRITE, &err);
-            ERR_FAIL_COND_V_MSG(err, err, "Cannot save file '" + p_path + "'.");
-            file->store_buffer(buffer);
-            if (file->get_error() != OK && file->get_error() != Error::ERR_FILE_EOF) {
-                return Error::ERR_CANT_CREATE;
-            }
-            return Error::OK;
-        }
+    using std::filesystem::path;
+
+    Ref<AutomergeResource> automerge_resource = p_resource;
+    ERR_FAIL_COND_V(!(automerge_resource.is_valid() && automerge_resource->get_document()),
+                    Error::ERR_INVALID_PARAMETER);
+    // Convert the project-relative path into an absolute one.
+    auto const global_path = ProjectSettings::get_singleton()->globalize_path(p_path);
+    auto const buffer = global_path.to_utf8_buffer();
+    path const filename{std::string{reinterpret_cast<std::string::const_pointer>(buffer.ptr()),
+                                    static_cast<std::string::size_type>(buffer.size())}};
+    try {
+        automerge_resource->get_document()->get().save(filename);
+    } catch (std::invalid_argument const&) {
+        auto const err = Error::ERR_INVALID_PARAMETER;
+        ERR_FAIL_COND_V_MSG(err, err, "Cannot save file \"" + p_path + "\".");
     }
-    return Error::FAILED;
+    return Error::OK;
 }
