@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
 project(cavi_usdj-am VERSION 0.0.1
                      LANGUAGES CXX
@@ -18,11 +18,15 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 set(DEFAULT_LIBRARY_NAME ${PROJECT_NAME})
 
-set(LIBRARY_NAME "${DEFAULT_LIBRARY_NAME}" CACHE STRING "The library's name.")
+set(LIBRARY_NAME "${DEFAULT_LIBRARY_NAME}")
 
-set(LIBRARY_PREFIX "${CMAKE_STATIC_LIBRARY_PREFIX}" CACHE STRING "An output library's prefix.")
+set(STATIC_LIBRARY_PREFIX "${CMAKE_STATIC_LIBRARY_PREFIX}")
 
-set(LIBRARY_SUFFIX "${CMAKE_STATIC_LIBRARY_SUFFIX}" CACHE STRING "An output library's suffix.")
+set(STATIC_LIBRARY_SUFFIX "${CMAKE_STATIC_LIBRARY_SUFFIX}")
+
+set(SHARED_LIBRARY_PREFIX "${CMAKE_SHARED_LIBRARY_PREFIX}")
+
+set(SHARED_LIBRARY_SUFFIX "${CMAKE_SHARED_LIBRARY_SUFFIX}")
 
 option(BUILD_SHARED_LIBS "Enable the choice of a shared or static library.")
 
@@ -86,24 +90,49 @@ else()
     )
 endif()
 
-# Enable an external build tool to find the library in the root of the
-# out-of-source build directory when it has overridden an aspect of its name.
-if(NOT (("${LIBRARY_PREFIX}" STREQUAL "${CMAKE_STATIC_LIBRARY_PREFIX}") AND
-        ("${LIBRARY_NAME}" STREQUAL "${DEFAULT_LIBRARY_NAME}") AND
-        ("${LIBRARY_SUFFIX}" STREQUAL "${CMAKE_STATIC_LIBRARY_SUFFIX}")))
-    add_custom_command(
-        TARGET ${LIBRARY_NAME}
-        POST_BUILD
-        COMMAND
-            ${CMAKE_COMMAND} -E echo "Copying \"${CMAKE_STATIC_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}\" to \"${PROJECT_BINARY_DIR}/${LIBRARY_PREFIX}${LIBRARY_NAME}${LIBRARY_SUFFIX}\"..."
-        COMMAND
-            ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX} ${PROJECT_BINARY_DIR}/${LIBRARY_PREFIX}${LIBRARY_NAME}${LIBRARY_SUFFIX}
-        WORKING_DIRECTORY
-            ${PROJECT_BINARY_DIR}
-        COMMENT
-            "Aliasing the library for the external build tool..."
-        VERBATIM
-    )
+if(NOT BUILD_SHARED_LIBS OR WIN32)
+    # Enable an external build tool to find the static/import library in the
+    # root of the out-of-source build directory when it has overridden an aspect
+    # of its name.
+    if(NOT (("${STATIC_LIBRARY_PREFIX}" STREQUAL "${CMAKE_STATIC_LIBRARY_PREFIX}") AND
+            ("${LIBRARY_NAME}" STREQUAL "${DEFAULT_LIBRARY_NAME}") AND
+            ("${STATIC_LIBRARY_SUFFIX}" STREQUAL "${CMAKE_STATIC_LIBRARY_SUFFIX}")))
+        add_custom_command(
+            TARGET ${LIBRARY_NAME}
+            POST_BUILD
+            COMMAND
+                ${CMAKE_COMMAND} -E echo "Copying \"${PROJECT_BINARY_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}\" to \"${PROJECT_BINARY_DIR}/${STATIC_LIBRARY_PREFIX}${LIBRARY_NAME}${STATIC_LIBRARY_SUFFIX}\"..."
+            COMMAND
+                ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX} ${PROJECT_BINARY_DIR}/${STATIC_LIBRARY_PREFIX}${LIBRARY_NAME}${STATIC_LIBRARY_SUFFIX}
+            WORKING_DIRECTORY
+                ${PROJECT_SOURCE_DIR}
+            COMMENT
+                "Aliasing the static/import library for the external build tool..."
+            VERBATIM
+        )
+    endif()
+endif()
+
+if(BUILD_SHARED_LIBS)
+    # Enable an external build tool to find the shared library in the root of the
+    # out-of-source build directory when it has overridden an aspect of its name.
+    if(NOT (("${SHARED_LIBRARY_PREFIX}" STREQUAL "${CMAKE_SHARED_LIBRARY_PREFIX}") AND
+            ("${LIBRARY_NAME}" STREQUAL "${DEFAULT_LIBRARY_NAME}") AND
+            ("${SHARED_LIBRARY_SUFFIX}" STREQUAL "${CMAKE_SHARED_LIBRARY_SUFFIX}")))
+        add_custom_command(
+            TARGET ${LIBRARY_NAME}
+            POST_BUILD
+            COMMAND
+                ${CMAKE_COMMAND} -E echo "Copying \"${PROJECT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}\" to \"${PROJECT_BINARY_DIR}/${SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${SHARED_LIBRARY_SUFFIX}\"..."
+            COMMAND
+                ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX} ${PROJECT_BINARY_DIR}/${SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${SHARED_LIBRARY_SUFFIX}
+            WORKING_DIRECTORY
+                ${PROJECT_SOURCE_DIR}
+            COMMENT
+                "Aliasing the library for the external build tool..."
+            VERBATIM
+        )
+    endif()
 endif()
 
 # Generate the configuration header.
@@ -160,6 +189,11 @@ target_sources(${LIBRARY_NAME}
         src/variant_definition.cpp
         src/variant_set.cpp
         src/visitor.cpp
+        src/usd/token_type.cpp
+        src/usd/geom/token_type.cpp
+        src/usd/geom/xform_op_type.cpp
+        src/usd/physics/token_type.cpp
+        src/usd/sdf/value_type_name.cpp
         src/utils/bytes.cpp
         src/utils/document.cpp
         src/utils/item.cpp
@@ -201,6 +235,11 @@ target_sources(${LIBRARY_NAME}
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/variant_definition.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/variant_set.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/visitor.hpp
+                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/usd/token_type.hpp
+                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/usd/physics/token_type.hpp
+                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/usd/geom/token_type.hpp
+                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/usd/geom/xform_op_type.hpp
+                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/usd/sdf/value_type_name.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/utils/bytes.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/utils/document.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/utils/item.hpp
@@ -226,7 +265,12 @@ install(EXPORT ${PROJECT_NAME}-config
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${LIB}
 )
 
-add_subdirectory("../automerge/rust/automerge-c" "${PROJECT_BINARY_DIR}/automerge-c")
+block(SCOPE_FOR VARIABLES)
+    # Always build automerge-c as a static library.
+    set(BUILD_SHARED_LIBS OFF)
+
+    add_subdirectory("../automerge/rust/automerge-c" "${PROJECT_BINARY_DIR}/automerge-c")
+endblock()
 
 if(BUILD_TESTING)
     add_subdirectory(test EXCLUDE_FROM_ALL)
