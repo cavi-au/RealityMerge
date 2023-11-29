@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://boskf6xgbtyjh"]
+
+[ext_resource type="AutomergeResource" path="res://a-cube.automerge" id="1_enogr"]
+
+[node name="Usd" type="Node3D"]
+
+[node name="UsdjMediator" type="UsdjMediator" parent="."]
+automerge_resource = ExtResource("1_enogr")
+usdj_path = "/data/scene"
