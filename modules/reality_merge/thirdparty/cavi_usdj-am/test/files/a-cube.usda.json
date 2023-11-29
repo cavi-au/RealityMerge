@@ -57,7 +57,7 @@
                   "type": "externalReference",
                   "referenceFile": {
                     "type": "externalReferenceSrc",
-                    "src": "/cube.usda",
+                    "src": "cube.usda",
                     "descriptor": null
                   },
                   "toImport": null
@@ -66,20 +66,6 @@
             ]
           },
           "statements": [
-            {
-              "type": "declaration",
-              "keyword": null,
-              "defineType": "color3f[]",
-              "reference": "primvars:displayColor",
-              "value": [
-                [
-                  0,
-                  0,
-                  0.6666667
-                ]
-              ],
-              "descriptor": null
-            },
             {
               "type": "declaration",
               "keyword": null,

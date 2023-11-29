@@ -30,6 +30,7 @@
 #ifndef CAVI_USDJ_AM_UTILS_DOCUMENT_HPP
 #define CAVI_USDJ_AM_UTILS_DOCUMENT_HPP
 
+#include <cstdint>
 #include <filesystem>
 #include <memory>
 #include <string>
@@ -50,6 +51,19 @@ class Document {
 public:
     using ResultPtr = std::unique_ptr<AMresult, void (*)(AMresult*)>;
 
+    /// \brief Load an Automerge document from a memory buffer.
+    ///
+    /// \param[in] src A pointer to an array of bytes.
+    /// \param[in] count The number of bytes to read.
+    /// \pre \p src `!= nullptr`
+    /// \pre \p count `<= sizeof(*` \p src `)`
+    /// \throws std::invalid_argument
+    static Document load(std::uint8_t const* const src, std::size_t const count);
+
+    /// \brief Load an Automerge document from a binary file.
+    ///
+    /// \param[in] filename A path to a binary file.
+    /// \throws std::invalid_argument
     static Document load(std::filesystem::path const& filename);
 
     Document() = delete;
@@ -73,19 +87,29 @@ public:
 
     /// \brief Gets the root map object of the document.
     ///
-    /// \return An `Item`.
+    /// \returns An `Item`.
     Item get_item() const;
 
     /// \brief Gets the item at an absolute POSIX path within the document.
     ///
     /// \param[in] posix_path An absolute POSIX path string.
-    /// \return An `Item`.
+    /// \returns An `Item`.
     /// \throws std::invalid_argument
     Item get_item(std::string const& posix_path) const;
+
+    /// \brief Saves a compact representation of the Automerge document to a binary file.
+    ///
+    /// \param[in] filename A path to a binary file.
+    /// \returns The number of bytes that were written.
+    /// \throws std::invalid_argument
+    /// \throws std::runtime_error
+    std::size_t save(std::filesystem::path const& filename) const;
 
 private:
     AMdoc* m_document;
     ResultPtr m_result;
+
+    friend bool operator==(Document const& lhs, Document const& rhs);
 };
 
 inline Document::operator AMdoc*() const {
@@ -94,6 +118,12 @@ inline Document::operator AMdoc*() const {
 
 inline Item Document::get_item() const {
     return Item(m_document);
+}
+
+bool operator==(Document const& lhs, Document const& rhs);
+
+inline bool operator!=(Document const& lhs, Document const& rhs) {
+    return !operator==(lhs, rhs);
 }
 
 }  // namespace utils

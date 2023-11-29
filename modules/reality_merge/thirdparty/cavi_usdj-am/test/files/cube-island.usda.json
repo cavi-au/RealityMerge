@@ -1,0 +1,4418 @@
+{
+  "version": 1,
+  "descriptor": {
+    "description": null,
+    "assignments": [
+      {
+        "type": "assignment",
+        "keyword": null,
+        "identifier": "defaultPrim",
+        "value": "world"
+      },
+      {
+        "type": "assignment",
+        "keyword": null,
+        "identifier": "metersPerUnit",
+        "value": 1
+      },
+      {
+        "type": "assignment",
+        "keyword": null,
+        "identifier": "upAxis",
+        "value": "Y"
+      }
+    ]
+  },
+  "statements": [
+    {
+      "type": "definition",
+      "subType": "def",
+      "defType": "Xform",
+      "name": "world",
+      "descriptor": {
+        "description": null,
+        "assignments": [
+          {
+            "type": "assignment",
+            "keyword": null,
+            "identifier": "kind",
+            "value": "assembly"
+          }
+        ]
+      },
+      "statements": [
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def1",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.866077,
+                2.521292,
+                1.308471
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.25978,
+                1.136197,
+                -2.845115
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def2",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.8,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                8,
+                0.2,
+                20
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -4,
+                -0.1,
+                0
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def3",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0,
+                  0.8
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                200.2088,
+                1,
+                200.2088
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -3.740448,
+                -2.376412,
+                -0.04275763
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def4",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                3.268,
+                2.034651,
+                5.078
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.228356,
+                0.782563,
+                0.205191
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def5",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.678,
+                  0.373,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.189208,
+                1,
+                1.551894
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -4.096009,
+                0.2161333,
+                1.427509
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def6",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1,
+                1,
+                2.235486
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -5.569439,
+                0,
+                5
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def7",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.4,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.471487,
+                1.471487,
+                1.471487
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.271981,
+                5.163828,
+                -0.722471
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def8",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.813474,
+                1,
+                1
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                12.12793,
+                0,
+                8.97512
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def9",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.8,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                5.054251,
+                0.2,
+                2.887954
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                10.827,
+                -0.4487917,
+                8.151
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def10",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.8,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                8.881516,
+                0.2,
+                3.666452
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                4.198762,
+                -0.70499,
+                -3.242443
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def11",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.3047183,
+                2.972217,
+                0.2787147
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.279892,
+                3.187977,
+                -0.716207
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def12",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.8,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                3.268,
+                0.2,
+                5.078
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.228,
+                1.867002,
+                0.205
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def13",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.678,
+                  0.373,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.751386,
+                1.893456,
+                0.4607911
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.211749,
+                0.6604267,
+                2.72476
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def14",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.678,
+                  0.373,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.37316,
+                1.06066,
+                0.4607911
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.287746,
+                0.467416,
+                3.11802
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def15",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.678,
+                  0.373,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.6931585,
+                1.583318,
+                1.551894
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -4.378786,
+                0.2161333,
+                -1.058494
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def16",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.480118,
+                0.7721944,
+                0.3565383
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.279892,
+                2.193521,
+                -0.7263456
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def17",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.404412,
+                1.629062,
+                2.061436
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -5.76981,
+                0.6040542,
+                -3.12098
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def18",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.4,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.023162,
+                0.64181,
+                1.023162
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -5.670723,
+                4.689383,
+                -1.072733
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def19",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.8,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.057184,
+                0.6894465,
+                0.7016665
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.654725,
+                5.365036,
+                -0.1822611
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def20",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                8,
+                1.796367,
+                20
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -4,
+                -1.077006,
+                0
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def21",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                5.054251,
+                1.491021,
+                2.887954
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                10.82659,
+                -1.23731,
+                8.15149
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def22",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                8.881516,
+                1.293653,
+                3.666452
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                4.198762,
+                -1.334268,
+                -3.242443
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def23",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                3.025497,
+                0.9013413,
+                3.666452
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                0.6752968,
+                -1.529718,
+                -0.9140505
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def24",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                3.025497,
+                0.4779328,
+                2.133753
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                2.330392,
+                -1.74267,
+                -0.9140505
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def25",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.25,
+                  0.25,
+                  0.25
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.229731,
+                0.6115439,
+                0.6781071
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                12.16595,
+                -0.04751557,
+                8.18495
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def26",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.25,
+                  0.25,
+                  0.25
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.813474,
+                1,
+                1
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -4.638664,
+                0.3699228,
+                2.720816
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def27",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.480118,
+                0.7721944,
+                0.3565383
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -5.161635,
+                0.4134532,
+                8.314454
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def28",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.3047183,
+                2.972217,
+                0.2787147
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -5.168293,
+                2.203468,
+                8.318136
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def29",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.4,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.471487,
+                1.471487,
+                1.471487
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -5.130247,
+                3.711239,
+                8.309955
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def30",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.4,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.023162,
+                0.64181,
+                1.023162
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -4.725082,
+                3.699147,
+                8.698889
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def31",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.4,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.023162,
+                0.9333203,
+                1.023162
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -5.189607,
+                3.699147,
+                7.871694
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def32",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                5.457235,
+                3.178317,
+                5.078362
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -3.939661,
+                -0.5992368,
+                -9.966223
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def33",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.8,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                5.457,
+                0.2,
+                5.078
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -3.94,
+                1.072562,
+                -9.966
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def34",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.678,
+                  0.373,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.166842,
+                1.583318,
+                1.551894
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -1.747675,
+                -0.005051428,
+                -7.349744
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def35",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.678,
+                  0.373,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.166842,
+                1.583318,
+                1.551894
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -2.173957,
+                -0.2642202,
+                -6.527658
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def36",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.859185,
+                1.629062,
+                2.061436
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.190111,
+                0.6040542,
+                -8.006149
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def37",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.440214,
+                1.435236,
+                1.59689
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -5.458694,
+                0.2170162,
+                -7.152909
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def38",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.480118,
+                0.7721944,
+                0.3565383
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -2.974339,
+                1.357322,
+                -10.38302
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def39",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.3047183,
+                2.972217,
+                0.2787147
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -2.937198,
+                2.585915,
+                -10.37288
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def40",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.4,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.810177,
+                1.810177,
+                1.810177
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -2.945376,
+                4.604394,
+                -10.40621
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def41",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.4,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.023162,
+                0.8135142,
+                1.023162
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -2.348226,
+                4.419937,
+                -9.886813
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def42",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.4,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.8821712,
+                0.439173,
+                1.023162
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -3.57309,
+                4.828918,
+                -9.734189
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def43",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.50866,
+                2.030461,
+                2.697425
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                8.539864,
+                -1.107564,
+                -4.369209
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def44",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.50866,
+                3.254435,
+                3.550701
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                7.356439,
+                -1.107564,
+                -6.228667
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def45",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                3.429156,
+                4.336445,
+                2.91631
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                9.657843,
+                -1.107564,
+                -5.767171
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def46",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                3.025497,
+                1.158266,
+                3.666452
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                0.6752968,
+                -1.529718,
+                -6.687258
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def47",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.605947,
+                0.4779328,
+                1.260097
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                5.618078,
+                -0.2462152,
+                4.830372
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def48",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.25,
+                  0.25,
+                  0.25
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.813474,
+                1,
+                1.344873
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.41503,
+                -0.03865108,
+                9.234185
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def49",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.25,
+                  0.25,
+                  0.25
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.010342,
+                1.959043,
+                1.344873
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.41503,
+                -0.03865108,
+                8.617631
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def50",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.553228,
+                1.222098,
+                3.998076
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.71119,
+                0.4383484,
+                4.716907
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def51",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0,
+                  0.8,
+                  0
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1.553228,
+                0.1894897,
+                3.998076
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -6.71119,
+                1.079477,
+                4.716907
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def52",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                6.615605,
+                1.031822,
+                3.780097
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                10.27698,
+                -1.859445,
+                7.947766
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def53",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                6.257263,
+                0.9013413,
+                4.664046
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -2.183237,
+                -1.542115,
+                8.018282
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def54",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.541,
+                  0.302,
+                  0.012
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                3.025497,
+                0.4779328,
+                2.700512
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                -0.05618881,
+                -1.74267,
+                6.216051
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def55",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.25,
+                  0.25,
+                  0.25
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:rotateXYZ",
+              "value": [
+                104.8599,
+                -32.46243,
+                -98.10525
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.164667,
+                0.7219017,
+                0.126086
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                3.426234,
+                -2.619843,
+                7.90734
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:rotateXYZ",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def56",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.25,
+                  0.25,
+                  0.25
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:rotateXYZ",
+              "value": [
+                -14.58437,
+                9.410006,
+                -57.8555
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.164667,
+                0.7219017,
+                0.126086
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                5.094156,
+                -2.684017,
+                5.817873
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:rotateXYZ",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "Def57",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.25,
+                  0.25,
+                  0.25
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:rotateXYZ",
+              "value": [
+                59.11671,
+                -29.45961,
+                -73.60888
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                2.383275,
+                0.7948055,
+                0.1006837
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                5.731787,
+                -2.684017,
+                8.941709
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:rotateXYZ",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

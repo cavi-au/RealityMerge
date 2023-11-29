@@ -55,7 +55,6 @@
 
 namespace cavi {
 namespace usdj_am {
-
 namespace utils {
 
 class JsonWriter : public Visitor {
@@ -106,47 +105,41 @@ public:
 
     operator std::string() const;
 
-    void visit(Assignment const&);
+    void visit(Assignment const&) override;
 
-    void visit(ClassDeclaration const&);
+    void visit(ClassDeclaration const&) override;
 
-    void visit(ClassDefinition const&);
+    void visit(Declaration const&) override;
 
-    void visit(Declaration const&);
+    void visit(Definition const&) override;
 
-    void visit(Definition const&);
+    void visit(DefinitionStatement const&) override;
 
-    void visit(DefinitionStatement const&);
+    void visit(Descriptor const&) override;
 
-    void visit(Descriptor const&);
+    void visit(ExternalReference const&) override;
 
-    void visit(ExternalReference const&);
+    void visit(ExternalReferenceImport const&) override;
 
-    void visit(ExternalReferenceImport const&);
+    void visit(File const&) override;
 
-    void visit(File const&);
+    void visit(ObjectDeclaration const&) override;
 
-    void visit(ObjectDeclaration const&);
+    void visit(ObjectDeclarationEntries const&) override;
 
-    void visit(ObjectDeclarationEntries const&);
+    void visit(ObjectDeclarations const&) override;
 
-    void visit(ObjectDeclarationList const&);
+    void visit(ObjectValue const&) override;
 
-    void visit(ObjectDeclarationListValue const&);
+    void visit(ReferenceFile const&) override;
 
-    void visit(ObjectDeclarations const&);
+    void visit(Statement const&) override;
 
-    void visit(ObjectValue const&);
+    void visit(Value const&) override;
 
-    void visit(ReferenceFile const&);
+    void visit(VariantDefinition const&) override;
 
-    void visit(Statement const&);
-
-    void visit(Value const&);
-
-    void visit(VariantDefinition const&);
-
-    void visit(VariantSet const&);
+    void visit(VariantSet const&) override;
 
 private:
     template <typename InputRangeT>

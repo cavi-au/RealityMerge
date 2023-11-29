@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
@@ -22,12 +23,35 @@
 #include <cavi/usdj_am/utils/json_writer.hpp>
 
 using std::filesystem::exists;
+using std::filesystem::file_size;
 using std::filesystem::path;
 using std::filesystem::temp_directory_path;
 
 path const ASSETS = "assets";
 
 path const ROOT = "files";
+
+TEST_CASE("Validate `Document` loading and saving", "[Document]") {
+    using namespace cavi::usdj_am;
+
+    path const TEMP = temp_directory_path();
+    auto STEM =
+        GENERATE(as<std::string>{}, "Ball.shadingVariants", "helloWorld", "relativeReference", "usdPhysicsBoxOnBox");
+    auto load_path = ROOT / ASSETS / (STEM + ".usdj-am");
+    auto document = utils::Document::load(load_path);
+    CHECK(document != static_cast<AMdoc*>(nullptr));
+    auto save_path = TEMP / (STEM + ".usdj-am");
+    document.save(save_path);
+    CHECK(file_size(save_path) == file_size(load_path));
+    std::ifstream load_ifs(load_path, std::ios::binary | std::ios::in);
+    CHECK(load_ifs);
+    std::ifstream save_ifs(save_path, std::ios::binary | std::ios::in);
+    CHECK(save_ifs);
+    auto file_mismatch = std::mismatch(std::istreambuf_iterator<std::ifstream::char_type>(save_ifs),
+                                       std::istreambuf_iterator<std::ifstream::char_type>(),
+                                       std::istreambuf_iterator<std::ifstream::char_type>(load_ifs));
+    CHECK(file_mismatch.first == std::istreambuf_iterator<std::ifstream::char_type>());
+}
 
 TEST_CASE("Load a USDJ-AM file", "[File]") {
     using namespace cavi::usdj_am;
@@ -65,7 +89,7 @@ TEST_CASE("Validate `File` with USDA.JSON files", "[File]") {
 TEST_CASE("Validate nested `File` with USDA.JSON files", "[File]") {
     using namespace cavi::usdj_am;
 
-    auto STEM = GENERATE(as<std::string>{}, "brave-ape-49");
+    auto STEM = GENERATE(as<std::string>{}, "brave-ape-49", "a-cube", "two-cubes", "cube-island");
     auto usdj_am_path = ROOT / (STEM + ".automerge");
     auto document = utils::Document::load(usdj_am_path);
     CHECK(document != static_cast<AMdoc*>(nullptr));
@@ -82,7 +106,7 @@ TEST_CASE("Validate nested `File` with USDA.JSON files", "[File]") {
     CHECK(system(command.str().c_str()) == 0);
     CHECK(exists(lhs_jq_json_path));
     // Format the JSON output with jq.
-    auto usdj_am_json_path = TEMP / (STEM + ".usdj-am.json");
+    auto usdj_am_json_path = TEMP / (STEM + ".usda.json");
     std::ofstream ofs(usdj_am_json_path, std::ios::out);
     CHECK(ofs);
     ofs << json_writer.operator std::string();

@@ -57,7 +57,7 @@
                   "type": "externalReference",
                   "referenceFile": {
                     "type": "externalReferenceSrc",
-                    "src": "/cube.usda",
+                    "src": "cube.usda",
                     "descriptor": null
                   },
                   "toImport": null
@@ -111,6 +111,95 @@
               "reference": "xformOp:translate",
               "value": [
                 0,
+                0,
+                0
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:rotateXYZ",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            }
+          ]
+        },
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "myOtherCube",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  1,
+                  0,
+                  0.066667
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:rotateXYZ",
+              "value": [
+                0,
+                110,
+                40
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                1,
+                1,
+                1
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "double3",
+              "reference": "xformOp:translate",
+              "value": [
+                1.36,
                 0,
                 0
               ],

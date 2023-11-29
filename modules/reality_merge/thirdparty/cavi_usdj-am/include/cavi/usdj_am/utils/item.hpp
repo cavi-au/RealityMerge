@@ -94,7 +94,7 @@ inline bool operator!=(Item const& lhs, Item const& rhs) {
 ///
 /// \param lhs[in] An `Item` to which \p rhs will be appended.
 /// \param rhs[in] An `Item` to append.
-/// \return A new `Item`.
+/// \returns A new `Item`.
 /// \throws std::invalid_argument
 Item operator/(Item const& lhs, Item const& rhs);
 
@@ -102,7 +102,7 @@ Item operator/(Item const& lhs, Item const& rhs);
 ///
 /// \param lhs[in] An `Item` to which index \p key will be appended.
 /// \param key[in] A key within a map object.
-/// \return A new `Item`.
+/// \returns A new `Item`.
 /// \throws std::invalid_argument
 Item operator/(Item const& lhs, std::string const& key);
 
@@ -110,7 +110,7 @@ Item operator/(Item const& lhs, std::string const& key);
 ///
 /// \param lhs[in] An `Item` to which index \p pos will be appended.
 /// \param pos[in] A position within a list object.
-/// \return A new `Item`.
+/// \returns A new `Item`.
 /// \throws std::invalid_argument
 Item operator/(Item const& lhs, std::uint64_t const pos);
 

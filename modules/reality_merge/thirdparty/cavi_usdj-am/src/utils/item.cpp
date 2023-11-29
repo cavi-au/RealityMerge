@@ -79,21 +79,21 @@ Item operator/(Item const& lhs, Item const& rhs) {
 
 Item operator/(Item const& lhs, std::string const& key) {
     Item item{lhs};
-    std::ostringstream arguments;
+    std::ostringstream args;
     auto const* const obj_id = AMitemObjId(lhs);
     auto const val_type = (obj_id) ? AMitemValType(lhs) : AM_VAL_TYPE_OBJ_TYPE;
     if (val_type != AM_VAL_TYPE_OBJ_TYPE) {
-        arguments << "AMitemValType(" << lhs << ") == " << AMvalTypeToString(val_type) << ", ...";
+        args << "AMitemValType(" << lhs << ") == " << AMvalTypeToString(val_type) << ", ...";
     } else {
         auto const obj_type = AMobjObjType(lhs.m_document, obj_id);
         if (obj_type != AM_OBJ_TYPE_MAP) {
-            arguments << "AMobjObjType(..., AMitemObjId(" << lhs << ")) == " << AMobjTypeToString(obj_type) << ", ...";
+            args << "AMobjObjType(..., AMitemObjId(" << lhs << ")) == " << AMobjTypeToString(obj_type) << ", ...";
         } else {
-            if (arguments.str().empty()) {
+            if (args.str().empty()) {
                 Item::ResultPtr result{AMmapGet(lhs.m_document, obj_id, to_bytes(key), nullptr), AMresultFree};
                 if (AMresultStatus(result.get()) != AM_STATUS_OK) {
-                    arguments << "AMresultError(AMmapGet(..., AMitemObjId(" << lhs << "), \"" << key
-                              << "\", nullptr)) == \"" << from_bytes(AMresultError(result.get())) << "\"";
+                    args << "AMresultError(AMmapGet(..., AMitemObjId(" << lhs << "), \"" << key << "\", nullptr)) == \""
+                         << from_bytes(AMresultError(result.get())) << "\"";
                 } else {
                     item.m_results.emplace_back(result);
                     return item;
@@ -101,9 +101,9 @@ Item operator/(Item const& lhs, std::string const& key) {
             }
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << __func__ << "(" << arguments.str() << ")";
+        what << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
     return item;
@@ -111,35 +111,35 @@ Item operator/(Item const& lhs, std::string const& key) {
 
 Item operator/(Item const& lhs, std::uint64_t const pos) {
     Item item{lhs};
-    std::ostringstream arguments;
+    std::ostringstream args;
     AMobjId const* const obj_id = AMitemObjId(lhs);
     if (!obj_id) {
         if (!lhs.m_results.empty()) {
             // It's a value so the pos is inapplicable.
-            arguments << "AMitemValType(" << lhs << ") == " << AMvalTypeToString(AMitemValType(lhs)) << ", ...";
+            args << "AMitemValType(" << lhs << ") == " << AMvalTypeToString(AMitemValType(lhs)) << ", ...";
         } else {
             // The document's root object is a map so the pos is inapplicable.
-            arguments << "AMobjObjType(..., AM_ROOT) == " << AMobjTypeToString(AM_OBJ_TYPE_MAP) << ", ...";
+            args << "AMobjObjType(..., AM_ROOT) == " << AMobjTypeToString(AM_OBJ_TYPE_MAP) << ", ...";
         }
     } else {
         AMobjType const obj_type = AMobjObjType(lhs.m_document, obj_id);
         if (obj_type != AM_OBJ_TYPE_LIST) {
-            arguments << "AMobjObjType(..., AMitemObjId(" << lhs << ")) == " << AMobjTypeToString(obj_type) << ", ...";
+            args << "AMobjObjType(..., AMitemObjId(" << lhs << ")) == " << AMobjTypeToString(obj_type) << ", ...";
         }
     }
-    if (arguments.str().empty()) {
+    if (args.str().empty()) {
         Item::ResultPtr result{AMlistGet(lhs.m_document, obj_id, pos, nullptr), AMresultFree};
         if (AMresultStatus(lhs.m_results.back().get()) != AM_STATUS_OK) {
-            arguments << "AMresultError(AMlistGet(..., AMitemObjId(" << lhs << "), " << pos << ", nullptr)) == \""
-                      << from_bytes(AMresultError(result.get())) << "\"";
+            args << "AMresultError(AMlistGet(..., AMitemObjId(" << lhs << "), " << pos << ", nullptr)) == \""
+                 << from_bytes(AMresultError(result.get())) << "\"";
         } else {
             item.m_results.emplace_back(result);
             return item;
         }
     }
-    if (!arguments.str().empty()) {
+    if (!args.str().empty()) {
         std::ostringstream what;
-        what << __func__ << "(" << arguments.str() << ")";
+        what << __func__ << "(" << args.str() << ")";
         throw std::invalid_argument(what.str());
     }
     return item;

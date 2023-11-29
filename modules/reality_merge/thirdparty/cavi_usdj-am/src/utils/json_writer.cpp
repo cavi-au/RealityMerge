@@ -29,10 +29,6 @@
 
 #include <iomanip>
 #include <iostream>
-#include <ostream>
-#include <sstream>
-#include <stdexcept>
-#include <string>
 #include <type_traits>
 
 // local
@@ -71,12 +67,6 @@ void JsonWriter::visit(Assignment const& assignment) {
 
 void JsonWriter::visit(ClassDeclaration const& class_declaration) {
     std::visit([this](auto const& alt) { alt->accept(*this); }, class_declaration);
-}
-
-void JsonWriter::visit(ClassDefinition const& node) {
-    std::ostringstream what;
-    what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
-    throw std::logic_error(what.str());
 }
 
 void JsonWriter::visit(Declaration const& declaration) {
@@ -248,18 +238,6 @@ void JsonWriter::visit(ObjectDeclarationEntries const& object_declaration_entrie
     m_os << m_indenter << "}";
 }
 
-void JsonWriter::visit(ObjectDeclarationList const& node) {
-    std::ostringstream what;
-    what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
-    throw std::logic_error(what.str());
-}
-
-void JsonWriter::visit(ObjectDeclarationListValue const& node) {
-    std::ostringstream what;
-    what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
-    throw std::logic_error(what.str());
-}
-
 void JsonWriter::visit(ObjectDeclarations const& object_declarations) {
     std::visit([this](auto const& alt) { alt->accept(*this); }, object_declarations);
 }
@@ -311,7 +289,7 @@ void JsonWriter::visit(Value const& value) {
             } else if constexpr (std::is_same_v<T, Number>) {
                 auto const precision = m_os.precision();
                 m_os << std::setprecision(m_precision) << alt << std::setprecision(precision);
-            } else if constexpr (std::is_same_v<T, std::unique_ptr<ConstInputRange<Value> > >)
+            } else if constexpr (std::is_same_v<T, std::unique_ptr<ConstValues> >)
                 write_array(*alt);
             else if constexpr (std::is_same_v<T, std::unique_ptr<ExternalReferenceImport> > ||
                                std::is_same_v<T, std::unique_ptr<ExternalReference> > ||
