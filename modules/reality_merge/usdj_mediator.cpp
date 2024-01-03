@@ -99,12 +99,12 @@ void UsdjMediator::_bind_methods() {
     ClassDB::bind_method(D_METHOD("set_server_path"), &UsdjMediator::set_server_path);
     ClassDB::bind_method(D_METHOD("set_server_sync"), &UsdjMediator::set_server_sync);
 
-    ADD_PROPERTY(PropertyInfo(Variant::NIL, "Document", PROPERTY_HINT_NONE, "document_", PROPERTY_USAGE_GROUP), "", "");
+    ADD_GROUP("Document", "document_");
     ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "document_resource", PROPERTY_HINT_RESOURCE_TYPE, RESOURCE_TYPE_NAME),
                  "set_document_resource", "get_document_resource");
     ADD_PROPERTY(PropertyInfo(Variant::STRING, "document_path"), "set_document_path", "get_document_path");
     ADD_PROPERTY(PropertyInfo(Variant::BOOL, "document_scan"), "set_document_scan", "get_document_scan");
-    ADD_PROPERTY(PropertyInfo(Variant::NIL, "Server", PROPERTY_HINT_NONE, "server_", PROPERTY_USAGE_GROUP), "", "");
+    ADD_GROUP("Server", "server_");
     ADD_PROPERTY(PropertyInfo(Variant::STRING, "server_domain_name"), "set_server_domain_name",
                  "get_server_domain_name");
     ADD_PROPERTY(PropertyInfo(Variant::STRING, "server_path"), "set_server_path", "get_server_path");
