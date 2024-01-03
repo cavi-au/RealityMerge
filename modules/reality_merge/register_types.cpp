@@ -35,6 +35,7 @@
 #include "automerge_resource.h"
 #include "register_types.h"
 #include "usdj_mediator.h"
+#include "usdj_static_body_3d.h"
 
 static Ref<ResourceFormatLoaderAutomerge> resource_loader_automerge;
 static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
@@ -42,6 +43,7 @@ static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
 void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
         GDREGISTER_CLASS(UsdjMediator);
+        GDREGISTER_CLASS(UsdjStaticBody3D);
         return;
     }
     GDREGISTER_CLASS(AutomergeResource);

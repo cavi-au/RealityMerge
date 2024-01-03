@@ -45,7 +45,7 @@ class UsdjColorExtractor : public cavi::usdj_am::Visitor {
 public:
     UsdjColorExtractor() = delete;
 
-    UsdjColorExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
+    UsdjColorExtractor(cavi::usdj_am::Definition const& p_definition);
 
     UsdjColorExtractor(UsdjColorExtractor const&) = delete;
 
@@ -68,7 +68,7 @@ public:
 private:
     enum class Component : std::uint8_t { BEGIN__ = 1, R = BEGIN__, G, B, A, END__, SIZE__ = END__ - BEGIN__ };
 
-    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    cavi::usdj_am::Definition const& m_definition;
     std::map<Component, float> m_components;
 };
 

@@ -30,49 +30,96 @@
 #ifndef REALITY_MERGE_USDJ_MEDIATOR_H
 #define REALITY_MERGE_USDJ_MEDIATOR_H
 
+#include <cstdint>
+#include <memory>
+
 // regional
+#include <core/error/error_list.h>
 #include <core/object/ref_counted.h>
 #include <core/string/ustring.h>
 #include <core/variant/variant.h>
+#include <modules/websocket/websocket_peer.h>
 #include <scene/3d/node_3d.h>
 
 // local
 #include "automerge_resource.h"
 
+struct AMresult;
+
 class UsdjMediator : public Node3D {
     GDCLASS(UsdjMediator, Node3D);
 
 public:
-    UsdjMediator() = default;
+    static std::uint64_t const HANDSHAKE_TIMEOUT_MSECS = 6000;
+
+    UsdjMediator();
 
     ~UsdjMediator();
 
     PackedStringArray get_configuration_warnings() const override;
 
-    /// \returns An AutomergeResource document resource containing a scene description
-    ///          in USDJ format or null.
-    Ref<AutomergeResource> get_automerge_resource() const;
+    /// \returns The POSIX path to a map object within the Automerge document.
+    String get_document_path() const;
 
-    /// \returns The path to a scene description within an AutomergeResource document
-    ///          resource where "/" is the root and "" is invalid.
-    String get_usdj_path() const;
+    /// \returns The Automerge document resource.
+    Ref<AutomergeResource> get_document_resource() const;
 
-    /// \param[in] p_usdj_am An AutomergeResource document resource containing a scene
-    ///                      description in USDJ format.
-    void set_automerge_resource(Ref<AutomergeResource> const& p_automerge_resource);
+    /// \returns The Automerge document scan toggle.
+    bool get_document_scan() const;
 
-    /// \param[in] p_scene_path The path to a scene description within an
-    ///                         AutomergeResource document resource.
-    void set_usdj_path(String const& p_usdj_path);
+    /// \returns The server's URL domain name component.
+    String get_server_domain_name() const;
+
+    /// \returns The server's URL path component.
+    String get_server_path() const;
+
+    /// \returns The server synchronization toggle.
+    bool get_server_sync() const;
+
+    /// \param[in] p_path A POSIX path to a map object within an Automerge
+    ///                   document.
+    void set_document_path(String const& p_path);
+
+    /// \param[in] p_resource An Automerge document resource.
+    void set_document_resource(Ref<AutomergeResource> const& p_resource);
+
+    /// \param[in] p_scan A document scan toggle.
+    void set_document_scan(bool const p_scan);
+
+    /// \param[in] p_domain_name A server's URL domain name component.
+    void set_server_domain_name(String const& p_domain_name);
+
+    /// \param[in] p_path A server's URL path component.
+    void set_server_path(String const& p_path);
+
+    /// \param[in] p_sync A server synchronization toggle.
+    void set_server_sync(bool const p_sync);
 
 protected:
     static void _bind_methods();
 
-    void _update_bodies();
+    void _notification(int p_what);
+
+    Error connect_to_server();
+
+    bool receive_changes();
+
+    Error send_ping();
+
+    void update_bodies();
 
 private:
-    Ref<AutomergeResource> m_automerge_resource;
-    String m_usdj_path;
+    using ResultPtr = std::unique_ptr<AMresult, void (*)(AMresult*)>;
+
+    String m_document_path;
+    Ref<AutomergeResource> m_document_resource;
+    bool m_document_scan;
+    ResultPtr m_init_result;
+    String m_server_domain_name;
+    String m_server_path;
+    String m_server_peer_id;
+    Ref<WebSocketPeer> m_server_socket;
+    bool m_server_sync;
 };
 
 #endif  // REALITY_MERGE_USDJ_MEDIATOR_H

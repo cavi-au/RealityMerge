@@ -44,7 +44,7 @@ class UsdjBoxSizeExtractor : public cavi::usdj_am::Visitor {
 public:
     UsdjBoxSizeExtractor() = delete;
 
-    UsdjBoxSizeExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
+    UsdjBoxSizeExtractor(cavi::usdj_am::Definition const& p_definition);
 
     UsdjBoxSizeExtractor(UsdjBoxSizeExtractor const&) = delete;
 
@@ -73,7 +73,7 @@ public:
     void visit(cavi::usdj_am::ReferenceFile const& reference_file) override;
 
 private:
-    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    cavi::usdj_am::Definition const& m_definition;
     std::optional<Vector3> m_size;
 };
 

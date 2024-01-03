@@ -47,15 +47,13 @@
 #include "usdj_box_size_extractor.h"
 #include "usdj_value.h"
 
-UsdjBoxSizeExtractor::UsdjBoxSizeExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition)
-    : m_definition{definition} {}
+UsdjBoxSizeExtractor::UsdjBoxSizeExtractor(cavi::usdj_am::Definition const& p_definition)
+    : m_definition{p_definition} {}
 
 UsdjBoxSizeExtractor::~UsdjBoxSizeExtractor() {}
 
 std::optional<Vector3> UsdjBoxSizeExtractor::operator()() {
-    auto const definition = m_definition.lock();
-    if (definition)
-        definition->accept(*this);
+    m_definition.accept(*this);
     return m_size;
 }
 
@@ -68,8 +66,8 @@ void UsdjBoxSizeExtractor::visit(cavi::usdj_am::Assignment const& assignment) {
         std::visit(
             [this](auto const& alt) {
                 using T = std::decay_t<decltype(alt)>;
-                if constexpr (std::is_same_v<T, std::unique_ptr<ExternalReference>>) {
-                    alt->accept(*this);
+                if constexpr (std::is_same_v<T, ExternalReference>) {
+                    alt.accept(*this);
                 }
             },
             assignment.get_value());
@@ -123,8 +121,8 @@ void UsdjBoxSizeExtractor::visit(cavi::usdj_am::DefinitionStatement const& defin
     std::visit(
         [this](auto const& alt) {
             using T = std::decay_t<decltype(alt)>;
-            if constexpr (std::is_same_v<T, std::unique_ptr<Declaration>>)
-                alt->accept(*this);
+            if constexpr (std::is_same_v<T, Declaration>)
+                alt.accept(*this);
         },
         definition_statement);
 }
@@ -139,7 +137,8 @@ void UsdjBoxSizeExtractor::visit(cavi::usdj_am::Descriptor const& descriptor) {
 
 void UsdjBoxSizeExtractor::visit(cavi::usdj_am::ExternalReference const& external_reference) {
     if (!external_reference.get_to_import()) {
-        external_reference.get_reference_file().accept(*this);
+        auto const reference_file = external_reference.get_reference_file();
+        reference_file.accept(*this);
     }
 }
 
@@ -147,7 +146,7 @@ void UsdjBoxSizeExtractor::visit(cavi::usdj_am::ReferenceFile const& reference_f
     if (!reference_file.get_descriptor()) {
         /// \todo Actually load the referenced file and extract the size
         ///       attribute from within it instead of assuming unit length.
-        if (reference_file.get_src() == "/cube.usda") {
+        if (reference_file.get_src() == "cube.usda") {
             m_size.emplace(Vector3{1.0, 1.0, 1.0});
         }
     }

@@ -30,7 +30,10 @@
 #ifndef REALITY_MERGE_USDJ_STATIC_BODY_3D_H
 #define REALITY_MERGE_USDJ_STATIC_BODY_3D_H
 
-#include <memory>
+#include <optional>
+
+// third-party
+#include <cavi/usdj_am/definition.hpp>
 
 // regional
 #include <scene/3d/physics_body_3d.h>
@@ -38,14 +41,6 @@
 #include <servers/physics_server_3d.h>
 
 struct AMobjId;
-
-namespace cavi {
-namespace usdj_am {
-
-class Definition;
-
-}  // namespace usdj_am
-}  // namespace cavi
 
 class UsdjStaticBody3D : public PhysicsBody3D {
     GDCLASS(UsdjStaticBody3D, PhysicsBody3D);
@@ -69,10 +64,10 @@ public:
     Vector3 get_constant_linear_velocity() const;
     Vector3 get_constant_angular_velocity() const;
 
-    UsdjStaticBody3D() = delete;
+    UsdjStaticBody3D(PhysicsServer3D::BodyMode p_mode = PhysicsServer3D::BODY_MODE_STATIC);
 
     /// \throws std::invalid_argument
-    UsdjStaticBody3D(std::unique_ptr<cavi::usdj_am::Definition>&& p_definition,
+    UsdjStaticBody3D(cavi::usdj_am::Definition&& p_definition,
                      PhysicsServer3D::BodyMode p_mode = PhysicsServer3D::BODY_MODE_STATIC);
 
     UsdjStaticBody3D(UsdjStaticBody3D const&) = delete;
@@ -83,8 +78,12 @@ public:
 
     AMobjId const* get_object_id() const;
 
+    /// \brief Update properties extracted from the "USDA_Definition" that had
+    ///        to be cached.
+    void revise();
+
 private:
-    std::shared_ptr<cavi::usdj_am::Definition> m_definition;
+    std::optional<cavi::usdj_am::Definition> m_definition;
 
     void _reload_physics_characteristics();
 };

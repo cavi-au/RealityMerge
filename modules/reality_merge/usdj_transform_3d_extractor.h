@@ -44,7 +44,7 @@ class UsdjTransform3dExtractor : public cavi::usdj_am::Visitor {
 public:
     UsdjTransform3dExtractor() = delete;
 
-    UsdjTransform3dExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
+    UsdjTransform3dExtractor(cavi::usdj_am::Definition const& p_definition);
 
     UsdjTransform3dExtractor(UsdjTransform3dExtractor const&) = delete;
 
@@ -67,7 +67,7 @@ public:
 private:
     struct Data;
 
-    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    cavi::usdj_am::Definition const& m_definition;
     std::unique_ptr<Data> m_data;
 };
 

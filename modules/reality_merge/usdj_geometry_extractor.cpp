@@ -42,15 +42,17 @@
 #include <cavi/usdj_am/usd/token_type.hpp>
 
 // regional
+#include <core/object/ref_counted.h>
 #include <core/os/memory.h>
+#include <scene/resources/box_shape_3d.h>
+#include <scene/resources/material.h>
+#include <scene/resources/primitive_meshes.h>
 
 // local
-#include "usdj_box_mesh.h"
-#include "usdj_box_shape_3d.h"
 #include "usdj_geometry_extractor.h"
 
-UsdjGeometryExtractor::UsdjGeometryExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition)
-    : m_definition{definition} {}
+UsdjGeometryExtractor::UsdjGeometryExtractor(cavi::usdj_am::Definition const& p_definition)
+    : m_definition{p_definition} {}
 
 UsdjGeometryExtractor::~UsdjGeometryExtractor() {}
 
@@ -58,19 +60,24 @@ std::pair<UsdjGeometryExtractor::MeshPtr, UsdjGeometryExtractor::Shape3dPtr> Usd
     namespace geom = cavi::usdj_am::usd::geom;
     namespace physics = cavi::usdj_am::usd::physics;
 
-    auto const definition = m_definition.lock();
-    if (definition)
-        definition->accept(*this);
-    auto geometry = std::make_pair(MeshPtr{nullptr, nullptr}, Shape3dPtr{nullptr, nullptr});
+    m_definition.accept(*this);
+    std::pair<MeshPtr, Shape3dPtr> geometry{};
+    // Assign the mesh.
     switch (m_geom_type.value_or(geom::TokenType{})) {
         case geom::TokenType::CUBE: {
-            geometry.first = MeshPtr{memnew(UsdjBoxMesh{definition}), DefaultAllocator::free};
+            geometry.first = Ref<BoxMesh>{memnew(BoxMesh)};
             if (m_physics_apis.count(physics::TokenType::PHYSICS_COLLISION_API)) {
-                geometry.second = Shape3dPtr{memnew(UsdjBoxShape3D{definition}), DefaultAllocator::free};
+                geometry.second = Shape3dPtr{memnew(BoxShape3D)};
             }
             break;
         }
             /// \todo Handle other types of gprim.
+    }
+    if (!geometry.first.is_null()) {
+        // Assign material to the surface(s).
+        /// \todo Handle multiple surfaces.
+        auto const material = Ref<BaseMaterial3D>{memnew(BaseMaterial3D{false})};
+        geometry.first->surface_set_material(0, material);
     }
     return geometry;
 }
@@ -89,8 +96,8 @@ void UsdjGeometryExtractor::visit(cavi::usdj_am::Assignment const& assignment) {
             std::visit(
                 [this](auto const& alt) {
                     using T = std::decay_t<decltype(alt)>;
-                    if constexpr (std::is_same_v<T, std::unique_ptr<ExternalReference>>) {
-                        alt->accept(*this);
+                    if constexpr (std::is_same_v<T, ExternalReference>) {
+                        alt.accept(*this);
                     }
                 },
                 assignment.get_value());
@@ -123,7 +130,8 @@ void UsdjGeometryExtractor::visit(cavi::usdj_am::Descriptor const& descriptor) {
 
 void UsdjGeometryExtractor::visit(cavi::usdj_am::ExternalReference const& external_reference) {
     if (!external_reference.get_to_import()) {
-        external_reference.get_reference_file().accept(*this);
+        auto const reference_file = external_reference.get_reference_file();
+        reference_file.accept(*this);
     }
 }
 
@@ -134,7 +142,7 @@ void UsdjGeometryExtractor::visit(cavi::usdj_am::ReferenceFile const& reference_
         /// \todo Actually load the referenced file and extract the gprim and
         ///       API schemas from within it instead of assuming a cube and
         ///       no collision API.
-        if (reference_file.get_src() == "/cube.usda") {
+        if (reference_file.get_src() == "cube.usda") {
             m_geom_type.emplace(TokenType::CUBE);
         }
     }

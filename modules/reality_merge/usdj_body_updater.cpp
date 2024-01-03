@@ -35,7 +35,12 @@
 #include <type_traits>
 
 // third_party
-#include <cavi/usdj_am/definition.hpp>
+extern "C" {
+
+#include <automerge-c/automerge.h>
+}
+#include <cavi/usdj_am/assignment.hpp>
+#include <cavi/usdj_am/definition_statement.hpp>
 #include <cavi/usdj_am/definition_type.hpp>
 #include <cavi/usdj_am/descriptor.hpp>
 #include <cavi/usdj_am/file.hpp>
@@ -53,11 +58,7 @@
 #include "usdj_body_updater.h"
 #include "usdj_static_body_3d.h"
 
-// template <class InputIteratorT>
-// UsdjBodyUpdater::UsdjBodyUpdater(InputIteratorT const& begin, InputIteratorT const& end)
-//     : m_bodies{begin, end}, m_visited_default_prim(false) {}
-
-UsdjBodyUpdater::UsdjBodyUpdater(TypedArray<Node> const& nodes) : m_visited_default_prim(false) {
+UsdjBodyUpdater::UsdjBodyUpdater(TypedArray<Node> const& nodes) : m_visited_default_prim{false} {
     for (int pos = 0; pos != nodes.size(); ++pos) {
         auto const body = Object::cast_to<Body>(nodes[pos]);
         if (body)
@@ -73,25 +74,25 @@ UsdjBodyUpdater::Updates UsdjBodyUpdater::operator()(cavi::usdj_am::utils::Docum
 
     auto const file = File{document, document.get_item(path)};
     file.accept(*this);
-    // Any remaining bodies should either be removed—because they originated
-    // from expired USD prims or a different USDJ-AM document entirely—or
-    // ignored because they were never part of a USD stage to begin with.
+    // Any remaining bodies should be removed because they originated
+    // from expired USD prims.
     while (!m_bodies.empty()) {
         auto const body = m_bodies.front();
-        auto const action = (dynamic_cast<UsdjStaticBody3D*>(body)) ? Action::REMOVE : Action::IGNORE;
-        m_updates.insert(Updates::value_type{action, body});
+        m_updates.insert(Updates::value_type{Action::REMOVE, body});
         m_bodies.pop_front();
     }
     return m_updates;
 }
 
 void UsdjBodyUpdater::visit(cavi::usdj_am::Assignment const& assignment) {
+    using cavi::usdj_am::String;
+
     if (!assignment.get_keyword() && assignment.get_identifier() == "defaultPrim") {
         std::visit(
-            [&](auto const& alt) {
+            [this](auto const& alt) {
                 using T = std::decay_t<decltype(alt)>;
-                if constexpr (std::is_same_v<T, std::unique_ptr<String>>)
-                    m_default_prim.emplace(*alt);
+                if constexpr (std::is_same_v<T, String>)
+                    this->m_default_prim.emplace(alt);
             },
             assignment.get_value());
     }
@@ -105,47 +106,43 @@ void UsdjBodyUpdater::visit(cavi::usdj_am::Definition const& definition) {
     if (definition.get_sub_type() != DefinitionType::DEF) {
         return;
     }
-    auto const def_type = definition.get_def_type();
-    auto const descriptor = definition.get_descriptor();
     if (!m_visited_default_prim) {
-        if (!descriptor && def_type && extract_TokenType(*def_type).value_or(TokenType{}) == TokenType::XFORM &&
+        auto const def_type = definition.get_def_type();
+        if (def_type && extract_TokenType(*def_type).value_or(TokenType{}) == TokenType::XFORM && m_default_prim &&
             definition.get_name() == *m_default_prim) {
             m_visited_default_prim = true;
-            for (auto const& definition_statement : definition.get_statements()) {
-                definition_statement.accept(*this);
+            for (auto&& definition_statement : definition.get_statements()) {
+                std::forward<decltype(definition_statement)>(definition_statement).accept(*this);
             }
         }
         return;
     }
+    auto const descriptor = definition.get_descriptor();
     if (!descriptor) {
         return;
     }
     auto const body_id = definition.get_object_id();
     auto const match = std::find_if(m_bodies.begin(), m_bodies.end(), [body_id](auto const& body) {
         auto const static_body_3d = dynamic_cast<UsdjStaticBody3D*>(body);
-        return static_body_3d && static_body_3d->get_object_id() == body_id;
+        return static_body_3d && AMobjIdEqual(static_body_3d->get_object_id(), body_id);
     });
     if (match == m_bodies.end()) {
-        try {
-            auto const usd_body = memnew(UsdjStaticBody3D{std::move(m_definition)});
-            m_updates.insert({Action::ADD, usd_body});
-        } catch (std::invalid_argument const& thrown) {
-            ERR_PRINT(thrown.what());
-        }
+        auto const usd_body = memnew(UsdjStaticBody3D{std::move(m_definition.value())});
+        m_updates.insert({Action::ADD, usd_body});
     } else {
         m_updates.insert({Action::KEEP, *match});
         m_bodies.erase(match);
     }
 }
 
-void UsdjBodyUpdater::visit(cavi::usdj_am::DefinitionStatement const& definition_statement) {
+void UsdjBodyUpdater::visit(cavi::usdj_am::DefinitionStatement&& definition_statement) {
     using cavi::usdj_am::Statement;
 
     std::visit(
-        [this](auto const& alt) {
+        [this](auto&& alt) {
             using T = std::decay_t<decltype(alt)>;
-            if constexpr (std::is_same_v<T, std::unique_ptr<Statement>>)
-                alt->accept(*this);
+            if constexpr (std::is_same_v<T, Statement>)
+                std::forward<Statement>(alt).accept(*this);
         },
         definition_statement);
 }
@@ -169,23 +166,26 @@ void UsdjBodyUpdater::visit(cavi::usdj_am::File const& file) {
     auto const descriptor = file.get_descriptor();
     ERR_FAIL_COND_MSG(!descriptor, "File.descriptor == null");
     descriptor->accept(*this);
-    ERR_FAIL_COND_MSG(!m_default_prim, "defaultPrim unassigned");
-    for (auto const& statement : file.get_statements()) {
-        statement.accept(*this);
+    ERR_FAIL_COND_MSG(!m_default_prim, "\"defaultPrim\" assignment not found!");
+    for (auto&& statement : file.get_statements()) {
+        std::forward<decltype(statement)>(statement).accept(*this);
     }
 }
 
-void UsdjBodyUpdater::visit(cavi::usdj_am::Statement& statement) {
+void UsdjBodyUpdater::visit(cavi::usdj_am::Statement&& statement) {
     using cavi::usdj_am::Definition;
 
     std::visit(
         [this](auto&& alt) {
             using T = std::decay_t<decltype(alt)>;
-            if constexpr (std::is_same_v<T, std::unique_ptr<Definition>>) {
+            if constexpr (std::is_same_v<T, Definition>) {
                 // Enable the definition to be transferred to a new body.
-                m_definition = std::move(alt);
-                m_definition->accept(*this);
+                this->m_definition.emplace(std::move(alt));
+                this->m_definition->accept(*this);
             }
         },
         statement);
+    if (!m_definition) {
+        // This statement was skipped.
+    }
 }

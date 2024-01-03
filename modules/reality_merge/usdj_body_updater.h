@@ -38,12 +38,15 @@
 #include <string>
 
 // third-party
+#include <cavi/usdj_am/definition.hpp>
 #include <cavi/usdj_am/visitor.hpp>
 
 // regional
 #include <core/typedefs.h>
 #include <core/variant/typed_array.h>
-#include <scene/3d/physics_body_3d.h>
+
+// local
+#include "usdj_static_body_3d.h"
 
 namespace cavi {
 namespace usdj_am {
@@ -57,32 +60,17 @@ class Document;
 
 class UsdjBodyUpdater : public cavi::usdj_am::Visitor {
 public:
-    using Body = PhysicsBody3D;
+    using Body = UsdjStaticBody3D;
 
-    enum class Action : std::uint8_t {
-        BEGIN__ = 1,
-        ADD = BEGIN__,
-        IGNORE,
-        KEEP,
-        REMOVE,
-        END__,
-        SIZE__ = END__ - BEGIN__
-    };
+    enum class Action : std::uint8_t { BEGIN__ = 1, ADD = BEGIN__, KEEP, REMOVE, END__, SIZE__ = END__ - BEGIN__ };
 
     using Updates = std::multimap<Action, Body*>;
 
     UsdjBodyUpdater() = delete;
 
-    // /// \tparam InputIteratorT The type of input iterator over a range of
-    // ///                        borrowed bodies occupying the same scene.
-    // /// \param[in] begin An input iterator to the first borrowed body
-    // ///                  in the range.
-    // /// \param[in] end An input iterator to one past the last borrowed body
-    // ///                in the range.
-    // /// \pre `std::is_same_v<typename` \p InputIteratorT::value_type `, Body*> == true`
-    // template <class InputIteratorT>
-    // UsdjBodyUpdater(InputIteratorT const& begin, InputIteratorT const& end);
-
+    /// \brief Borrows nodes that represent physics bodies within a scene.
+    ///
+    /// \param[in] nodes An array of child nodes in a scene node.
     UsdjBodyUpdater(TypedArray<Node> const& nodes);
 
     UsdjBodyUpdater(UsdjBodyUpdater const&) = delete;
@@ -95,26 +83,32 @@ public:
 
     UsdjBodyUpdater& operator=(UsdjBodyUpdater&&) = default;
 
+    /// \brief Creates new physics bodies and sorts pre-existing ones into
+    ///        categories of forgotten, kept and removed.
+    ///
+    /// \param[in] document An Automerge document.
+    /// \param[in] path A POSIX path to a "USDA_File" node within \p document.
+    /// \returns A multimap of categories to physics bodies.
     Updates operator()(cavi::usdj_am::utils::Document const& document, std::string const& path);
 
     void visit(cavi::usdj_am::Assignment const& assignment) override;
 
     void visit(cavi::usdj_am::Definition const& definition) override;
 
-    void visit(cavi::usdj_am::DefinitionStatement const& definition_statement) override;
+    void visit(cavi::usdj_am::DefinitionStatement&& definition_statement) override;
 
     void visit(cavi::usdj_am::Descriptor const& descriptor) override;
 
     void visit(cavi::usdj_am::File const& file) override;
 
-    void visit(cavi::usdj_am::Statement& statement) override;
+    void visit(cavi::usdj_am::Statement&& statement) override;
 
 private:
     using Bodies = std::list<Body*>;
 
     Bodies m_bodies;
     std::optional<std::string> m_default_prim;
-    std::unique_ptr<cavi::usdj_am::Definition> m_definition;
+    std::optional<cavi::usdj_am::Definition> m_definition;
     Updates m_updates;
     bool m_visited_default_prim;
 };

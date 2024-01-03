@@ -45,8 +45,8 @@
 #include "usdj_vector.h"
 
 std::optional<UsdjValue> extract_UsdjValue(cavi::usdj_am::Declaration const& declaration) {
-    using cavi::usdj_am::ConstValues;
     using cavi::usdj_am::Declaration;
+    using cavi::usdj_am::ValueRange;
     using cavi::usdj_am::usd::sdf::extract_ValueTypeName;
     using cavi::usdj_am::usd::sdf::ValueTypeName;
 
@@ -165,12 +165,15 @@ std::optional<UsdjValue> extract_UsdjValue(cavi::usdj_am::Declaration const& dec
             // case ValueTypeName::NORMAL_3H_ARRAY:
             // case ValueTypeName::NORMAL_3F_ARRAY:
             // case ValueTypeName::NORMAL_3D_ARRAY:
-            // case ValueTypeName::COLOR_3H_ARRAY:
-            // case ValueTypeName::COLOR_3F_ARRAY:
-            // case ValueTypeName::COLOR_3D_ARRAY:
-            // case ValueTypeName::COLOR_4H_ARRAY:
-            // case ValueTypeName::COLOR_4F_ARRAY:
-            // case ValueTypeName::COLOR_4D_ARRAY:
+            case ValueTypeName::COLOR_3H_ARRAY:
+            case ValueTypeName::COLOR_3F_ARRAY:
+            case ValueTypeName::COLOR_3D_ARRAY:
+            case ValueTypeName::COLOR_4H_ARRAY:
+            case ValueTypeName::COLOR_4F_ARRAY:
+            case ValueTypeName::COLOR_4D_ARRAY: {
+                usd_value.emplace(to_Color(declaration.get_value()));
+                break;
+            }
             // case ValueTypeName::QUAT_H_ARRAY:
             // case ValueTypeName::QUAT_F_ARRAY:
             // case ValueTypeName::QUAT_D_ARRAY:

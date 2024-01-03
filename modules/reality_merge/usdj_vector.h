@@ -48,25 +48,25 @@
 /// \throws std::invalid_argument
 template <class VectorT, typename AxisT>
 VectorT to_Vector(cavi::usdj_am::Value const& value) {
-    using cavi::usdj_am::ConstValues;
     using cavi::usdj_am::Number;
+    using cavi::usdj_am::ValueRange;
 
     std::ostringstream args;
     VectorT result{};
     try {
-        auto const& values_ptr = std::get<std::unique_ptr<ConstValues>>(value);
-        if (values_ptr->size() != VectorT::AXIS_COUNT) {
-            args << "std::get<" << typeid(decltype(values_ptr)).name() << ">(value)->size() == " << values_ptr->size();
+        auto const& values = std::get<ValueRange>(value);
+        if (values.size() != VectorT::AXIS_COUNT) {
+            args << "std::get<" << typeid(decltype(values)).name() << ">(value).size() == " << values.size();
         } else {
             auto axis = std::begin(result.coord);
-            for (auto const& value : *values_ptr) {
+            for (auto const& value : values) {
                 auto const& number = std::get<Number>(value);
                 std::visit([&](auto const& alt) { *axis = static_cast<AxisT>(alt); }, number);
                 ++axis;
             }
         }
     } catch (std::bad_variant_access const& thrown) {
-        args << "std::get<std::unique_ptr<ConstValues>>(value): " << thrown.what();
+        args << "std::get<ValueRange>(value): " << thrown.what();
     }
     if (!args.str().empty()) {
         std::ostringstream what;

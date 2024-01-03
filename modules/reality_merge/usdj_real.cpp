@@ -38,8 +38,8 @@
 #include "usdj_real.h"
 
 real_t to_real(cavi::usdj_am::Value const& value) {
-    using cavi::usdj_am::ConstValues;
     using cavi::usdj_am::Number;
+    using cavi::usdj_am::ValueRange;
 
     std::ostringstream args;
     real_t result{};
@@ -47,7 +47,7 @@ real_t to_real(cavi::usdj_am::Value const& value) {
         auto const& number = std::get<Number>(value);
         std::visit([&](auto const& alt) { result = static_cast<real_t>(alt); }, number);
     } catch (std::bad_variant_access const& thrown) {
-        args << "std::get<std::unique_ptr<Number>>(value): " << thrown.what();
+        args << "std::get<Number>(value): " << thrown.what();
     }
     if (!args.str().empty()) {
         std::ostringstream what;

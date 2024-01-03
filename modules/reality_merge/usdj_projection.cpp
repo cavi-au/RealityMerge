@@ -42,29 +42,29 @@
 #include "usdj_projection.h"
 
 Projection to_Projection(cavi::usdj_am::Value const& value) {
-    using cavi::usdj_am::ConstValues;
     using cavi::usdj_am::Number;
+    using cavi::usdj_am::ValueRange;
 
     std::ostringstream args;
     Projection result{};
     try {
         /// \note A Godot Projection is column-major but a USD Matrix4d is row-major.
-        auto const& rows_ptr = std::get<std::unique_ptr<ConstValues>>(value);
-        if (rows_ptr->size() != Vector4::AXIS_COUNT) {
-            args << "std::get<" << typeid(decltype(rows_ptr)).name() << ">(value)->size() == " << rows_ptr->size();
+        auto const& rows = std::get<ValueRange>(value);
+        if (rows.size() != Vector4::AXIS_COUNT) {
+            args << "std::get<" << typeid(decltype(rows)).name() << ">(value).size() == " << rows.size();
         } else {
             std::size_t row_index = 0;
             std::size_t column_index = 0;
             std::size_t component_index = 0;
-            for (auto const& row : *rows_ptr) {
+            for (auto const& row : rows) {
                 try {
-                    auto const& columns_ptr = std::get<std::unique_ptr<ConstValues>>(row);
-                    if (columns_ptr->size() != 4) {
-                        args << "(*std::get<" << typeid(decltype(rows_ptr)).name() << ">(value))[" << row_index
-                             << "]->size() == " << columns_ptr->size();
+                    auto const& columns = std::get<ValueRange>(row);
+                    if (columns.size() != 4) {
+                        args << "(*std::get<" << typeid(decltype(rows)).name() << ">(value))[" << row_index
+                             << "].size() == " << columns.size();
                         break;
                     } else {
-                        for (auto const& column : *columns_ptr) {
+                        for (auto const& column : columns) {
                             auto const& number = std::get<Number>(column);
                             std::visit(
                                 [&](auto const& alt) {
@@ -79,14 +79,14 @@ Projection to_Projection(cavi::usdj_am::Value const& value) {
                     }
                     ++row_index;
                 } catch (std::bad_variant_access const& thrown) {
-                    args << "(*std::get<" << typeid(decltype(rows_ptr)).name() << ">(value))[" << row_index
+                    args << "(*std::get<" << typeid(decltype(rows)).name() << ">(value))[" << row_index
                          << "]: " << thrown.what();
                     break;
                 }
             }
         }
     } catch (std::bad_variant_access const& thrown) {
-        args << "std::get<std::unique_ptr<ConstValues>>(value): " << thrown.what();
+        args << "std::get<ValueRange>(value): " << thrown.what();
     }
     if (!args.str().empty()) {
         std::ostringstream what;

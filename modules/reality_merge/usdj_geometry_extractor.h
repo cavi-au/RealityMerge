@@ -39,7 +39,10 @@
 #include <cavi/usdj_am/usd/physics/token_type.hpp>
 #include <cavi/usdj_am/visitor.hpp>
 
-class PrimitiveMesh;
+// regional
+#include <core/object/ref_counted.h>
+
+class Mesh;
 class Shape3D;
 struct Vector3;
 
@@ -47,12 +50,12 @@ struct Vector3;
 ///        within a "USDA_Definition" node.
 class UsdjGeometryExtractor : public cavi::usdj_am::Visitor {
 public:
-    using MeshPtr = std::unique_ptr<PrimitiveMesh, void (*)(void*)>;
-    using Shape3dPtr = std::unique_ptr<Shape3D, void (*)(void*)>;
+    using MeshPtr = Ref<Mesh>;
+    using Shape3dPtr = Ref<Shape3D>;
 
     UsdjGeometryExtractor() = delete;
 
-    UsdjGeometryExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
+    UsdjGeometryExtractor(cavi::usdj_am::Definition const& p_definition);
 
     UsdjGeometryExtractor(UsdjGeometryExtractor const&) = delete;
 
@@ -77,7 +80,7 @@ public:
     void visit(cavi::usdj_am::ReferenceFile const& reference_file) override;
 
 private:
-    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    cavi::usdj_am::Definition const& m_definition;
     std::optional<cavi::usdj_am::usd::geom::TokenType> m_geom_type;
     cavi::usdj_am::usd::physics::TokenTypeSet m_physics_apis;
 };

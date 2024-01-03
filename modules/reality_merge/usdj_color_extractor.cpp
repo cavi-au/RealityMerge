@@ -43,16 +43,13 @@
 #include "usdj_color_extractor.h"
 #include "usdj_value.h"
 
-UsdjColorExtractor::UsdjColorExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition)
-    : m_definition{definition} {}
+UsdjColorExtractor::UsdjColorExtractor(cavi::usdj_am::Definition const& p_definition) : m_definition{p_definition} {}
 
 UsdjColorExtractor::~UsdjColorExtractor() {}
 
 std::optional<Color> UsdjColorExtractor::operator()() {
-    auto const definition = m_definition.lock();
-    if (definition && m_components.empty()) {
-        definition->accept(*this);
-    }
+    if (m_components.empty())
+        m_definition.accept(*this);
     std::optional<Color> color;
     switch (m_components.size()) {
         case 3: {
@@ -122,8 +119,8 @@ void UsdjColorExtractor::visit(cavi::usdj_am::DefinitionStatement const& definit
     std::visit(
         [this](auto const& alt) {
             using T = std::decay_t<decltype(alt)>;
-            if constexpr (std::is_same_v<T, std::unique_ptr<Declaration>>)
-                alt->accept(*this);
+            if constexpr (std::is_same_v<T, Declaration>)
+                alt.accept(*this);
         },
         definition_statement);
 }

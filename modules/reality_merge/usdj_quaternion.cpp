@@ -39,25 +39,25 @@
 #include "usdj_quaternion.h"
 
 Quaternion to_Quaternion(cavi::usdj_am::Value const& value) {
-    using cavi::usdj_am::ConstValues;
     using cavi::usdj_am::Number;
+    using cavi::usdj_am::ValueRange;
 
     std::ostringstream args;
     Quaternion result{};
     try {
-        auto const& values_ptr = std::get<std::unique_ptr<ConstValues>>(value);
-        if (values_ptr->size() != 4) {
-            args << "std::get<" << typeid(decltype(values_ptr)).name() << ">(value)->size() == " << values_ptr->size();
+        auto const& values = std::get<ValueRange>(value);
+        if (values.size() != 4) {
+            args << "std::get<" << typeid(decltype(values)).name() << ">(value).size() == " << values.size();
         } else {
             auto component = std::begin(result.components);
-            for (auto const& value : *values_ptr) {
+            for (auto const& value : values) {
                 auto const& number = std::get<Number>(value);
                 std::visit([&](auto const& alt) { *component = static_cast<real_t>(alt); }, number);
                 ++component;
             }
         }
     } catch (std::bad_variant_access const& thrown) {
-        args << "std::get<std::unique_ptr<ConstValues>>(value): " << thrown.what();
+        args << "std::get<ValueRange>(value): " << thrown.what();
     }
     if (!args.str().empty()) {
         std::ostringstream what;

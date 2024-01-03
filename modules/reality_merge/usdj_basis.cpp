@@ -43,24 +43,24 @@
 #include "usdj_vector.h"
 
 Basis to_Basis(cavi::usdj_am::Value const& value) {
-    using cavi::usdj_am::ConstValues;
     using cavi::usdj_am::Number;
+    using cavi::usdj_am::ValueRange;
 
     std::ostringstream args;
     Basis result{};
     try {
         /// \note A Godot Basis and a USD Matrix3d are both row-major.
-        auto const& rows_ptr = std::get<std::unique_ptr<ConstValues>>(value);
-        if (rows_ptr->size() != 3) {
-            args << "std::get<" << typeid(decltype(rows_ptr)).name() << ">(value)->size() == " << rows_ptr->size();
+        auto const& rows = std::get<ValueRange>(value);
+        if (rows.size() != 3) {
+            args << "std::get<" << typeid(decltype(rows)).name() << ">(value).size() == " << rows.size();
         } else {
             auto result_row = std::begin(result.rows);
             std::size_t row_index = 0;
-            for (auto const& row : *rows_ptr) {
+            for (auto const& row : rows) {
                 try {
                     *result_row = to_Vector<Vector3, real_t>(row);
                 } catch (std::invalid_argument const& thrown) {
-                    args << "(*std::get<" << typeid(decltype(rows_ptr)).name() << ">(value))[" << row_index
+                    args << "(*std::get<" << typeid(decltype(rows)).name() << ">(value))[" << row_index
                          << "]: " << thrown.what();
                     break;
                 }
@@ -69,7 +69,7 @@ Basis to_Basis(cavi::usdj_am::Value const& value) {
             }
         }
     } catch (std::bad_variant_access const& thrown) {
-        args << "std::get<std::unique_ptr<ConstValues>>(value): " << thrown.what();
+        args << "std::get<ValueRange>(value): " << thrown.what();
     }
     if (!args.str().empty()) {
         std::ostringstream what;

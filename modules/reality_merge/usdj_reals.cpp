@@ -38,20 +38,20 @@
 #include "usdj_reals.h"
 
 Reals to_reals(cavi::usdj_am::Value const& value) {
-    using cavi::usdj_am::ConstValues;
     using cavi::usdj_am::Number;
+    using cavi::usdj_am::ValueRange;
 
     std::ostringstream args;
     Reals result;
     try {
-        auto const& values_ptr = std::get<std::unique_ptr<ConstValues>>(value);
-        result.reserve(values_ptr->size());
-        for (auto const& value : *values_ptr) {
+        auto const& values = std::get<ValueRange>(value);
+        result.reserve(values.size());
+        for (auto const& value : values) {
             auto const& number = std::get<Number>(value);
             std::visit([&](auto const& alt) { result.push_back(static_cast<Reals::value_type>(alt)); }, number);
         }
     } catch (std::bad_variant_access const& thrown) {
-        args << "std::get<std::unique_ptr<ConstValues>>(value): " << thrown.what();
+        args << "std::get<ValueRange>(value): " << thrown.what();
     }
     if (!args.str().empty()) {
         std::ostringstream what;

@@ -44,8 +44,8 @@
 #include "usdj_value.h"
 #include "usdj_velocity_extractor.h"
 
-UsdjVelocityExtractor::UsdjVelocityExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition)
-    : m_definition{definition} {}
+UsdjVelocityExtractor::UsdjVelocityExtractor(cavi::usdj_am::Definition const& p_definition)
+    : m_definition{p_definition} {}
 
 UsdjVelocityExtractor::~UsdjVelocityExtractor() {}
 
@@ -58,9 +58,7 @@ std::optional<Vector3> UsdjVelocityExtractor::operator()(cavi::usdj_am::usd::phy
         throw std::invalid_argument(what.str());
     }
     m_reference.emplace(reference);
-    auto const definition = m_definition.lock();
-    if (definition)
-        definition->accept(*this);
+    m_definition.accept(*this);
     return m_velocity;
 }
 
@@ -97,8 +95,8 @@ void UsdjVelocityExtractor::visit(cavi::usdj_am::DefinitionStatement const& defi
     std::visit(
         [this](auto const& alt) {
             using T = std::decay_t<decltype(alt)>;
-            if constexpr (std::is_same_v<T, std::unique_ptr<Declaration>>)
-                alt->accept(*this);
+            if constexpr (std::is_same_v<T, Declaration>)
+                alt.accept(*this);
         },
         definition_statement);
 }

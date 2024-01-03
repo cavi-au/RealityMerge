@@ -30,7 +30,6 @@
 #ifndef REALITY_MERGE_USDJ_VELOCITY_EXTRACTOR_H
 #define REALITY_MERGE_USDJ_VELOCITY_EXTRACTOR_H
 
-#include <memory>
 #include <optional>
 
 // third-party
@@ -45,7 +44,7 @@ class UsdjVelocityExtractor : public cavi::usdj_am::Visitor {
 public:
     UsdjVelocityExtractor() = delete;
 
-    UsdjVelocityExtractor(std::shared_ptr<cavi::usdj_am::Definition> const& definition);
+    UsdjVelocityExtractor(cavi::usdj_am::Definition const& p_definition);
 
     UsdjVelocityExtractor(UsdjVelocityExtractor const&) = delete;
 
@@ -67,7 +66,7 @@ public:
     void visit(cavi::usdj_am::DefinitionStatement const& definition_statement) override;
 
 private:
-    std::weak_ptr<cavi::usdj_am::Definition> m_definition;
+    cavi::usdj_am::Definition const& m_definition;
     std::optional<cavi::usdj_am::usd::physics::TokenType> m_reference;
     std::optional<Vector3> m_velocity;
 };
