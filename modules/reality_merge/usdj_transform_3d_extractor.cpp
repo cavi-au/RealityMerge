@@ -194,7 +194,7 @@ void UsdjTransform3dExtractor::visit(cavi::usdj_am::Declaration const& declarati
                    extract_TokenType(reference).value_or(TokenType{}) == TokenType::XFORM_OP_ORDER &&
                    extract_ValueTypeName(declaration.get_define_type()).value_or(ValueTypeName{}) ==
                        ValueTypeName::TOKEN_ARRAY) {
-            m_data->ops.swap(extract_XformOpTypeOrder(declaration.get_value()));
+            m_data->ops = extract_XformOpTypeOrder(declaration.get_value());
         }
     }
 }
