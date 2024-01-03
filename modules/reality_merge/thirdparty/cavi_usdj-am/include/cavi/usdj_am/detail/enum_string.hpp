@@ -47,6 +47,21 @@ namespace cavi {
 namespace usdj_am {
 namespace detail {
 
+/// \brief Find the enum tag corresponding to a given UTF-8 string view.
+///
+/// \tparam EnumT The type of enum value to return.
+/// \param[in] tags A map from UTF-8 string views to \p EnumT tags.
+/// \param[in] view A UTF-8 string view.
+/// \returns The \p EnumT tag corresponding to \p view or `std::nullopt`.
+template <class EnumT>
+std::optional<EnumT> extract_enum_tag(std::map<std::string_view, EnumT> const& tags, std::string_view const& view) {
+    auto const match = tags.find(view);
+    if (match != tags.end()) {
+        return match->second;
+    }
+    return std::nullopt;
+}
+
 /// \brief Extracts a sequence of enum tags corresponding to the UTF-8 string
 ///        views found within a `Value`.
 ///
@@ -111,21 +126,6 @@ std::optional<std::string_view> extract_enum_string(std::map<std::string_view, E
         if (item.second == tag) {
             return item.first;
         }
-    }
-    return std::nullopt;
-}
-
-/// \brief Find the enum tag corresponding to a given UTF-8 string view.
-///
-/// \tparam EnumT The type of enum value to return.
-/// \param[in] tags A map from UTF-8 string views to \p EnumT tags.
-/// \param[in] view A UTF-8 string view.
-/// \returns The \p EnumT tag corresponding to \p view or `std::nullopt`.
-template <class EnumT>
-std::optional<EnumT> extract_enum_tag(std::map<std::string_view, EnumT> const& tags, std::string_view const& view) {
-    auto const match = tags.find(view);
-    if (match != tags.end()) {
-        return match->second;
     }
     return std::nullopt;
 }
