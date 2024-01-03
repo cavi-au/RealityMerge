@@ -33,6 +33,7 @@
 extern "C" {
 
 #include <automerge-c/automerge.h>
+#include <automerge-c/utils/enum_string.h>
 }
 
 // local
@@ -83,8 +84,12 @@ File::File(AMdoc const* const document, AMitem const* const map_object) : Node(d
     }
 }
 
-void File::accept(Visitor& visitor) const {
+void File::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void File::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<File>(*this));
 }
 
 AMobjId const* File::get_object_id() const {

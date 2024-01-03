@@ -48,11 +48,11 @@ extern "C" {
 // local
 #include "string_.hpp"
 #include "utils/bytes.hpp"
-#include "value.hpp"
 
 namespace cavi {
 namespace usdj_am {
 
+struct Value;
 class Visitor;
 
 // export type USDA_Typename =
@@ -64,18 +64,21 @@ using Typename = String;
 ///        Automerge document.
 class Node {
 public:
-    Node() = delete;
-
     virtual ~Node();
 
     Node(Node const&) = delete;
 
     Node& operator=(Node const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
-    /// \param[in] visitor A node reader.
-    virtual void accept(Visitor& visitor) const = 0;
+    /// \param[in] visitor A node visitor.
+    virtual void accept(Visitor& visitor) const& = 0;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    virtual void accept(Visitor& visitor) && = 0;
 
     AMdoc const* get_document() const;
 
@@ -83,6 +86,8 @@ public:
 
 protected:
     using ResultPtr = std::shared_ptr<AMresult>;
+
+    inline Node() : m_document{nullptr} {};
 
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \pre \p document `!= nullptr`
@@ -122,7 +127,7 @@ protected:
 
     /// \brief Gets the string property under a given key.
     ///
-    /// \tparam InputRangeT A type satisfying the `std::ranges::input_range`
+    /// \tparam InputRangeT A type satisfying the `std::ranges::array_range`
     ///         concept.
     /// \param key[in] A pointer to a null-terminated byte string.
     template <typename InputRangeT>
@@ -164,111 +169,9 @@ protected:
     mutable std::map<std::string, ResultPtr> m_results;
 };
 
-template <typename EnumT>
-void Node::check_enum_property(std::string const& key, EnumT const tag) const {
-    std::ostringstream args;
-    try {
-        if (get_enum_property<EnumT>(key) != tag) {
-            args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \""
-                 << get_object_property<String>(key) << "\", \"" << tag << "\"";
-        }
-    } catch (std::invalid_argument const& thrown) {
-        args << thrown.what();
-    }
-    // Free the AMresult because we're finished with it.
-    m_results.erase(std::string{key});
-    if (!args.str().empty()) {
-        std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
-        throw std::invalid_argument(what.str());
-    }
-}
-
 inline AMdoc const* Node::get_document() const {
     return m_document;
 }
-
-template <typename InputRangeT>
-InputRangeT Node::get_array_property(std::string const& key) const {
-    ResultPtr const result{AMmapGet(m_document, get_object_id(), utils::to_bytes(key), nullptr), AMresultFree};
-    auto [iter, inserted] = m_results.insert_or_assign(key, result);
-    return InputRangeT{m_document, AMresultItem(iter->second.get())};
-}
-
-template <typename EnumT>
-EnumT Node::get_enum_property(std::string const& key) const {
-    ResultPtr const result{AMmapGet(m_document, get_object_id(), utils::to_bytes(key), nullptr), AMresultFree};
-    std::ostringstream args;
-    if (!result) {
-        args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == nullptr";
-    } else {
-        auto [iter, inserted] = m_results.insert_or_assign(key, result);
-        try {
-            String string{m_document, AMresultItem(iter->second.get())};
-            EnumT tag;
-            auto const buffer = std::string{string};
-            std::istringstream iss{buffer};
-            if (iss >> tag) {
-                return tag;
-            } else {
-                args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \"" << string << "\"";
-            }
-        } catch (std::invalid_argument const& thrown) {
-            args << thrown.what();
-        }
-    }
-    if (!args.str().empty()) {
-        std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
-        throw std::invalid_argument(what.str());
-    }
-    return EnumT{};
-}
-
-template <typename EnumT>
-std::optional<EnumT> Node::get_nullable_enum_property(std::string const& key) const {
-    std::optional<EnumT> nullable_enum;
-    try {
-        nullable_enum.emplace(get_enum_property<EnumT>(key));
-    } catch (std::invalid_argument const&) {
-        if (AMitemValType(AMresultItem(m_results.at(key).get())) != AM_VAL_TYPE_NULL) {
-            throw;
-        }
-    }
-    return nullable_enum;
-}
-
-template <typename ObjectT>
-std::optional<ObjectT> Node::get_nullable_object_property(std::string const& key) const {
-    std::optional<ObjectT> nullable_object;
-    try {
-        nullable_object.emplace(get_object_property<ObjectT>(key));
-    } catch (std::invalid_argument const&) {
-        if (AMitemValType(AMresultItem(m_results.at(key).get())) != AM_VAL_TYPE_NULL) {
-            throw;
-        }
-    }
-    return nullable_object;
-}
-
-template <typename ObjectT>
-ObjectT Node::get_object_property(std::string const& key) const {
-    ResultPtr const result{AMmapGet(m_document, get_object_id(), utils::to_bytes(key), nullptr), AMresultFree};
-    auto [iter, inserted] = m_results.insert_or_assign(key, result);
-    try {
-        return ObjectT{m_document, AMresultItem(iter->second.get())};
-    } catch (std::invalid_argument const& thrown) {
-        std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << thrown.what() << ")";
-        throw std::invalid_argument(what.str());
-    }
-}
-
-extern template std::optional<String> Node::get_nullable_object_property<String>(std::string const&) const;
-
-extern template String Node::get_object_property<String>(std::string const&) const;
-
-extern template Value Node::get_object_property<Value>(std::string const&) const;
 
 }  // namespace usdj_am
 }  // namespace cavi

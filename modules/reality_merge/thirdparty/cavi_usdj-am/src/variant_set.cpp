@@ -38,8 +38,12 @@ VariantSet::VariantSet(AMdoc const* const document, AMitem const* const map_obje
     check_enum_property("type", StatementType::VARIANT_SET);
 }
 
-void VariantSet::accept(Visitor& visitor) const {
+void VariantSet::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void VariantSet::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<VariantSet>(*this));
 }
 
 String VariantSet::get_name() const {

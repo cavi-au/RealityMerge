@@ -64,10 +64,15 @@ public:
 
     ObjectValue& operator=(ObjectValue const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.declarations` property.
     ///

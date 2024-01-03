@@ -187,8 +187,12 @@ Assignment::Assignment(AMdoc const* const document, AMitem const* const map_obje
     check_enum_property("type", AssignmentType::ASSIGNMENT);
 }
 
-void Assignment::accept(Visitor& visitor) const {
+void Assignment::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void Assignment::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<Assignment>(*this));
 }
 
 String Assignment::get_identifier() const {

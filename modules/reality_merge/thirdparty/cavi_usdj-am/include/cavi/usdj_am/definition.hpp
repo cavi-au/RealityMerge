@@ -33,9 +33,9 @@
 #include <optional>
 
 // local
-#include "definition_statement.hpp"
+#include "array_range.hpp"
 #include "definition_type.hpp"
-#include "input_range.hpp"
+#include "descriptor.hpp"
 #include "node.hpp"
 #include "statement_type.hpp"
 #include "string_.hpp"
@@ -52,16 +52,17 @@
 namespace cavi {
 namespace usdj_am {
 
-class Descriptor;
+template <typename T>
+class ArrayInputIterator;
+
+struct DefinitionStatement;
 
 /// \brief Represents a "USDA_Definition" node in a syntax tree that was parsed
 ///        out of a USDA document, encoded as JSON and stored within an
 ///        Automerge document.
 class Definition : public Node {
 public:
-    using Statements = ConstInputRange<DefinitionStatement>;
-
-    Definition() = delete;
+    using Statements = ArrayInputRange<DefinitionStatement>;
 
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
@@ -81,10 +82,15 @@ public:
 
     Definition& operator=(Definition&&) = default;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.defType` property.
     ///
@@ -113,6 +119,11 @@ public:
 
     /// \brief Gets the `.type` property.
     constexpr StatementType get_type() const;
+
+private:
+    Definition();
+
+    friend class ArrayInputIterator<Definition>;
 };
 
 constexpr StatementType Definition::get_type() const {

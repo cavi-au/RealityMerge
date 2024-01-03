@@ -170,8 +170,12 @@ namespace usdj_am {
 
 Descriptor::Descriptor(AMdoc const* const document, AMitem const* const map_object) : Node(document, map_object, 2) {}
 
-void Descriptor::accept(Visitor& visitor) const {
+void Descriptor::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void Descriptor::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<Descriptor>(*this));
 }
 
 Descriptor::Assignments Descriptor::get_assignments() const {

@@ -39,8 +39,12 @@ ObjectDeclarationList::ObjectDeclarationList(AMdoc const* const document, AMitem
     check_string_property("type", "objectDeclarationList");
 }
 
-void ObjectDeclarationList::accept(Visitor& visitor) const {
+void ObjectDeclarationList::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ObjectDeclarationList::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ObjectDeclarationList>(*this));
 }
 
 String ObjectDeclarationList::get_type() const {

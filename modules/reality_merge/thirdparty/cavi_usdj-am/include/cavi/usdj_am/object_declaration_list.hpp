@@ -31,11 +31,9 @@
 #define CAVI_USDJ_AM_OBJECT_DECLARATION_LIST_HPP
 
 // local
-#include "input_range.hpp"
+#include "array_range.hpp"
 #include "node.hpp"
-#include "object_declaration_list_value.hpp"
 #include "string_.hpp"
-#include "value.hpp"
 
 // export type USDA_ObjectDeclarationList<T extends USDA_ValueTypes> = {
 //     type: 'objectDeclarationList',
@@ -48,12 +46,14 @@
 namespace cavi {
 namespace usdj_am {
 
+class ObjectDeclarationListValue;
+
 /// \brief Represents a "USDA_ObjectDeclarationList" node in a syntax tree that
 ///        was parsed out of a USDA document, encoded as JSON and stored within
 ///        an Automerge document.
 class ObjectDeclarationList : public Node {
 public:
-    using Values = ConstInputRange<ObjectDeclarationListValue>;
+    using Values = ArrayInputRange<ObjectDeclarationListValue>;
 
     ObjectDeclarationList() = delete;
 
@@ -75,10 +75,15 @@ public:
 
     ObjectDeclarationList& operator=(ObjectDeclarationList&&) = default;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.type` property.
     ///

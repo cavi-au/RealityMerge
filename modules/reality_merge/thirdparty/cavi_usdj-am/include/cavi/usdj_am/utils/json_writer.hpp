@@ -32,31 +32,17 @@
 
 #include <cstddef>
 #include <iosfwd>
+#include <sstream>
 #include <string>
 
 // local
-#include "assignment.hpp"
-#include "class_definition.hpp"
-#include "declaration.hpp"
-#include "definition.hpp"
-#include "descriptor.hpp"
-#include "external_reference.hpp"
-#include "external_reference_import.hpp"
-#include "file.hpp"
-#include "object_declaration.hpp"
-#include "object_declaration_entries.hpp"
-#include "object_declaration_list.hpp"
-#include "object_declaration_list_value.hpp"
-#include "object_value.hpp"
-#include "reference_file.hpp"
-#include "variant_definition.hpp"
-#include "variant_set.hpp"
-#include "visitor.hpp"
+#include <cavi/usdj_am/visitor.hpp>
 
 namespace cavi {
 namespace usdj_am {
 namespace utils {
 
+/// \brief Writes the contents of a "USDA_File" node into a string.
 class JsonWriter : public Visitor {
 public:
     class Indenter {
@@ -89,9 +75,15 @@ public:
         std::size_t m_count;
     };
 
+    static constexpr const std::size_t DEFAULT_PRECISION = 7;
+
     JsonWriter() = delete;
 
-    JsonWriter(Indenter&& indenter, std::size_t const precision = 7);
+    /// \brief Configures the formatting of the JSON output and child node
+    ///        descent.
+    /// \param[in] indenter An indent string generator.
+    /// \param[in] precision The precision of floating point value output.
+    JsonWriter(Indenter&& indenter, std::size_t const precision = DEFAULT_PRECISION);
 
     JsonWriter(JsonWriter const&) = delete;
 
@@ -143,7 +135,7 @@ public:
 
 private:
     template <typename InputRangeT>
-    void write_array(InputRangeT const& input_range);
+    void write_array(InputRangeT const& array_range);
 
     Indenter m_indenter;
     std::ostringstream m_os;

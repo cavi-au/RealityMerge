@@ -33,9 +33,11 @@
 
 // local
 #include "assignment.hpp"
+#include "class_declaration.hpp"
 #include "class_definition.hpp"
 #include "declaration.hpp"
 #include "definition.hpp"
+#include "definition_statement.hpp"
 #include "descriptor.hpp"
 #include "external_reference.hpp"
 #include "external_reference_import.hpp"
@@ -55,7 +57,7 @@ namespace usdj_am {
 
 Visitor::~Visitor() {}
 
-void Visitor::visit(Assignment& node) {
+void Visitor::visit(Assignment&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -67,7 +69,7 @@ void Visitor::visit(Assignment const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ClassDeclaration& node) {
+void Visitor::visit(ClassDeclaration&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -79,7 +81,7 @@ void Visitor::visit(ClassDeclaration const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ClassDefinition& node) {
+void Visitor::visit(ClassDefinition&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -91,7 +93,7 @@ void Visitor::visit(ClassDefinition const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(Declaration& node) {
+void Visitor::visit(Declaration&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -103,7 +105,7 @@ void Visitor::visit(Declaration const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(Definition& node) {
+void Visitor::visit(Definition&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -115,7 +117,7 @@ void Visitor::visit(Definition const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(DefinitionStatement& node) {
+void Visitor::visit(DefinitionStatement&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -127,7 +129,7 @@ void Visitor::visit(DefinitionStatement const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(Descriptor& node) {
+void Visitor::visit(Descriptor&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -139,7 +141,7 @@ void Visitor::visit(Descriptor const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ExternalReference& node) {
+void Visitor::visit(ExternalReference&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -151,7 +153,7 @@ void Visitor::visit(ExternalReference const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ExternalReferenceImport& node) {
+void Visitor::visit(ExternalReferenceImport&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -163,7 +165,7 @@ void Visitor::visit(ExternalReferenceImport const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(File& node) {
+void Visitor::visit(File&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -175,7 +177,7 @@ void Visitor::visit(File const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ObjectDeclaration& node) {
+void Visitor::visit(ObjectDeclaration&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -187,7 +189,7 @@ void Visitor::visit(ObjectDeclaration const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ObjectDeclarationEntries& node) {
+void Visitor::visit(ObjectDeclarationEntries&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -199,7 +201,7 @@ void Visitor::visit(ObjectDeclarationEntries const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ObjectDeclarationList& node) {
+void Visitor::visit(ObjectDeclarationList&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -211,7 +213,7 @@ void Visitor::visit(ObjectDeclarationList const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ObjectDeclarationListValue& node) {
+void Visitor::visit(ObjectDeclarationListValue&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -223,7 +225,7 @@ void Visitor::visit(ObjectDeclarationListValue const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ObjectDeclarations& node) {
+void Visitor::visit(ObjectDeclarations&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -235,7 +237,7 @@ void Visitor::visit(ObjectDeclarations const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ObjectValue& node) {
+void Visitor::visit(ObjectValue&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -246,7 +248,7 @@ void Visitor::visit(ObjectValue const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(ReferenceFile& node) {
+void Visitor::visit(ReferenceFile&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -258,7 +260,7 @@ void Visitor::visit(ReferenceFile const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(Statement& node) {
+void Visitor::visit(Statement&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -270,7 +272,7 @@ void Visitor::visit(Statement const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(Value& node) {
+void Visitor::visit(Value&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -282,7 +284,7 @@ void Visitor::visit(Value const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(VariantDefinition& node) {
+void Visitor::visit(VariantDefinition&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());
@@ -294,7 +296,7 @@ void Visitor::visit(VariantDefinition const& node) {
     throw std::logic_error(what.str());
 }
 
-void Visitor::visit(VariantSet& node) {
+void Visitor::visit(VariantSet&& node) {
     std::ostringstream what;
     what << typeid(*this).name() << "::" << __func__ << "(" << typeid(node).name() << ") isn't implemented.";
     throw std::logic_error(what.str());

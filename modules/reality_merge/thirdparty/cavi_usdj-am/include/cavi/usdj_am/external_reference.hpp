@@ -38,16 +38,17 @@
 #include "reference_file.hpp"
 #include "value_type.hpp"
 
-namespace cavi {
-namespace usdj_am {
-
 // export interface USDA_ExternalReference {
 //     type: USDA_ValueType.ExternalReference;
 //     referenceFile: USDA_ReferenceFile;
 //     toImport: null | USDA_ExternalReferenceImport;
 // }
 
+namespace cavi {
+namespace usdj_am {
+
 class ReferenceFile;
+class Visitor;
 
 /// \brief Represents a "USDA_ExternalReference" node in a syntax tree that was
 ///        parsed out of a USDA document, encoded as JSON and stored within an
@@ -69,10 +70,15 @@ public:
 
     ExternalReference& operator=(ExternalReference const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.referenceFile` property.
     ///

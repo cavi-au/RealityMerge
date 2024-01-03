@@ -33,8 +33,7 @@
 #include <optional>
 
 // local
-#include "assignment.hpp"
-#include "input_iterator.hpp"
+#include "array_range.hpp"
 #include "node.hpp"
 #include "string_.hpp"
 
@@ -43,6 +42,8 @@ struct AMitem;
 
 namespace cavi {
 namespace usdj_am {
+
+class Assignment;
 
 // export interface USDA_Descriptor {
 //     // \note According to the example JSON files in
@@ -59,7 +60,7 @@ class Descriptor : public Node {
 public:
     /// \brief Represents a range of "USDA_Assignment" nodes within a
     ///        "USDA_Descriptor" node.
-    using Assignments = ConstInputRange<Assignment>;
+    using Assignments = ArrayInputRange<Assignment>;
 
     Descriptor() = delete;
 
@@ -71,10 +72,15 @@ public:
     /// \pre `AMobjSize(` \p document `,` \p map_object `) == 2`
     Descriptor(AMdoc const* const document, AMitem const* const map_object);
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.assignments` property.
     Assignments get_assignments() const;

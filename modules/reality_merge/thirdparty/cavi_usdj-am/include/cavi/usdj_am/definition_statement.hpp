@@ -30,8 +30,15 @@
 #ifndef CAVI_USDJ_AM_DEFINITION_STATEMENT_HPP
 #define CAVI_USDJ_AM_DEFINITION_STATEMENT_HPP
 
-#include <memory>
 #include <variant>
+
+// local
+#include "declaration.hpp"
+#include "statement.hpp"
+
+// export type USDA_DefinitionStatement =
+//     | USDA_Statement
+//     | USDA_Declaration<any>
 
 struct AMdoc;
 struct AMitem;
@@ -39,19 +46,16 @@ struct AMitem;
 namespace cavi {
 namespace usdj_am {
 
-// export type USDA_DefinitionStatement =
-//     | USDA_Statement
-//     | USDA_Declaration<any>
+template <typename T>
+class ArrayInputIterator;
 
-class Declaration;
-struct Statement;
 class Visitor;
 
 /// \brief A struct representing a "USDA_DefinitionStatement" node in a syntax
 ///        tree that was parsed out of a USDA document, encoded as JSON and
 ///        stored within an Automerge document.
-struct DefinitionStatement : public std::variant<std::unique_ptr<Statement>, std::unique_ptr<Declaration> > {
-    DefinitionStatement() = delete;
+struct DefinitionStatement : public std::variant<std::monostate, Statement, Declaration> {
+    using std::variant<std::monostate, Statement, Declaration>::variant;
 
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
@@ -62,21 +66,29 @@ struct DefinitionStatement : public std::variant<std::unique_ptr<Statement>, std
     /// \throws std::invalid_argument
     DefinitionStatement(AMdoc const* const document, AMitem const* const map_object);
 
-    /// \note `std::unique_ptr<T>` isn't copyable.
     DefinitionStatement(DefinitionStatement const&) = delete;
     DefinitionStatement& operator=(DefinitionStatement const&) = delete;
 
-    /// \note `std::unique_ptr<T>` is movable.
     DefinitionStatement(DefinitionStatement&&) = default;
     DefinitionStatement& operator=(DefinitionStatement&&) = default;
 
     /// \note An inlined destructor can't delete incomplete types.
     ~DefinitionStatement();
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const&;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) &&;
+
+private:
+    DefinitionStatement() = default;
+
+    friend class ArrayInputIterator<DefinitionStatement>;
 };
 
 }  // namespace usdj_am

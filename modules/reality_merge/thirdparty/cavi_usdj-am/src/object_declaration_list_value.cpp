@@ -37,8 +37,12 @@ namespace usdj_am {
 ObjectDeclarationListValue::ObjectDeclarationListValue(AMdoc const* const document, AMitem const* const map_object)
     : Node(document, map_object, 2) {}
 
-void ObjectDeclarationListValue::accept(Visitor& visitor) const {
+void ObjectDeclarationListValue::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ObjectDeclarationListValue::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ObjectDeclarationListValue>(*this));
 }
 
 Number ObjectDeclarationListValue::get_index() const {

@@ -39,8 +39,12 @@ ExternalReferenceImport::ExternalReferenceImport(AMdoc const* const document, AM
     check_enum_property("type", ValueType::EXTERNAL_REFERENCE_IMPORT);
 }
 
-void ExternalReferenceImport::accept(Visitor& visitor) const {
+void ExternalReferenceImport::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ExternalReferenceImport::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ExternalReferenceImport>(*this));
 }
 
 std::optional<String> ExternalReferenceImport::get_field() const {

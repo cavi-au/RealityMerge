@@ -33,14 +33,10 @@
 #include <optional>
 
 // local
-#include "input_range.hpp"
+#include "array_range.hpp"
 #include "node.hpp"
 #include "statement_type.hpp"
 #include "string_.hpp"
-#include "variant_definition.hpp"
-
-namespace cavi {
-namespace usdj_am {
 
 // export interface USDA_VariantSet {
 //     type: USDA_StatementType.VariantSet;
@@ -48,12 +44,17 @@ namespace usdj_am {
 //     definitions: USDA_VariantDefinition[];
 // }
 
+namespace cavi {
+namespace usdj_am {
+
+class VariantDefinition;
+
 /// \brief Represents a "USDA_VariantSet" node in a syntax tree that was parsed
 ///        out of a USDA document, encoded as JSON and stored within an
 ///        Automerge document.
 class VariantSet : public Node {
 public:
-    using VariantDefinitions = ConstInputRange<VariantDefinition>;
+    using VariantDefinitions = ArrayInputRange<VariantDefinition>;
 
     VariantSet() = delete;
 
@@ -71,10 +72,15 @@ public:
 
     VariantSet& operator=(VariantSet const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.name` property.
     ///

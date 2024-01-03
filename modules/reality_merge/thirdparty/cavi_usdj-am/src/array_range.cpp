@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* input_range.hpp                                                        */
+/* array_range.cpp                                                        */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,94 +27,79 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#ifndef CAVI_USDJ_AM_INPUT_RANGE_HPP
-#define CAVI_USDJ_AM_INPUT_RANGE_HPP
-
 #include <algorithm>
 
 // local
-#include "input_iterator.hpp"
+#include "array_range.hpp"
+#include "assignment.hpp"
+#include "class_declaration.hpp"
+#include "definition.hpp"
+#include "definition_statement.hpp"
+#include "object_declaration.hpp"
+#include "object_declaration_list_value.hpp"
+#include "statement.hpp"
+#include "value.hpp"
+#include "variant_definition.hpp"
 
 namespace cavi {
 namespace usdj_am {
 
-///
-/// \tparam T A type of value to be iterated over.
 template <typename T>
-class ConstInputRange {
-public:
-    using value_type = typename ConstInputIterator<T>::value_type;
-
-    ConstInputRange() = delete;
-
-    /// \param document[in] A pointer to a borrowed Automerge document.
-    /// \param list_object[in] A pointer to a borrowed Automerge list object.
-    /// \pre \p document `!= nullptr`
-    /// \pre \p list_object `!= nullptr`
-    /// \pre `AMitemValType(` \p list_object `) == AM_VAL_TYPE_OBJ_TYPE`
-    /// \pre `AMobjObjType(` \p document `, AMitemObjId(` \p list_object `)) == AM_OBJ_TYPE_LIST`
-    ConstInputRange(AMdoc const* const document, AMitem const* const list_object);
-
-    ConstInputRange(ConstInputRange const&) = default;
-
-    ConstInputRange& operator=(ConstInputRange const&) = default;
-
-    /// \throws std::invalid_argument
-    ConstInputIterator<T> begin() const;
-
-    ConstInputIterator<T> end() const;
-
-    std::size_t size() const;
-
-    AMdoc const* get_document() const;
-
-    AMobjId const* get_object_id() const;
-
-private:
-    AMdoc const* const m_document;
-    typename ConstInputIterator<T>::ResultPtr m_result;
-};
-
-template <typename T>
-inline bool operator==(ConstInputRange<T> const& lhs, ConstInputRange<T> const& rhs) {
+bool operator==(ArrayInputRange<T> const& lhs, ArrayInputRange<T> const& rhs) {
     return (lhs.size() == rhs.size()) && std::equal(lhs.begin(), lhs.end(), rhs.begin());
 }
 
 template <typename T>
-inline bool operator!=(ConstInputRange<T> const& lhs, ConstInputRange<T> const& rhs) {
+bool operator!=(ArrayInputRange<T> const& lhs, ArrayInputRange<T> const& rhs) {
     return !operator==(lhs, rhs);
 }
 
 template <typename T>
-ConstInputRange<T>::ConstInputRange(AMdoc const* const document, AMitem const* const list_object)
+ArrayInputRange<T>::ArrayInputRange(AMdoc const* const document, AMitem const* const list_object)
     : m_document{document}, m_result{AMitemResult(list_object), AMresultFree} {}
 
 template <typename T>
-ConstInputIterator<T> ConstInputRange<T>::begin() const {
-    return ConstInputIterator<T>(m_document, AMresultItem(m_result.get()));
+ArrayInputIterator<T> ArrayInputRange<T>::begin() const {
+    return ArrayInputIterator<T>{m_document, AMresultItem(m_result.get())};
 }
 
 template <typename T>
-ConstInputIterator<T> ConstInputRange<T>::end() const {
-    return ConstInputIterator<T>();
+ArrayInputIterator<T> ArrayInputRange<T>::end() const {
+    return ArrayInputIterator<T>{};
 }
 
 template <typename T>
-std::size_t ConstInputRange<T>::size() const {
+std::size_t ArrayInputRange<T>::size() const {
     return AMobjSize(m_document, get_object_id(), nullptr);
 }
 
 template <typename T>
-inline AMdoc const* ConstInputRange<T>::get_document() const {
+inline AMdoc const* ArrayInputRange<T>::get_document() const {
     return m_document;
 }
 
 template <typename T>
-AMobjId const* ConstInputRange<T>::get_object_id() const {
+AMobjId const* ArrayInputRange<T>::get_object_id() const {
     return AMitemObjId(AMresultItem(m_result.get()));
 }
 
+template class ArrayInputRange<Assignment>;
+
+template class ArrayInputRange<ClassDeclaration>;
+
+template class ArrayInputRange<Definition>;
+
+template class ArrayInputRange<DefinitionStatement>;
+
+template class ArrayInputRange<ObjectDeclaration>;
+
+template class ArrayInputRange<ObjectDeclarationListValue>;
+
+template class ArrayInputRange<Statement>;
+
+template class ArrayInputRange<Value>;
+
+template class ArrayInputRange<VariantDefinition>;
+
 }  // namespace usdj_am
 }  // namespace cavi
-
-#endif  // CAVI_USDJ_AM_INPUT_RANGE_HPP

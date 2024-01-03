@@ -39,8 +39,6 @@ extern "C" {
 }
 
 // local
-#include "object_declaration_entries.hpp"
-#include "object_declaration_list.hpp"
 #include "object_declarations.hpp"
 #include "visitor.hpp"
 
@@ -55,13 +53,11 @@ ObjectDeclarations::ObjectDeclarations(AMdoc const* const document, AMitem const
         try {
             switch (index) {
                 case LIST: {
-                    this->emplace<std::unique_ptr<ObjectDeclarationList> >(
-                        std::make_unique<ObjectDeclarationList>(document, map_object));
+                    this->emplace<ObjectDeclarationList>(document, map_object);
                     break;
                 }
                 case ENTRIES: {
-                    this->emplace<std::unique_ptr<ObjectDeclarationEntries> >(
-                        std::make_unique<ObjectDeclarationEntries>(document, map_object));
+                    this->emplace<ObjectDeclarationEntries>(document, map_object);
                     break;
                 }
             }
@@ -83,8 +79,12 @@ ObjectDeclarations::ObjectDeclarations(AMdoc const* const document, AMitem const
 
 ObjectDeclarations::~ObjectDeclarations() {}
 
-void ObjectDeclarations::accept(Visitor& visitor) const {
+void ObjectDeclarations::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ObjectDeclarations::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ObjectDeclarations>(*this));
 }
 
 }  // namespace usdj_am

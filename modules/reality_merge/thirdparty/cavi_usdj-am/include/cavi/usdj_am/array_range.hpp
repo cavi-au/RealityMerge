@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* definition_statement.cpp                                               */
+/* array_range.hpp                                                        */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,65 +27,58 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include <cstddef>
-#include <sstream>
-#include <stdexcept>
-#include <typeinfo>
-
-// third-party
-extern "C" {
-
-#include <automerge-c/automerge.h>
-}
+#ifndef CAVI_USDJ_AM_ARRAY_RANGE_HPP
+#define CAVI_USDJ_AM_ARRAY_RANGE_HPP
 
 // local
-#include "definition_statement.hpp"
-#include "visitor.hpp"
+#include "array_iterator.hpp"
+
+struct AMobjId;
 
 namespace cavi {
 namespace usdj_am {
 
-DefinitionStatement::DefinitionStatement(AMdoc const* const document, AMitem const* const map_object) {
-    enum { BEGIN__, STATEMENT = BEGIN__, DECLARATION, END__, SIZE__ = END__ - BEGIN__ };
+/// \brief Represents an "Array<any>" node property in a syntax tree that was
+///        parsed out of a USDA document, encoded as JSON and stored within an
+///        Automerge document.
+///
+/// \tparam T The type of value to be iterated over.
+template <typename T>
+class ArrayInputRange {
+public:
+    using value_type = typename ArrayInputIterator<T>::value_type;
 
-    std::ostringstream args;
-    for (std::size_t index = BEGIN__; index != END__; ++index) {
-        try {
-            switch (index) {
-                case DECLARATION: {
-                    this->emplace<Declaration>(document, map_object);
-                    break;
-                }
-                case STATEMENT: {
-                    this->emplace<Statement>(document, map_object);
-                    break;
-                }
-            }
-            args.str("");
-            break;
-        } catch (std::invalid_argument const& thrown) {
-            if (!args.str().empty()) {
-                args << " | ";
-            }
-            args << thrown.what();
-        }
-    }
-    if (!args.str().empty()) {
-        std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
-        throw std::invalid_argument(what.str());
-    }
-}
+    ArrayInputRange() = delete;
 
-DefinitionStatement::~DefinitionStatement() {}
+    /// \param document[in] A pointer to a borrowed Automerge document.
+    /// \param list_object[in] A pointer to a borrowed Automerge list object.
+    /// \pre \p document `!= nullptr`
+    /// \pre \p list_object `!= nullptr`
+    /// \pre `AMitemValType(` \p list_object `) == AM_VAL_TYPE_OBJ_TYPE`
+    /// \pre `AMobjObjType(` \p document `, AMitemObjId(` \p list_object `)) == AM_OBJ_TYPE_LIST`
+    ArrayInputRange(AMdoc const* const document, AMitem const* const list_object);
 
-void DefinitionStatement::accept(Visitor& visitor) const& {
-    visitor.visit(*this);
-}
+    ArrayInputRange(ArrayInputRange const&) = default;
 
-void DefinitionStatement::accept(Visitor& visitor) && {
-    visitor.visit(std::forward<DefinitionStatement>(*this));
-}
+    ArrayInputRange& operator=(ArrayInputRange const&) = default;
+
+    /// \throws std::invalid_argument
+    ArrayInputIterator<T> begin() const;
+
+    ArrayInputIterator<T> end() const;
+
+    std::size_t size() const;
+
+    AMdoc const* get_document() const;
+
+    AMobjId const* get_object_id() const;
+
+private:
+    AMdoc const* const m_document;
+    typename ArrayInputIterator<T>::ResultPtr m_result;
+};
 
 }  // namespace usdj_am
 }  // namespace cavi
+
+#endif  // CAVI_USDJ_AM_ARRAY_RANGE_HPP

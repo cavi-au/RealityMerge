@@ -78,7 +78,7 @@ Value::Value(AMdoc const* const document, AMitem const* const item) {
                 AMobjType const obj_type = AMobjObjType(document, AMitemObjId(item));
                 switch (obj_type) {
                     case AM_OBJ_TYPE_LIST: {
-                        this->emplace<std::unique_ptr<ConstValues>>(std::make_unique<ConstValues>(document, item));
+                        this->emplace<ValueRange>(document, item);
                         break;
                     }
                     case AM_OBJ_TYPE_MAP: {
@@ -89,18 +89,15 @@ Value::Value(AMdoc const* const document, AMitem const* const item) {
                             try {
                                 switch (static_cast<ValueType>(index)) {
                                     case ValueType::EXTERNAL_REFERENCE: {
-                                        this->emplace<std::unique_ptr<ExternalReference>>(
-                                            std::make_unique<ExternalReference>(document, item));
+                                        this->emplace<ExternalReference>(document, item);
                                         break;
                                     }
                                     case ValueType::EXTERNAL_REFERENCE_IMPORT: {
-                                        this->emplace<std::unique_ptr<ExternalReferenceImport>>(
-                                            std::make_unique<ExternalReferenceImport>(document, item));
+                                        this->emplace<ExternalReferenceImport>(document, item);
                                         break;
                                     }
                                     case ValueType::OBJECT_VALUE: {
-                                        this->emplace<std::unique_ptr<ObjectValue>>(
-                                            std::make_unique<ObjectValue>(document, item));
+                                        this->emplace<ObjectValue>(document, item);
                                         break;
                                     }
                                     default:
@@ -118,14 +115,14 @@ Value::Value(AMdoc const* const document, AMitem const* const item) {
                         break;
                     }
                     case AM_OBJ_TYPE_TEXT: {
-                        this->emplace<std::unique_ptr<String>>(std::make_unique<String>(document, item));
+                        this->emplace<String>(document, item);
                         break;
                     }
                 }
                 break;
             }
             case AM_VAL_TYPE_STR: {
-                this->emplace<std::unique_ptr<String>>(std::make_unique<String>(document, item));
+                this->emplace<String>(document, item);
                 break;
             }
             case AM_VAL_TYPE_VOID: {
@@ -149,8 +146,12 @@ Value::Value(AMdoc const* const document, AMitem const* const item) {
 
 Value::~Value() {}
 
-void Value::accept(Visitor& visitor) const {
+void Value::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void Value::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<Value>(*this));
 }
 
 }  // namespace usdj_am

@@ -39,8 +39,26 @@ extern "C" {
 }
 
 // local
+#include "assignment.hpp"
+#include "assignment_keyword.hpp"
+#include "class_definition.hpp"
+#include "declaration_keyword.hpp"
+#include "definition.hpp"
+#include "definition_type.hpp"
+#include "descriptor.hpp"
+#include "external_reference_import.hpp"
+#include "file.hpp"
 #include "node.hpp"
-#include "string_.hpp"
+#include "number.hpp"
+#include "object_declaration_entries.hpp"
+#include "object_declaration_list.hpp"
+#include "object_declarations.hpp"
+#include "reference_file.hpp"
+#include "statement_type.hpp"
+#include "value.hpp"
+#include "value_type.hpp"
+#include "variant_definition.hpp"
+#include "variant_set.hpp"
 
 namespace cavi {
 namespace usdj_am {
@@ -95,6 +113,26 @@ Node::Node(AMdoc const* const document, AMitem const* const map_object, int cons
 
 Node::~Node() {}
 
+template <typename EnumT>
+void Node::check_enum_property(std::string const& key, EnumT const tag) const {
+    std::ostringstream args;
+    try {
+        if (get_enum_property<EnumT>(key) != tag) {
+            args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \""
+                 << get_object_property<String>(key) << "\", \"" << tag << "\"";
+        }
+    } catch (std::invalid_argument const& thrown) {
+        args << thrown.what();
+    }
+    // Free the AMresult because we're finished with it.
+    m_results.erase(key);
+    if (!args.str().empty()) {
+        std::ostringstream what;
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
+        throw std::invalid_argument(what.str());
+    }
+}
+
 void Node::check_string_property(std::string const& key, std::string const& value) const {
     std::ostringstream args;
     try {
@@ -115,13 +153,144 @@ void Node::check_string_property(std::string const& key, std::string const& valu
     }
 }
 
+template <typename InputRangeT>
+InputRangeT Node::get_array_property(std::string const& key) const {
+    ResultPtr const result{AMmapGet(m_document, get_object_id(), utils::to_bytes(key), nullptr), AMresultFree};
+    auto [iter, inserted] = m_results.insert_or_assign(key, result);
+    return InputRangeT{m_document, AMresultItem(iter->second.get())};
+}
+
+template <typename EnumT>
+EnumT Node::get_enum_property(std::string const& key) const {
+    ResultPtr const result{AMmapGet(m_document, get_object_id(), utils::to_bytes(key), nullptr), AMresultFree};
+    std::ostringstream args;
+    if (!result) {
+        args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == nullptr";
+    } else {
+        auto [iter, inserted] = m_results.insert_or_assign(key, result);
+        try {
+            String string{m_document, AMresultItem(iter->second.get())};
+            EnumT tag;
+            auto const buffer = std::string{string};
+            std::istringstream iss{buffer};
+            if (iss >> tag) {
+                return tag;
+            } else {
+                args << "AMmapGet(m_document, ..., AMstr(\"" << key << "\"), nullptr) == \"" << string << "\"";
+            }
+        } catch (std::invalid_argument const& thrown) {
+            args << thrown.what();
+        }
+    }
+    if (!args.str().empty()) {
+        std::ostringstream what;
+        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
+        throw std::invalid_argument(what.str());
+    }
+    return EnumT{};
+}
+
+template <typename EnumT>
+std::optional<EnumT> Node::get_nullable_enum_property(std::string const& key) const {
+    std::optional<EnumT> nullable_enum;
+    try {
+        nullable_enum.emplace(get_enum_property<EnumT>(key));
+    } catch (std::invalid_argument const&) {
+        if (AMitemValType(AMresultItem(m_results.at(key).get())) != AM_VAL_TYPE_NULL) {
+            throw;
+        }
+    }
+    return nullable_enum;
+}
+
+template <typename ObjectT>
+std::optional<ObjectT> Node::get_nullable_object_property(std::string const& key) const {
+    std::optional<ObjectT> nullable_object;
+    try {
+        nullable_object.emplace(get_object_property<ObjectT>(key));
+    } catch (std::invalid_argument const&) {
+        if (AMitemValType(AMresultItem(m_results.at(key).get())) != AM_VAL_TYPE_NULL) {
+            throw;
+        }
+    }
+    return nullable_object;
+}
+
 AMobjId const* Node::get_object_id() const {
     return AMitemObjId(AMresultItem(m_results.at("").get()));
 }
 
+template <typename ObjectT>
+ObjectT Node::get_object_property(std::string const& key) const {
+    ResultPtr const result{AMmapGet(m_document, get_object_id(), utils::to_bytes(key), nullptr), AMresultFree};
+    auto [iter, inserted] = m_results.insert_or_assign(key, result);
+    try {
+        return ObjectT{m_document, AMresultItem(iter->second.get())};
+    } catch (std::invalid_argument const& thrown) {
+        std::ostringstream what;
+        what << typeid(*this).name() << "::" << __func__ << "(" << thrown.what() << ")";
+        throw std::invalid_argument(what.str());
+    }
+}
+
+// Node::check_enum_property()
+template void Node::check_enum_property<AssignmentType>(std::string const&, AssignmentType const) const;
+
+template void Node::check_enum_property<StatementType>(std::string const&, StatementType const) const;
+
+template void Node::check_enum_property<ValueType>(std::string const&, ValueType const) const;
+
+// Node::get_array_property()
+template ClassDefinition::ClassDeclarations Node::get_array_property<ClassDefinition::ClassDeclarations>(
+    std::string const&) const;
+
+template Definition::Statements Node::get_array_property<Definition::Statements>(std::string const&) const;
+
+template Descriptor::Assignments Node::get_array_property<Descriptor::Assignments>(std::string const&) const;
+
+template File::Statements Node::get_array_property<File::Statements>(std::string const&) const;
+
+template ObjectDeclarationEntries::Values Node::get_array_property<ObjectDeclarationEntries::Values>(
+    std::string const&) const;
+
+template ObjectDeclarationList::Values Node::get_array_property<ObjectDeclarationList::Values>(
+    std::string const&) const;
+
+template VariantDefinition::Definitions Node::get_array_property<VariantDefinition::Definitions>(
+    std::string const&) const;
+
+template VariantSet::VariantDefinitions Node::get_array_property<VariantSet::VariantDefinitions>(
+    std::string const&) const;
+
+// Node::get_enum_property()
+template AssignmentKeyword Node::get_enum_property<AssignmentKeyword>(std::string const&) const;
+
+template DeclarationKeyword Node::get_enum_property<DeclarationKeyword>(std::string const&) const;
+
+template DefinitionType Node::get_enum_property<DefinitionType>(std::string const&) const;
+
+// Node::get_nullable_enum_property()
+template std::optional<AssignmentKeyword> Node::get_nullable_enum_property<AssignmentKeyword>(std::string const&) const;
+
+template std::optional<DeclarationKeyword> Node::get_nullable_enum_property<DeclarationKeyword>(
+    std::string const&) const;
+
+// Node::get_nullable_object_property()
+template std::optional<Descriptor> Node::get_nullable_object_property<Descriptor>(std::string const&) const;
+
+template std::optional<ExternalReferenceImport> Node::get_nullable_object_property<ExternalReferenceImport>(
+    std::string const&) const;
+
 template std::optional<String> Node::get_nullable_object_property<String>(std::string const&) const;
 
+// Node::get_object_property()
+template Number Node::get_object_property<Number>(std::string const&) const;
+
+template ObjectDeclarations Node::get_object_property<ObjectDeclarations>(std::string const&) const;
+
 template String Node::get_object_property<String>(std::string const&) const;
+
+template ReferenceFile Node::get_object_property<ReferenceFile>(std::string const&) const;
 
 template Value Node::get_object_property<Value>(std::string const&) const;
 

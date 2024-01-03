@@ -33,7 +33,6 @@
 #include <functional>
 #include <istream>
 #include <map>
-#include <memory>
 #include <optional>
 #include <set>
 #include <string>
@@ -60,12 +59,12 @@ namespace detail {
 template <class EnumT, class SequenceT = std::vector<EnumT>>
 SequenceT extract_enum_tag_sequence(std::map<std::string_view, EnumT> const& tags, Value const& value) {
     SequenceT tag_sequence{};
-    auto const values_ptr = std::get_if<std::unique_ptr<ConstValues>>(&value);
+    auto const values_ptr = std::get_if<ValueRange>(&value);
     if (values_ptr) {
-        for (auto const& sub_value : **values_ptr) {
-            auto const string_ptr = std::get_if<std::unique_ptr<String>>(&sub_value);
+        for (auto const& sub_value : *values_ptr) {
+            auto const string_ptr = std::get_if<String>(&sub_value);
             if (string_ptr) {
-                auto const tag = extract_enum_tag(tags, **string_ptr);
+                auto const tag = extract_enum_tag(tags, *string_ptr);
                 if (tag)
                     tag_sequence.push_back(*tag);
             }
@@ -86,12 +85,12 @@ SequenceT extract_enum_tag_sequence(std::map<std::string_view, EnumT> const& tag
 template <class EnumT, class SetT = std::set<EnumT>>
 SetT extract_enum_tag_set(std::map<std::string_view, EnumT> const& tags, Value const& value) {
     SetT tag_set;
-    auto const values_ptr = std::get_if<std::unique_ptr<ConstValues>>(&value);
+    auto const values_ptr = std::get_if<ValueRange>(&value);
     if (values_ptr) {
-        for (auto const& sub_value : **values_ptr) {
-            auto const string_ptr = std::get_if<std::unique_ptr<String>>(&sub_value);
+        for (auto const& sub_value : *values_ptr) {
+            auto const string_ptr = std::get_if<String>(&sub_value);
             if (string_ptr) {
-                auto const tag = extract_enum_tag(tags, **string_ptr);
+                auto const tag = extract_enum_tag(tags, *string_ptr);
                 if (tag)
                     tag_set.insert(*tag);
             }

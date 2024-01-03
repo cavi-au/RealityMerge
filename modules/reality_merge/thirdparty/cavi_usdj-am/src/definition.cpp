@@ -35,12 +35,18 @@
 namespace cavi {
 namespace usdj_am {
 
+Definition::Definition() {}
+
 Definition::Definition(AMdoc const* const document, AMitem const* const map_object) : Node(document, map_object, 6) {
     check_enum_property("type", StatementType::DEFINITION);
 }
 
-void Definition::accept(Visitor& visitor) const {
+void Definition::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void Definition::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<Definition>(*this));
 }
 
 std::optional<Typename> Definition::get_def_type() const {

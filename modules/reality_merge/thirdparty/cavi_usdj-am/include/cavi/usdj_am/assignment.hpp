@@ -43,8 +43,18 @@
 //     Assignment = 'assignment',
 // }
 
+// export interface USDA_Assignment<T extends USDA_ValueTypes> {
+//     type: AssignmentType.Assignment;
+//     keyword: null | USDA_AssignmentKeyword;
+//     identifier: string;
+//     value: T;
+// }
+
 namespace cavi {
 namespace usdj_am {
+
+template <typename T>
+class ArrayInputIterator;
 
 /// \brief An enum representing an "AssignmentType" tag stored as a string
 ///        within an Automerge document.
@@ -55,13 +65,6 @@ enum class AssignmentType : std::uint8_t {
     SIZE__ = END__ - BEGIN__,
 };
 
-// export interface USDA_Assignment<T extends USDA_ValueTypes> {
-//     type: AssignmentType.Assignment;
-//     keyword: null | USDA_AssignmentKeyword;
-//     identifier: string;
-//     value: T;
-// }
-
 class String;
 class Visitor;
 
@@ -70,8 +73,6 @@ class Visitor;
 ///        Automerge document.
 class Assignment : public Node {
 public:
-    Assignment() = delete;
-
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
     /// \pre \p document `!= nullptr`
@@ -86,10 +87,15 @@ public:
 
     Assignment& operator=(Assignment const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.identifier` property.
     ///
@@ -108,6 +114,11 @@ public:
     ///
     /// \throws std::invalid_argument
     Value get_value() const;
+
+private:
+    Assignment() = default;
+
+    friend class ArrayInputIterator<Assignment>;
 };
 
 constexpr AssignmentType Assignment::get_type() const {

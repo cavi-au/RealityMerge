@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* input_iterator.hpp                                                     */
+/* array_iterator.cpp                                                     */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,14 +27,6 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#ifndef CAVI_USDJ_AM_INPUT_ITERATOR_HPP
-#define CAVI_USDJ_AM_INPUT_ITERATOR_HPP
-
-#include <cassert>
-#include <functional>
-#include <iterator>
-#include <memory>
-#include <optional>
 #include <sstream>
 #include <stdexcept>
 #include <typeinfo>
@@ -46,71 +38,33 @@ extern "C" {
 #include <automerge-c/utils/enum_string.h>
 }
 
+// local
+#include "array_iterator.hpp"
+#include "assignment.hpp"
+#include "class_declaration.hpp"
+#include "class_definition.hpp"
+#include "definition.hpp"
+#include "definition_statement.hpp"
+#include "external_reference.hpp"
+#include "object_declaration.hpp"
+#include "object_declaration_list_value.hpp"
+#include "object_value.hpp"
+#include "statement.hpp"
+#include "value.hpp"
+#include "variant_definition.hpp"
+#include "variant_set.hpp"
+
 namespace cavi {
 namespace usdj_am {
 
 template <typename T>
-class ConstInputIterator;
+ArrayInputIterator<T>::ArrayInputIterator() : m_document{nullptr} {}
 
 template <typename T>
-bool operator==(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs);
-
-/// \brief Represents a read-only array value in a syntax tree that was parsed
-///        out of a USDA document, encoded as JSON and stored within an
-///        Automerge document.
-///
-/// \tparam T The type of the elements in the array.
-template <typename T>
-class ConstInputIterator {
-public:
-    using iterator_category = std::input_iterator_tag;
-    using value_type = T;
-    using pointer = T const*;
-    using reference = T const&;
-
-    using ResultPtr = std::shared_ptr<AMresult>;
-
-    ConstInputIterator();
-
-    /// \param document[in] A pointer to a borrowed Automerge document.
-    /// \param list_object[in] A pointer to a borrowed Automerge list object.
-    /// \pre \p document `!= nullptr`
-    /// \pre \p list_object `!= nullptr`
-    /// \pre `AMitemValType(` \p list_object `) == AM_VAL_TYPE_OBJ_TYPE`
-    /// \pre `AMobjObjType(` \p document `, AMitemObjId(` \p list_object `)) == AM_OBJ_TYPE_LIST`
-    /// \throws std::invalid_argument
-    ConstInputIterator(AMdoc const* const document, AMitem const* const list_object);
-
-    ConstInputIterator(ConstInputIterator const&) = default;
-
-    ~ConstInputIterator() = default;
-
-    ConstInputIterator& operator=(ConstInputIterator const&) = delete;
-
-    ConstInputIterator& operator++();
-
-    ConstInputIterator operator++(int);
-
-    reference operator*();
-
-private:
-    enum Result { BEGIN__, ITEMS = BEGIN__, OBJ_ID, END__, SIZE__ = END__ - BEGIN__ };
-
-    AMdoc const* const m_document;
-    std::optional<AMitems> m_items;
-    std::array<ResultPtr, SIZE__> m_results;
-    mutable std::optional<T> m_value;
-
-    static reference dummy();
-
-    friend bool operator==<T>(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs);
-};
+ArrayInputIterator<T>::~ArrayInputIterator() {}
 
 template <typename T>
-ConstInputIterator<T>::ConstInputIterator() : m_document{nullptr} {}
-
-template <typename T>
-ConstInputIterator<T>::ConstInputIterator(AMdoc const* const document, AMitem const* const list_object)
+ArrayInputIterator<T>::ArrayInputIterator(AMdoc const* const document, AMitem const* const list_object)
     : m_document{document} {
     std::ostringstream args;
     if (!document) {
@@ -143,7 +97,7 @@ ConstInputIterator<T>::ConstInputIterator(AMdoc const* const document, AMitem co
 }
 
 template <typename T>
-ConstInputIterator<T>& ConstInputIterator<T>::operator++() {
+ArrayInputIterator<T>& ArrayInputIterator<T>::operator++() {
     if (m_items) {
         AMitemsAdvance(&*m_items, 1);
     }
@@ -151,31 +105,24 @@ ConstInputIterator<T>& ConstInputIterator<T>::operator++() {
 }
 
 template <typename T>
-ConstInputIterator<T> ConstInputIterator<T>::operator++(int) {
-    ConstInputIterator<T> current{*this};
+ArrayInputIterator<T> ArrayInputIterator<T>::operator++(int) {
+    ArrayInputIterator<T> current{*this};
     ++(*this);
     return current;
 }
 
 template <typename T>
-typename ConstInputIterator<T>::reference ConstInputIterator<T>::operator*() {
+typename T ArrayInputIterator<T>::operator*() {
     AMitem const* const item = (m_items) ? AMitemsNext(&*m_items, 0) : nullptr;
     if (item) {
-        m_value.emplace(m_document, item);
-        return *m_value;
+        return T{m_document, item};
     } else {
-        return dummy();
+        return T{};
     }
 }
 
 template <typename T>
-typename ConstInputIterator<T>::reference ConstInputIterator<T>::dummy() {
-    static char const value[sizeof(T)] = {0};
-    return *reinterpret_cast<T const*>(value);
-}
-
-template <typename T>
-bool operator==(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs) {
+bool operator==(ArrayInputIterator<T> const& lhs, ArrayInputIterator<T> const& rhs) {
     AMitem const* const lhs_item =
         (lhs.m_items) ? AMitemsNext(const_cast<AMitems*>(lhs.m_items.operator->()), 0) : nullptr;
     AMitem const* const rhs_item =
@@ -185,11 +132,82 @@ bool operator==(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& r
 }
 
 template <typename T>
-inline bool operator!=(ConstInputIterator<T> const& lhs, ConstInputIterator<T> const& rhs) {
+bool operator!=(ArrayInputIterator<T> const& lhs, ArrayInputIterator<T> const& rhs) {
     return !operator==(lhs, rhs);
 }
 
+// Assignment
+template class ArrayInputIterator<Assignment>;
+
+template bool operator==(ArrayInputIterator<Assignment> const& lhs, ArrayInputIterator<Assignment> const& rhs);
+
+template bool operator!=(ArrayInputIterator<Assignment> const& lhs, ArrayInputIterator<Assignment> const& rhs);
+
+// ClassDeclaration
+template class ArrayInputIterator<ClassDeclaration>;
+
+template bool operator==(ArrayInputIterator<ClassDeclaration> const& lhs,
+                         ArrayInputIterator<ClassDeclaration> const& rhs);
+
+template bool operator!=(ArrayInputIterator<ClassDeclaration> const& lhs,
+                         ArrayInputIterator<ClassDeclaration> const& rhs);
+
+// Definition
+template class ArrayInputIterator<Definition>;
+
+template bool operator==(ArrayInputIterator<Definition> const& lhs, ArrayInputIterator<Definition> const& rhs);
+
+template bool operator!=(ArrayInputIterator<Definition> const& lhs, ArrayInputIterator<Definition> const& rhs);
+
+// DefinitionStatement
+template class ArrayInputIterator<DefinitionStatement>;
+
+template bool operator==(ArrayInputIterator<DefinitionStatement> const& lhs,
+                         ArrayInputIterator<DefinitionStatement> const& rhs);
+
+template bool operator!=(ArrayInputIterator<DefinitionStatement> const& lhs,
+                         ArrayInputIterator<DefinitionStatement> const& rhs);
+
+// ObjectDeclaration
+template class ArrayInputIterator<ObjectDeclaration>;
+
+template bool operator==(ArrayInputIterator<ObjectDeclaration> const& lhs,
+                         ArrayInputIterator<ObjectDeclaration> const& rhs);
+
+template bool operator!=(ArrayInputIterator<ObjectDeclaration> const& lhs,
+                         ArrayInputIterator<ObjectDeclaration> const& rhs);
+
+// ObjectDeclarationListValue
+template class ArrayInputIterator<ObjectDeclarationListValue>;
+
+template bool operator==(ArrayInputIterator<ObjectDeclarationListValue> const& lhs,
+                         ArrayInputIterator<ObjectDeclarationListValue> const& rhs);
+
+template bool operator!=(ArrayInputIterator<ObjectDeclarationListValue> const& lhs,
+                         ArrayInputIterator<ObjectDeclarationListValue> const& rhs);
+
+// Statement
+template class ArrayInputIterator<Statement>;
+
+template bool operator==(ArrayInputIterator<Statement> const& lhs, ArrayInputIterator<Statement> const& rhs);
+
+template bool operator!=(ArrayInputIterator<Statement> const& lhs, ArrayInputIterator<Statement> const& rhs);
+
+// Value
+template class ArrayInputIterator<Value>;
+
+template bool operator==(ArrayInputIterator<Value> const& lhs, ArrayInputIterator<Value> const& rhs);
+
+template bool operator!=(ArrayInputIterator<Value> const& lhs, ArrayInputIterator<Value> const& rhs);
+
+// VariantDefinition
+template class ArrayInputIterator<VariantDefinition>;
+
+template bool operator==(ArrayInputIterator<VariantDefinition> const& lhs,
+                         ArrayInputIterator<VariantDefinition> const& rhs);
+
+template bool operator!=(ArrayInputIterator<VariantDefinition> const& lhs,
+                         ArrayInputIterator<VariantDefinition> const& rhs);
+
 }  // namespace usdj_am
 }  // namespace cavi
-
-#endif  // CAVI_USDJ_AM_INPUT_ITERATOR_HPP

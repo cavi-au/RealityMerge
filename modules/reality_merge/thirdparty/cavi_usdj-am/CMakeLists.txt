@@ -14,7 +14,15 @@ include(GNUInstallDirs)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+set(AUTOMERGE-C "automerge")
+
+block(SCOPE_FOR VARIABLES)
+    set(BUILD_SHARED_LIBS OFF)
+
+    unset(LIBRARY_NAME CACHE)
+    
+    add_subdirectory("../automerge/rust/automerge-c" "${PROJECT_BINARY_DIR}/automerge-c")
+endblock()
 
 set(DEFAULT_LIBRARY_NAME ${PROJECT_NAME})
 
@@ -44,63 +52,87 @@ add_library(${LIBRARY_NAME})
 
 target_compile_features(${LIBRARY_NAME} PRIVATE cxx_std_17)
 
-set(AUTOMERGE-C_LIB "automerge")
-
-target_link_libraries(${LIBRARY_NAME} PUBLIC ${AUTOMERGE-C_LIB})
-
 target_include_directories(${LIBRARY_NAME}
     PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/${CMAKE_INSTALL_INCLUDEDIR}>"
            "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-add_dependencies(${LIBRARY_NAME} ${AUTOMERGE-C_LIB})
+set_target_properties(${LIBRARY_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS "TRUE")
 
-if(WIN32)
-    find_program(LIB_TOOL "lib" REQUIRED)
+add_dependencies(${LIBRARY_NAME} ${AUTOMERGE-C})
 
-    add_custom_command(
-        TARGET ${LIBRARY_NAME}
-        POST_BUILD
-        COMMAND
-            ${CMAKE_COMMAND} -E echo "Merging its dependent libraries into \"$<TARGET_FILE:${LIBRARY_NAME}>\"..."
-        COMMAND
-            ${LIB_TOOL} /OUT:$<TARGET_FILE_NAME:${LIBRARY_NAME}> $<TARGET_FILE_NAME:${LIBRARY_NAME}> $<TARGET_FILE:${AUTOMERGE-C_LIB}>
-        WORKING_DIRECTORY
-            ${PROJECT_BINARY_DIR}
-        COMMENT
-            "Merging the libraries..."
-        VERBATIM
-    )
+if(BUILD_SHARED_LIBS)
+    target_link_libraries(${LIBRARY_NAME} PUBLIC "$<LINK_LIBRARY:WHOLE_ARCHIVE,${AUTOMERGE-C}>")
+
+    # Enable an external build tool to find the shared library in the root of the
+    # out-of-source build directory when it has overridden an aspect of its name.
+    if(NOT (("${SHARED_LIBRARY_PREFIX}" STREQUAL "${CMAKE_SHARED_LIBRARY_PREFIX}") AND
+            ("${LIBRARY_NAME}" STREQUAL "${DEFAULT_LIBRARY_NAME}") AND
+            ("${SHARED_LIBRARY_SUFFIX}" STREQUAL "${CMAKE_SHARED_LIBRARY_SUFFIX}")))
+        add_custom_command(
+            TARGET ${LIBRARY_NAME}
+            POST_BUILD
+            COMMAND
+                ${CMAKE_COMMAND} -E echo "Copying \"${PROJECT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}\" to \"${PROJECT_BINARY_DIR}/${SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${SHARED_LIBRARY_SUFFIX}\"..."
+            COMMAND
+                ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX} ${PROJECT_BINARY_DIR}/${SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${SHARED_LIBRARY_SUFFIX}
+            WORKING_DIRECTORY
+                ${PROJECT_SOURCE_DIR}
+            COMMENT
+                "Aliasing the library for the external build tool..."
+            VERBATIM
+        )
+    endif()
 else()
-    set(OBJECTS_DIR objects)
+    target_link_libraries(${LIBRARY_NAME} PUBLIC ${AUTOMERGE-C})
 
-    set(AUTOMERGE-C_OBJECTS_DIR ${OBJECTS_DIR}/$<TARGET_NAME:${AUTOMERGE-C_LIB}>)
+    if(WIN32)
+        find_program(LIB_TOOL "lib" REQUIRED)
 
-    add_custom_command(
-        TARGET "${LIBRARY_NAME}"
-        POST_BUILD
-        COMMAND
-            ${CMAKE_COMMAND} -E echo "Merging its dependent libraries into \"$<TARGET_FILE:${LIBRARY_NAME}>\"..."
-        COMMAND
-            ${CMAKE_COMMAND} -E rm -rf ${OBJECTS_DIR}
-        COMMAND
-            ${CMAKE_COMMAND} -E make_directory ${AUTOMERGE-C_OBJECTS_DIR}
-        COMMAND
-            ${CMAKE_COMMAND} -E echo "${CMAKE_AR} -x  --plugin /usr/lib/bfd-plugins/liblto_plugin.so $<TARGET_FILE:${AUTOMERGE-C_LIB}>"
-        COMMAND
-            ${CMAKE_COMMAND} -E chdir ${AUTOMERGE-C_OBJECTS_DIR} ${CMAKE_AR} -x --plugin /usr/lib/bfd-plugins/liblto_plugin.so $<TARGET_FILE:${AUTOMERGE-C_LIB}>
-        COMMAND
-            ${CMAKE_COMMAND} -E echo "${CMAKE_AR} -rs --plugin /usr/lib/bfd-plugins/liblto_plugin.so $<TARGET_FILE_NAME:${LIBRARY_NAME}> ${AUTOMERGE-C_OBJECTS_DIR}/*.o"
-        COMMAND
-            ${CMAKE_AR} -rs --plugin /usr/lib/bfd-plugins/liblto_plugin.so $<TARGET_FILE_NAME:${LIBRARY_NAME}> ${AUTOMERGE-C_OBJECTS_DIR}/*.o
-        WORKING_DIRECTORY
-            ${PROJECT_BINARY_DIR}
-        COMMENT
-            "Merging the libraries' constituent object files..."
-    )
+        add_custom_command(
+            TARGET ${LIBRARY_NAME}
+            POST_BUILD
+            COMMAND
+                ${CMAKE_COMMAND} -E echo "Merging its dependent libraries into \"$<TARGET_FILE:${LIBRARY_NAME}>\"..."
+            COMMAND
+                ${LIB_TOOL} /OUT:$<TARGET_FILE_NAME:${LIBRARY_NAME}> $<TARGET_FILE_NAME:${LIBRARY_NAME}> $<TARGET_FILE:${AUTOMERGE-C}>
+            WORKING_DIRECTORY
+                ${PROJECT_BINARY_DIR}
+            COMMENT
+                "Merging the libraries..."
+            VERBATIM
+        )
+    else()
+        set(OBJECTS_DIR objects)
+
+        set(AUTOMERGE-C_OBJECTS_DIR ${OBJECTS_DIR}/$<TARGET_NAME:${AUTOMERGE-C}>)
+
+        add_custom_command(
+            TARGET "${LIBRARY_NAME}"
+            POST_BUILD
+            COMMAND
+                ${CMAKE_COMMAND} -E echo "Merging its dependent libraries into \"$<TARGET_FILE:${LIBRARY_NAME}>\"..."
+            COMMAND
+                ${CMAKE_COMMAND} -E rm -rf ${OBJECTS_DIR}
+            COMMAND
+                ${CMAKE_COMMAND} -E make_directory ${AUTOMERGE-C_OBJECTS_DIR}
+            COMMAND
+                ${CMAKE_COMMAND} -E echo "${CMAKE_AR} -x  --plugin /usr/lib/bfd-plugins/liblto_plugin.so $<TARGET_FILE:${AUTOMERGE-C}>"
+            COMMAND
+                ${CMAKE_COMMAND} -E chdir ${AUTOMERGE-C_OBJECTS_DIR} ${CMAKE_AR} -x --plugin /usr/lib/bfd-plugins/liblto_plugin.so $<TARGET_FILE:${AUTOMERGE-C}>
+            COMMAND
+                ${CMAKE_COMMAND} -E echo "${CMAKE_AR} -rs --plugin /usr/lib/bfd-plugins/liblto_plugin.so $<TARGET_FILE_NAME:${LIBRARY_NAME}> ${AUTOMERGE-C_OBJECTS_DIR}/*.o"
+            COMMAND
+                ${CMAKE_AR} -rs --plugin /usr/lib/bfd-plugins/liblto_plugin.so $<TARGET_FILE_NAME:${LIBRARY_NAME}> ${AUTOMERGE-C_OBJECTS_DIR}/*.o
+            WORKING_DIRECTORY
+                ${PROJECT_BINARY_DIR}
+            COMMENT
+                "Merging the libraries' constituent object files..."
+        )
+    endif()
 endif()
 
-if(NOT BUILD_SHARED_LIBS OR WIN32)
+if(WIN32 OR NOT BUILD_SHARED_LIBS)
     # Enable an external build tool to find the static/import library in the
     # root of the out-of-source build directory when it has overridden an aspect
     # of its name.
@@ -118,28 +150,6 @@ if(NOT BUILD_SHARED_LIBS OR WIN32)
                 ${PROJECT_SOURCE_DIR}
             COMMENT
                 "Aliasing the static/import library for the external build tool..."
-            VERBATIM
-        )
-    endif()
-endif()
-
-if(BUILD_SHARED_LIBS)
-    # Enable an external build tool to find the shared library in the root of the
-    # out-of-source build directory when it has overridden an aspect of its name.
-    if(NOT (("${SHARED_LIBRARY_PREFIX}" STREQUAL "${CMAKE_SHARED_LIBRARY_PREFIX}") AND
-            ("${LIBRARY_NAME}" STREQUAL "${DEFAULT_LIBRARY_NAME}") AND
-            ("${SHARED_LIBRARY_SUFFIX}" STREQUAL "${CMAKE_SHARED_LIBRARY_SUFFIX}")))
-        add_custom_command(
-            TARGET ${LIBRARY_NAME}
-            POST_BUILD
-            COMMAND
-                ${CMAKE_COMMAND} -E echo "Copying \"${PROJECT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}\" to \"${PROJECT_BINARY_DIR}/${SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${SHARED_LIBRARY_SUFFIX}\"..."
-            COMMAND
-                ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX} ${PROJECT_BINARY_DIR}/${SHARED_LIBRARY_PREFIX}${LIBRARY_NAME}${SHARED_LIBRARY_SUFFIX}
-            WORKING_DIRECTORY
-                ${PROJECT_SOURCE_DIR}
-            COMMENT
-                "Aliasing the library for the external build tool..."
             VERBATIM
         )
     endif()
@@ -169,6 +179,8 @@ configure_file(
 
 target_sources(${LIBRARY_NAME}
     PRIVATE
+        src/array_iterator.cpp
+        src/array_range.cpp
         src/assignment.cpp
         src/assignment_keyword.cpp
         src/class_declaration.cpp
@@ -213,6 +225,8 @@ target_sources(${LIBRARY_NAME}
             BASE_DIRS
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am
             FILES
+                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/array_iterator.hpp
+                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/array_range.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/assignment.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/assignment_keyword.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/class_declaration.hpp
@@ -226,8 +240,6 @@ target_sources(${LIBRARY_NAME}
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/external_reference.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/external_reference_import.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/file.hpp
-                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/input_iterator.hpp
-                ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/input_range.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/node.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/number.hpp
                 ${CMAKE_INSTALL_INCLUDEDIR}/cavi/usdj_am/object_declaration.hpp
@@ -274,13 +286,6 @@ install(EXPORT ${PROJECT_NAME}-config
         NAMESPACE "${PROJECT_NAME}::"
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${LIB}
 )
-
-block(SCOPE_FOR VARIABLES)
-    # Always build automerge-c as a static library.
-    set(BUILD_SHARED_LIBS OFF)
-
-    add_subdirectory("../automerge/rust/automerge-c" "${PROJECT_BINARY_DIR}/automerge-c")
-endblock()
 
 if(BUILD_TESTING)
     add_subdirectory(test EXCLUDE_FROM_ALL)

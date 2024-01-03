@@ -40,8 +40,12 @@ VariantDefinition::VariantDefinition(AMdoc const* const document, AMitem const* 
     check_enum_property("type", StatementType::VARIANT_DEF);
 }
 
-void VariantDefinition::accept(Visitor& visitor) const {
+void VariantDefinition::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void VariantDefinition::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<VariantDefinition>(*this));
 }
 
 VariantDefinition::Definitions VariantDefinition::get_definitions() const {

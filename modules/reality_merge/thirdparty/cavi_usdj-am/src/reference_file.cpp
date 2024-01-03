@@ -40,8 +40,12 @@ ReferenceFile::ReferenceFile(AMdoc const* const document, AMitem const* const ma
     check_enum_property("type", ValueType::EXTERNAL_REFERENCE_SRC);
 }
 
-void ReferenceFile::accept(Visitor& visitor) const {
+void ReferenceFile::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ReferenceFile::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ReferenceFile>(*this));
 }
 
 std::optional<Descriptor> ReferenceFile::get_descriptor() const {

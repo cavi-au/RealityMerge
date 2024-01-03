@@ -75,11 +75,9 @@ public:
     /// \throws std::invalid_argument
     Document(ResultPtr&& result);
 
-    /// \note `std::unique_ptr<T>` isn't copyable.
     Document(Document const&) = delete;
     Document& operator=(Document const&) = delete;
 
-    /// \note `std::unique_ptr<T>` is movable.
     Document(Document&&) = default;
     Document& operator=(Document&&) = default;
 

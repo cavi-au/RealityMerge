@@ -34,12 +34,18 @@
 namespace cavi {
 namespace usdj_am {
 
+Declaration::Declaration() {}
+
 Declaration::Declaration(AMdoc const* const document, AMitem const* const map_object) : Node(document, map_object, 6) {
     check_enum_property("type", StatementType::DECLARATION);
 }
 
-void Declaration::accept(Visitor& visitor) const {
+void Declaration::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void Declaration::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<Declaration>(*this));
 }
 
 Typename Declaration::get_define_type() const {

@@ -27,10 +27,12 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#include <functional>
 #include <sstream>
 #include <stdexcept>
 #include <type_traits>
 #include <typeinfo>
+#include <utility>
 
 // third-party
 extern "C" {
@@ -39,11 +41,8 @@ extern "C" {
 }
 
 // local
-#include "class_definition.hpp"
-#include "definition.hpp"
 #include "statement.hpp"
 #include "statement_type.hpp"
-#include "variant_set.hpp"
 #include "visitor.hpp"
 
 namespace cavi {
@@ -58,16 +57,15 @@ Statement::Statement(AMdoc const* const document, AMitem const* const map_object
         try {
             switch (static_cast<StatementType>(index)) {
                 case StatementType::CLASS_DEFINITION: {
-                    this->emplace<std::unique_ptr<ClassDefinition> >(
-                        std::make_unique<ClassDefinition>(document, map_object));
+                    this->emplace<ClassDefinition>(document, map_object);
                     break;
                 }
                 case StatementType::DEFINITION: {
-                    this->emplace<std::unique_ptr<Definition> >(std::make_unique<Definition>(document, map_object));
+                    this->emplace<Definition>(document, map_object);
                     break;
                 }
                 case StatementType::VARIANT_SET: {
-                    this->emplace<std::unique_ptr<VariantSet> >(std::make_unique<VariantSet>(document, map_object));
+                    this->emplace<VariantSet>(document, map_object);
                     break;
                 }
                 default:
@@ -91,8 +89,12 @@ Statement::Statement(AMdoc const* const document, AMitem const* const map_object
 
 Statement::~Statement() {}
 
-void Statement::accept(Visitor& visitor) const {
+void Statement::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void Statement::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<Statement>(*this));
 }
 
 }  // namespace usdj_am

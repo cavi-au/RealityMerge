@@ -68,89 +68,89 @@ public:
 
     virtual ~Visitor() = 0;
 
-    virtual void visit(Assignment&);
-
     virtual void visit(Assignment const&);
 
-    virtual void visit(ClassDeclaration&);
+    virtual void visit(Assignment&&);
 
     virtual void visit(ClassDeclaration const&);
 
-    virtual void visit(ClassDefinition&);
+    virtual void visit(ClassDeclaration&&);
 
     virtual void visit(ClassDefinition const&);
 
-    virtual void visit(Declaration&);
+    virtual void visit(ClassDefinition&&);
 
     virtual void visit(Declaration const&);
 
-    virtual void visit(Definition&);
+    virtual void visit(Declaration&&);
 
     virtual void visit(Definition const&);
 
-    virtual void visit(DefinitionStatement&);
+    virtual void visit(Definition&&);
 
     virtual void visit(DefinitionStatement const&);
 
-    virtual void visit(Descriptor&);
+    virtual void visit(DefinitionStatement&&);
 
     virtual void visit(Descriptor const&);
 
-    virtual void visit(ExternalReference&);
+    virtual void visit(Descriptor&&);
 
     virtual void visit(ExternalReference const&);
 
-    virtual void visit(ExternalReferenceImport&);
+    virtual void visit(ExternalReference&&);
 
     virtual void visit(ExternalReferenceImport const&);
 
-    virtual void visit(File&);
+    virtual void visit(ExternalReferenceImport&&);
 
     virtual void visit(File const&);
 
-    virtual void visit(ObjectDeclaration&);
+    virtual void visit(File&&);
 
     virtual void visit(ObjectDeclaration const&);
 
-    virtual void visit(ObjectDeclarationEntries&);
+    virtual void visit(ObjectDeclaration&&);
 
     virtual void visit(ObjectDeclarationEntries const&);
 
-    virtual void visit(ObjectDeclarationList&);
+    virtual void visit(ObjectDeclarationEntries&&);
 
     virtual void visit(ObjectDeclarationList const&);
 
-    virtual void visit(ObjectDeclarationListValue&);
+    virtual void visit(ObjectDeclarationList&&);
 
     virtual void visit(ObjectDeclarationListValue const&);
 
-    virtual void visit(ObjectDeclarations&);
+    virtual void visit(ObjectDeclarationListValue&&);
 
     virtual void visit(ObjectDeclarations const&);
 
-    virtual void visit(ObjectValue&);
+    virtual void visit(ObjectDeclarations&&);
 
     virtual void visit(ObjectValue const&);
 
-    virtual void visit(ReferenceFile&);
+    virtual void visit(ObjectValue&&);
 
     virtual void visit(ReferenceFile const&);
 
-    virtual void visit(Statement&);
+    virtual void visit(ReferenceFile&&);
 
     virtual void visit(Statement const&);
 
-    virtual void visit(Value&);
+    virtual void visit(Statement&&);
 
     virtual void visit(Value const&);
 
-    virtual void visit(VariantDefinition&);
+    virtual void visit(Value&&);
 
     virtual void visit(VariantDefinition const&);
 
-    virtual void visit(VariantSet&);
+    virtual void visit(VariantDefinition&&);
 
     virtual void visit(VariantSet const&);
+
+    virtual void visit(VariantSet&&);
 
 protected:
     Visitor() = default;

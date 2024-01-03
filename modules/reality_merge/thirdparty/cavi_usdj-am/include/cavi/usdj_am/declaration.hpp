@@ -40,9 +40,6 @@
 #include "string_.hpp"
 #include "value.hpp"
 
-namespace cavi {
-namespace usdj_am {
-
 // export interface USDA_Declaration<T extends USDA_ValueTypes> {
 //     type: USDA_StatementType.Declaration;
 //     keyword: USDA_DeclarationKeyword | null;
@@ -55,13 +52,14 @@ namespace usdj_am {
 //     descriptor: USDA_Descriptor;
 // }
 
+namespace cavi {
+namespace usdj_am {
+
 /// \brief Represents a "USDA_Declaration" node in a syntax tree that was parsed
 ///        out of a USDA document, encoded as JSON and stored within an
 ///        Automerge document.
 class Declaration : public Node {
 public:
-    Declaration() = delete;
-
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
     /// \pre \p document `!= nullptr`
@@ -80,10 +78,15 @@ public:
 
     Declaration& operator=(Declaration&&) = default;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.defineType` property.
     ///
@@ -112,6 +115,9 @@ public:
     ///
     /// \throws std::invalid_argument
     Value get_value() const;
+
+private:
+    Declaration();
 };
 
 constexpr StatementType Declaration::get_type() const {

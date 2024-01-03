@@ -38,8 +38,12 @@ ObjectValue::ObjectValue(AMdoc const* const document, AMitem const* const map_ob
     check_enum_property("type", ValueType::OBJECT_VALUE);
 }
 
-void ObjectValue::accept(Visitor& visitor) const {
+void ObjectValue::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ObjectValue::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ObjectValue>(*this));
 }
 
 ObjectDeclarations ObjectValue::get_declarations() const {

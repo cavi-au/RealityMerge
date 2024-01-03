@@ -40,8 +40,12 @@ ExternalReference::ExternalReference(AMdoc const* const document, AMitem const* 
     check_enum_property("type", ValueType::EXTERNAL_REFERENCE);
 }
 
-void ExternalReference::accept(Visitor& visitor) const {
+void ExternalReference::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ExternalReference::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ExternalReference>(*this));
 }
 
 ReferenceFile ExternalReference::get_reference_file() const {

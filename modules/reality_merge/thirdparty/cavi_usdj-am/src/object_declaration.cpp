@@ -37,8 +37,12 @@ namespace usdj_am {
 ObjectDeclaration::ObjectDeclaration(AMdoc const* const document, AMitem const* const map_object)
     : Node(document, map_object, 4) {}
 
-void ObjectDeclaration::accept(Visitor& visitor) const {
+void ObjectDeclaration::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ObjectDeclaration::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ObjectDeclaration>(*this));
 }
 
 TypeReference ObjectDeclaration::get_define_type() const {

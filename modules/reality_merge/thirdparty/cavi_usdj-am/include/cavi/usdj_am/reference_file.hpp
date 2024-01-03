@@ -33,12 +33,10 @@
 #include <optional>
 
 // local
+#include "descriptor.hpp"
 #include "node.hpp"
 #include "string_.hpp"
 #include "value_type.hpp"
-
-namespace cavi {
-namespace usdj_am {
 
 // export interface USDA_ReferenceFile {
 //     type: USDA_ValueType.ExternalReferenceSrc;
@@ -46,7 +44,10 @@ namespace usdj_am {
 //     descriptor: USDA_Descriptor | null;
 // }
 
-class Descriptor;
+namespace cavi {
+namespace usdj_am {
+
+class Visitor;
 
 /// \brief Represents a "USDA_ReferenceFile" node in a syntax tree that was
 ///        parsed out of a USDA document, encoded as JSON and stored within an
@@ -68,10 +69,15 @@ public:
 
     ReferenceFile& operator=(ReferenceFile const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.descriptor` property.
     ///

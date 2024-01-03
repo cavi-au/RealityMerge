@@ -16,6 +16,7 @@
 #endif
 
 // regional
+#include <cavi/usdj_am/assignment.hpp>
 #include <cavi/usdj_am/descriptor.hpp>
 #include <cavi/usdj_am/file.hpp>
 #include <cavi/usdj_am/utils/document.hpp>

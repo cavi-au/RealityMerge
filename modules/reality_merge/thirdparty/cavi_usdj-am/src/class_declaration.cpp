@@ -40,8 +40,6 @@ extern "C" {
 
 // local
 #include "class_declaration.hpp"
-#include "declaration.hpp"
-#include "definition.hpp"
 #include "statement_type.hpp"
 #include "visitor.hpp"
 
@@ -57,11 +55,11 @@ ClassDeclaration::ClassDeclaration(AMdoc const* const document, AMitem const* co
         try {
             switch (static_cast<StatementType>(index)) {
                 case StatementType::DECLARATION: {
-                    this->emplace<std::unique_ptr<Declaration> >(std::make_unique<Declaration>(document, map_object));
+                    this->emplace<Declaration>(document, map_object);
                     break;
                 }
                 case StatementType::DEFINITION: {
-                    this->emplace<std::unique_ptr<Definition> >(std::make_unique<Definition>(document, map_object));
+                    this->emplace<Definition>(document, map_object);
                     break;
                 }
                 default:
@@ -85,8 +83,12 @@ ClassDeclaration::ClassDeclaration(AMdoc const* const document, AMitem const* co
 
 ClassDeclaration::~ClassDeclaration() {}
 
-void ClassDeclaration::accept(Visitor& visitor) const {
+void ClassDeclaration::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ClassDeclaration::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ClassDeclaration>(*this));
 }
 
 }  // namespace usdj_am

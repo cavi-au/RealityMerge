@@ -33,16 +33,11 @@
 #include <optional>
 
 // local
-#include "definition.hpp"
-#include "input_range.hpp"
+#include "array_range.hpp"
+#include "descriptor.hpp"
 #include "node.hpp"
 #include "statement_type.hpp"
 #include "string_.hpp"
-
-namespace cavi {
-namespace usdj_am {
-
-class Descriptor;
 
 // export interface USDA_VariantDefinition {
 //     type: USDA_StatementType.VariantDef;
@@ -55,14 +50,20 @@ class Descriptor;
 //     descriptor: USDA_Descriptor | null;
 // }
 
+namespace cavi {
+namespace usdj_am {
+
+template <typename T>
+class ArrayInputIterator;
+
+class Definition;
+
 /// \brief Represents a "USDA_VariantDefinition" node in a syntax tree that was
 ///        parsed out of a USDA document, encoded as JSON and stored within an
 ///        Automerge document.
 class VariantDefinition : public Node {
 public:
-    using Definitions = ConstInputRange<Definition>;
-
-    VariantDefinition() = delete;
+    using Definitions = ArrayInputRange<Definition>;
 
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
@@ -78,10 +79,15 @@ public:
 
     VariantDefinition& operator=(VariantDefinition const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.definitions` property.
     ///
@@ -100,6 +106,11 @@ public:
 
     /// \brief Gets the `.type` property.
     constexpr StatementType get_type() const;
+
+private:
+    VariantDefinition() = default;
+
+    friend class ArrayInputIterator<VariantDefinition>;
 };
 
 constexpr StatementType VariantDefinition::get_type() const {

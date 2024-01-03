@@ -39,8 +39,12 @@ ObjectDeclarationEntries::ObjectDeclarationEntries(AMdoc const* const document, 
     check_string_property("type", "objectDeclarationEntries");
 }
 
-void ObjectDeclarationEntries::accept(Visitor& visitor) const {
+void ObjectDeclarationEntries::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ObjectDeclarationEntries::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ObjectDeclarationEntries>(*this));
 }
 
 String ObjectDeclarationEntries::get_type() const {

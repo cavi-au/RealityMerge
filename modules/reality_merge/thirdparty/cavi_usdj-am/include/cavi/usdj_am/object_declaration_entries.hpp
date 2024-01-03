@@ -31,13 +31,14 @@
 #define CAVI_USDJ_AM_OBJECT_DECLARATION_ENTRIES_HPP
 
 // local
-#include "input_range.hpp"
+#include "array_range.hpp"
 #include "node.hpp"
-#include "object_declaration.hpp"
 #include "string_.hpp"
 
 namespace cavi {
 namespace usdj_am {
+
+class ObjectDeclaration;
 
 // export type USDA_ObjectDeclarationEntries<T extends USDA_ValueTypes> = {
 //     type: 'objectDeclarationEntries',
@@ -49,7 +50,7 @@ namespace usdj_am {
 ///        within an Automerge document.
 class ObjectDeclarationEntries : public Node {
 public:
-    using Values = ConstInputRange<ObjectDeclaration>;
+    using Values = ArrayInputRange<ObjectDeclaration>;
 
     ObjectDeclarationEntries() = delete;
 
@@ -71,10 +72,15 @@ public:
 
     ObjectDeclarationEntries& operator=(ObjectDeclarationEntries&&) = default;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.type` property.
     ///

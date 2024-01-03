@@ -37,14 +37,16 @@
 #include "string_.hpp"
 #include "value_type.hpp"
 
-namespace cavi {
-namespace usdj_am {
-
 // export interface USDA_ExternalReferenceImport {
 //     type: USDA_ValueType.ExternalReferenceImport;
 //     importPath: string;
 //     field: string | null;
 // }
+
+namespace cavi {
+namespace usdj_am {
+
+class Visitor;
 
 /// \brief Represents a "USDA_ExternalReferenceImport" node in a syntax tree
 ///        that was parsed out of a USDA document, encoded as JSON and stored
@@ -68,10 +70,15 @@ public:
 
     ExternalReferenceImport& operator=(ExternalReferenceImport const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.field` property.
     std::optional<String> get_field() const;

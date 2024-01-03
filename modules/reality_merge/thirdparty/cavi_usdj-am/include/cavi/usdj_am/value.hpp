@@ -30,16 +30,15 @@
 #ifndef CAVI_USDJ_AM_VALUE_HPP
 #define CAVI_USDJ_AM_VALUE_HPP
 
-#include <memory>
 #include <variant>
 
 // local
-#include "input_range.hpp"
+#include "array_range.hpp"
+#include "external_reference.hpp"
+#include "external_reference_import.hpp"
 #include "number.hpp"
+#include "object_value.hpp"
 #include "string_.hpp"
-
-struct AMdoc;
-struct AMitem;
 
 // export type USDA_ValueTypes =
 //     | string
@@ -56,32 +55,42 @@ struct AMitem;
 // export type USDA_Array<T extends USDA_ValueTypes>
 //     = T[]
 
+struct AMdoc;
+struct AMitem;
+
 namespace cavi {
 namespace usdj_am {
 
-class ExternalReference;
-class ExternalReferenceImport;
-class ObjectValue;
 struct Value;
 class Visitor;
 
-using ConstValues = ConstInputRange<Value>;
+using ValueRange = ArrayInputRange<Value>;
 
 /// \brief A struct representing a "USDA_ValueTypes" node in a syntax tree that
 ///        was parsed out of a USDA document, encoded as JSON and stored within
 ///        an Automerge document.
-struct Value : public std::variant<std::monostate,           // undefined
-                                   std::unique_ptr<String>,  // string
-                                   bool,                     // boolean
-                                   Number,                   // number
+struct Value : public std::variant<std::monostate,  // undefined
+                                   String,          // string
+                                   bool,            // boolean
+                                   Number,          // number
                                    // USDA_Array<any>
-                                   std::unique_ptr<ConstValues>,              // Readonly<USDA_Array<any>>
-                                   std::unique_ptr<ExternalReferenceImport>,  // USDA_ExternalReferenceImport
-                                   std::unique_ptr<ExternalReference>,        // USDA_ExternalReference
-                                   std::unique_ptr<ObjectValue>,              // USDA_ObjectValue<any>
-                                   std::nullptr_t                             // null
+                                   ValueRange,               // Readonly<USDA_Array<any>>
+                                   ExternalReferenceImport,  // USDA_ExternalReferenceImport
+                                   ExternalReference,        // USDA_ExternalReference
+                                   ObjectValue,              // USDA_ObjectValue<any>
+                                   std::nullptr_t            // null
                                    > {
-    Value() = delete;
+    using std::variant<std::monostate,
+                       String,
+                       bool,
+                       Number,
+                       /* USDA_Array<any>, */ ValueRange,
+                       ExternalReferenceImport,
+                       ExternalReference,
+                       ObjectValue,
+                       std::nullptr_t>::variant;
+
+    Value() = default;
 
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param item[in] A pointer to a borrowed Automerge item.
@@ -92,21 +101,24 @@ struct Value : public std::variant<std::monostate,           // undefined
     /// \throws std::invalid_argument
     Value(AMdoc const* const document, AMitem const* const item);
 
-    /// \note `std::unique_ptr<T>` isn't copyable.
     Value(Value const&) = delete;
     Value& operator=(Value const&) = delete;
 
-    /// \note `std::unique_ptr<T>` is movable.
     Value(Value&&) = default;
     Value& operator=(Value&&) = default;
 
     /// \note An inlined destructor can't delete incomplete types.
     ~Value();
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const&;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) &&;
 };
 
 }  // namespace usdj_am

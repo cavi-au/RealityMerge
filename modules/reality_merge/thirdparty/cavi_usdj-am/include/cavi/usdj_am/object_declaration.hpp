@@ -38,14 +38,9 @@
 #include "string_.hpp"
 #include "value.hpp"
 
-namespace cavi {
-namespace usdj_am {
-
 // export type USDA_Reference = string;
-using Reference = String;
 
 // export type USDA_TypeReference = string;
-using TypeReference = String;
 
 // export type USDA_ObjectDeclaration<T extends USDA_ValueTypes> = {
 //     keyword: USDA_DeclarationKeyword | null;
@@ -54,13 +49,21 @@ using TypeReference = String;
 //     value: T;
 // };
 
+namespace cavi {
+namespace usdj_am {
+
+template <typename T>
+class ArrayInputIterator;
+
+using Reference = String;
+
+using TypeReference = String;
+
 /// \brief Represents a "USDA_ObjectDeclaration" node in a syntax tree that was
 ///        parsed out of a USDA document, encoded as JSON and stored within
 ///        an Automerge document.
 class ObjectDeclaration : public Node {
 public:
-    ObjectDeclaration() = delete;
-
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
     /// \pre \p document `!= nullptr`
@@ -79,10 +82,15 @@ public:
 
     ObjectDeclaration& operator=(ObjectDeclaration&&) = default;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.defineType` property.
     ///
@@ -103,6 +111,11 @@ public:
     ///
     /// \throws std::invalid_argument
     Value get_value() const;
+
+private:
+    ObjectDeclaration() = default;
+
+    friend class ArrayInputIterator<ObjectDeclaration>;
 };
 
 }  // namespace usdj_am

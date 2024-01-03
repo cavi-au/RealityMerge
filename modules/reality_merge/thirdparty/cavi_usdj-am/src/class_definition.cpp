@@ -29,6 +29,7 @@
 
 // local
 #include "class_definition.hpp"
+#include "class_declaration.hpp"
 #include "descriptor.hpp"
 #include "visitor.hpp"
 
@@ -40,8 +41,12 @@ ClassDefinition::ClassDefinition(AMdoc const* const document, AMitem const* cons
     check_enum_property("type", StatementType::CLASS_DEFINITION);
 }
 
-void ClassDefinition::accept(Visitor& visitor) const {
+void ClassDefinition::accept(Visitor& visitor) const& {
     visitor.visit(*this);
+}
+
+void ClassDefinition::accept(Visitor& visitor) && {
+    visitor.visit(std::forward<ClassDefinition>(*this));
 }
 
 ClassDefinition::ClassDeclarations ClassDefinition::get_class_declarations() const {

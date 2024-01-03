@@ -35,9 +35,6 @@
 #include "number.hpp"
 #include "value.hpp"
 
-namespace cavi {
-namespace usdj_am {
-
 // export type USDA_ObjectDeclarationList<T extends USDA_ValueTypes> = {
 //     type: 'objectDeclarationList',
 //     values: {
@@ -46,13 +43,17 @@ namespace usdj_am {
 //     }[],
 // };
 
+namespace cavi {
+namespace usdj_am {
+
+template <typename T>
+class ArrayInputIterator;
+
 /// \brief Represents an item within a "USDA_ObjectDeclarationList.values"
 ///        property in a syntax tree that was parsed out of a USDA document,
 ///        encoded as JSON and stored within an Automerge document.
 class ObjectDeclarationListValue : public Node {
 public:
-    ObjectDeclarationListValue() = delete;
-
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
     /// \pre \p document `!= nullptr`
@@ -71,10 +72,15 @@ public:
 
     ObjectDeclarationListValue& operator=(ObjectDeclarationListValue&&) = default;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.index` property.
     ///
@@ -85,6 +91,11 @@ public:
     ///
     /// \throws std::invalid_argument
     Value get_value() const;
+
+private:
+    ObjectDeclarationListValue() = default;
+
+    friend class ArrayInputIterator<ObjectDeclarationListValue>;
 };
 
 }  // namespace usdj_am

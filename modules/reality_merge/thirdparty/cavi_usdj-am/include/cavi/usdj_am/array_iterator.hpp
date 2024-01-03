@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* definition_statement.cpp                                               */
+/* array_iterator.hpp                                                     */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,10 +27,13 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include <cstddef>
-#include <sstream>
-#include <stdexcept>
-#include <typeinfo>
+#ifndef CAVI_USDJ_AM_ARRAY_ITERATOR_HPP
+#define CAVI_USDJ_AM_ARRAY_ITERATOR_HPP
+
+#include <array>
+#include <iterator>
+#include <memory>
+#include <optional>
 
 // third-party
 extern "C" {
@@ -38,54 +41,67 @@ extern "C" {
 #include <automerge-c/automerge.h>
 }
 
-// local
-#include "definition_statement.hpp"
-#include "visitor.hpp"
-
 namespace cavi {
 namespace usdj_am {
 
-DefinitionStatement::DefinitionStatement(AMdoc const* const document, AMitem const* const map_object) {
-    enum { BEGIN__, STATEMENT = BEGIN__, DECLARATION, END__, SIZE__ = END__ - BEGIN__ };
+template <typename T>
+class ArrayInputIterator;
 
-    std::ostringstream args;
-    for (std::size_t index = BEGIN__; index != END__; ++index) {
-        try {
-            switch (index) {
-                case DECLARATION: {
-                    this->emplace<Declaration>(document, map_object);
-                    break;
-                }
-                case STATEMENT: {
-                    this->emplace<Statement>(document, map_object);
-                    break;
-                }
-            }
-            args.str("");
-            break;
-        } catch (std::invalid_argument const& thrown) {
-            if (!args.str().empty()) {
-                args << " | ";
-            }
-            args << thrown.what();
-        }
-    }
-    if (!args.str().empty()) {
-        std::ostringstream what;
-        what << typeid(*this).name() << "::" << __func__ << "(" << args.str() << ")";
-        throw std::invalid_argument(what.str());
-    }
-}
+template <typename T>
+bool operator==(ArrayInputIterator<T> const& lhs, ArrayInputIterator<T> const& rhs);
 
-DefinitionStatement::~DefinitionStatement() {}
+template <typename T>
+bool operator!=(ArrayInputIterator<T> const& lhs, ArrayInputIterator<T> const& rhs);
 
-void DefinitionStatement::accept(Visitor& visitor) const& {
-    visitor.visit(*this);
-}
+/// \brief Represents an array value in a syntax tree that was parsed out of a
+///        USDA document, encoded as JSON and stored within an Automerge
+///        document.
+///
+/// \tparam T The type of an element in the array.
+template <typename T>
+class ArrayInputIterator {
+public:
+    using iterator_category = std::input_iterator_tag;
+    using value_type = T;
+    using pointer = T*;
+    using reference = T&;
 
-void DefinitionStatement::accept(Visitor& visitor) && {
-    visitor.visit(std::forward<DefinitionStatement>(*this));
-}
+    using ResultPtr = std::shared_ptr<AMresult>;
+
+    ArrayInputIterator();
+
+    /// \param document[in] A pointer to a borrowed Automerge document.
+    /// \param list_object[in] A pointer to a borrowed Automerge list object.
+    /// \pre \p document `!= nullptr`
+    /// \pre \p list_object `!= nullptr`
+    /// \pre `AMitemValType(` \p list_object `) == AM_VAL_TYPE_OBJ_TYPE`
+    /// \pre `AMobjObjType(` \p document `, AMitemObjId(` \p list_object `)) == AM_OBJ_TYPE_LIST`
+    /// \throws std::invalid_argument
+    ArrayInputIterator(AMdoc const* const document, AMitem const* const list_object);
+
+    ArrayInputIterator(ArrayInputIterator const&) = default;
+
+    ~ArrayInputIterator();
+
+    ArrayInputIterator& operator=(ArrayInputIterator const&) = delete;
+
+    ArrayInputIterator& operator++();
+
+    ArrayInputIterator operator++(int);
+
+    T operator*();
+
+private:
+    enum Result { BEGIN__, ITEMS = BEGIN__, OBJ_ID, END__, SIZE__ = END__ - BEGIN__ };
+
+    AMdoc const* const m_document;
+    std::optional<AMitems> m_items;
+    std::array<ResultPtr, SIZE__> m_results;
+
+    friend bool operator==<T>(ArrayInputIterator<T> const& lhs, ArrayInputIterator<T> const& rhs);
+};
 
 }  // namespace usdj_am
 }  // namespace cavi
+
+#endif  // CAVI_USDJ_AM_ARRAY_ITERATOR_HPP

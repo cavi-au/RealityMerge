@@ -30,14 +30,11 @@
 #ifndef CAVI_USDJ_AM_OBJECT_DECLARATIONS_HPP
 #define CAVI_USDJ_AM_OBJECT_DECLARATIONS_HPP
 
-#include <memory>
 #include <variant>
 
-struct AMdoc;
-struct AMitem;
-
-namespace cavi {
-namespace usdj_am {
+// local
+#include "object_declaration_entries.hpp"
+#include "object_declaration_list.hpp"
 
 // type PotentialObjectDeclarationList<T extends USDA_ValueTypes, TArrayItem extends USDA_ValueTypes | any> =
 //     TArrayItem extends USDA_ValueTypes ?
@@ -52,16 +49,19 @@ namespace usdj_am {
 //         PotentialObjectDeclarationList<T, TArrayItem> :
 //         SimpleObjectDeclarations<T>
 
-class ObjectDeclarationEntries;
-class ObjectDeclarationList;
+struct AMdoc;
+struct AMitem;
+
+namespace cavi {
+namespace usdj_am {
+
 class Visitor;
 
 /// \brief A struct representing a "USDA_ObjectDeclarations" node in a syntax
 ///        tree that was parsed out of a USDA document, encoded as JSON and
 ///        stored within an Automerge document.
-struct ObjectDeclarations
-    : public std::variant<std::unique_ptr<ObjectDeclarationList>, std::unique_ptr<ObjectDeclarationEntries>> {
-    ObjectDeclarations() = delete;
+struct ObjectDeclarations : public std::variant<std::monostate, ObjectDeclarationList, ObjectDeclarationEntries> {
+    using std::variant<std::monostate, ObjectDeclarationList, ObjectDeclarationEntries>::variant;
 
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
@@ -72,21 +72,27 @@ struct ObjectDeclarations
     /// \throws std::invalid_argument
     ObjectDeclarations(AMdoc const* const document, AMitem const* const map_object);
 
-    /// \note `std::unique_ptr<T>` isn't copyable.
     ObjectDeclarations(ObjectDeclarations const&) = delete;
     ObjectDeclarations& operator=(ObjectDeclarations const&) = delete;
 
-    /// \note `std::unique_ptr<T>` is movable.
     ObjectDeclarations(ObjectDeclarations&&) = default;
     ObjectDeclarations& operator=(ObjectDeclarations&&) = default;
 
     /// \note An inlined destructor can't delete incomplete types.
     ~ObjectDeclarations();
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const&;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) &&;
+
+private:
+    ObjectDeclarations() = default;
 };
 
 }  // namespace usdj_am

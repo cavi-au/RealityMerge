@@ -59,18 +59,21 @@ struct Number : public std::variant<double,        // AM_VAL_TYPE_F64
     /// \throws std::invalid_argument
     Number(AMdoc const* const document, AMitem const* const item);
 
-    /// \note The variant types with `std::unique_ptr<T>` alternatives aren't copyable.
     Number(Number const&) = delete;
     Number& operator=(Number const&) = delete;
 
-    /// \note The variant types with `std::unique_ptr<T>` alternatives are movable.
     Number(Number&&) = default;
     Number& operator=(Number&&) = default;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const&;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) &&;
 };
 
 std::ostream& operator<<(std::ostream& os, Number const& in);

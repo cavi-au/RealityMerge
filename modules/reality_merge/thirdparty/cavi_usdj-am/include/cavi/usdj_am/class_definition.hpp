@@ -33,16 +33,11 @@
 #include <optional>
 
 // local
-#include "class_declaration.hpp"
-#include "declaration.hpp"
-#include "definition.hpp"
-#include "input_range.hpp"
+#include "array_range.hpp"
+#include "descriptor.hpp"
 #include "node.hpp"
 #include "statement_type.hpp"
 #include "string_.hpp"
-
-namespace cavi {
-namespace usdj_am {
 
 // export interface USDA_ClassDefinition {
 //     type: USDA_StatementType.ClassDefinition;
@@ -52,16 +47,18 @@ namespace usdj_am {
 //     classDeclarations: USDA_ClassDeclaration[];
 // }
 
-class Descriptor;
+namespace cavi {
+namespace usdj_am {
+
+struct ClassDeclaration;
+struct Statement;
 
 /// \brief Represents a "USDA_ClassDefinition" node in a syntax tree that was
 ///        parsed out of a USDA document, encoded as JSON and stored within an
 ///        Automerge document.
 class ClassDefinition : public Node {
 public:
-    using ClassDeclarations = ConstInputRange<ClassDeclaration>;
-
-    ClassDefinition() = delete;
+    using ClassDeclarations = ArrayInputRange<ClassDeclaration>;
 
     /// \param document[in] A pointer to a borrowed Automerge document.
     /// \param map_object[in] A pointer to a borrowed Automerge map object.
@@ -81,10 +78,15 @@ public:
 
     ClassDefinition& operator=(ClassDefinition&&) = default;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     /// \brief Gets the `.classDeclarations` property.
     ///
@@ -108,6 +110,9 @@ public:
 
     /// \brief Gets the `.type` property.
     constexpr StatementType get_type() const;
+
+private:
+    ClassDefinition() = default;
 };
 
 constexpr StatementType ClassDefinition::get_type() const {

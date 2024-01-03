@@ -29,17 +29,37 @@
 
 #include <iomanip>
 #include <iostream>
+#include <string_view>
 #include <type_traits>
 
 // local
+#include "assignment.hpp"
+#include "class_declaration.hpp"
+#include "class_definition.hpp"
+#include "declaration.hpp"
+#include "definition.hpp"
+#include "definition_statement.hpp"
+#include "descriptor.hpp"
+#include "external_reference.hpp"
+#include "external_reference_import.hpp"
+#include "file.hpp"
+#include "object_declaration.hpp"
+#include "object_declaration_entries.hpp"
+#include "object_declaration_list.hpp"
+#include "object_declaration_list_value.hpp"
+#include "object_value.hpp"
+#include "reference_file.hpp"
+#include "statement.hpp"
 #include "utils/json_writer.hpp"
+#include "variant_definition.hpp"
+#include "variant_set.hpp"
 
 namespace cavi {
 namespace usdj_am {
 namespace utils {
 
 JsonWriter::JsonWriter(JsonWriter::Indenter&& indenter, std::size_t const precision)
-    : m_indenter{indenter}, m_precision{precision} {}
+    : m_indenter{std::move(indenter)}, m_precision{precision} {}
 
 JsonWriter::operator std::string() const {
     return m_os.str();
@@ -59,14 +79,21 @@ void JsonWriter::visit(Assignment const& assignment) {
     m_os << ",\n";
     m_os << m_indenter << "\"identifier\": \"" << assignment.get_identifier() << "\",\n";
     m_os << m_indenter << "\"value\": ";
-    assignment.get_value().accept(*this);
+    auto const value = assignment.get_value();
+    value.accept(*this);
     m_os << "\n";
     --m_indenter;
     m_os << m_indenter << "}";
 }
 
 void JsonWriter::visit(ClassDeclaration const& class_declaration) {
-    std::visit([this](auto const& alt) { alt->accept(*this); }, class_declaration);
+    std::visit(
+        [this](auto const& alt) {
+            using T = std::decay_t<decltype(alt)>;
+            if constexpr (!std::is_same_v<T, std::monostate>)
+                alt.accept(*this);
+        },
+        class_declaration);
 }
 
 void JsonWriter::visit(Declaration const& declaration) {
@@ -84,7 +111,8 @@ void JsonWriter::visit(Declaration const& declaration) {
     m_os << m_indenter << "\"defineType\": \"" << declaration.get_define_type() << "\",\n";
     m_os << m_indenter << "\"reference\": \"" << declaration.get_reference() << "\",\n";
     m_os << m_indenter << "\"value\": ";
-    declaration.get_value().accept(*this);
+    auto const value = declaration.get_value();
+    value.accept(*this);
     m_os << ",\n";
     m_os << m_indenter << "\"descriptor\": ";
     auto descriptor = declaration.get_descriptor();
@@ -128,7 +156,13 @@ void JsonWriter::visit(Definition const& definition) {
 }
 
 void JsonWriter::visit(DefinitionStatement const& definition_statement) {
-    std::visit([this](auto const& alt) { alt->accept(*this); }, definition_statement);
+    std::visit(
+        [this](auto const& alt) {
+            using T = std::decay_t<decltype(alt)>;
+            if constexpr (!std::is_same_v<T, std::monostate>)
+                alt.accept(*this);
+        },
+        definition_statement);
 }
 
 void JsonWriter::visit(Descriptor const& descriptor) {
@@ -154,7 +188,8 @@ void JsonWriter::visit(ExternalReference const& external_reference) {
     ++m_indenter;
     m_os << m_indenter << "\"type\": \"" << external_reference.get_type() << "\",\n";
     m_os << m_indenter << "\"referenceFile\": ";
-    external_reference.get_reference_file().accept(*this);
+    auto const reference_file = external_reference.get_reference_file();
+    reference_file.accept(*this);
     m_os << ",\n";
     m_os << m_indenter << "\"toImport\": ";
     auto to_import = external_reference.get_to_import();
@@ -221,7 +256,8 @@ void JsonWriter::visit(ObjectDeclaration const& object_declaration) {
     m_os << m_indenter << "\"defineType\": \"" << object_declaration.get_define_type() << "\",\n";
     m_os << m_indenter << "\"reference\": \"" << object_declaration.get_reference() << "\",\n";
     m_os << m_indenter << "\"value\": ";
-    object_declaration.get_value().accept(*this);
+    auto const value = object_declaration.get_value();
+    value.accept(*this);
     m_os << "\n";
     --m_indenter;
     m_os << m_indenter << "}";
@@ -239,7 +275,13 @@ void JsonWriter::visit(ObjectDeclarationEntries const& object_declaration_entrie
 }
 
 void JsonWriter::visit(ObjectDeclarations const& object_declarations) {
-    std::visit([this](auto const& alt) { alt->accept(*this); }, object_declarations);
+    std::visit(
+        [this](auto const& alt) {
+            using T = std::decay_t<decltype(alt)>;
+            if constexpr (!std::is_same_v<T, std::monostate>)
+                alt.accept(*this);
+        },
+        object_declarations);
 }
 
 void JsonWriter::visit(ObjectValue const& object_value) {
@@ -247,7 +289,8 @@ void JsonWriter::visit(ObjectValue const& object_value) {
     ++m_indenter;
     m_os << m_indenter << "\"type\": \"" << object_value.get_type() << "\",\n";
     m_os << m_indenter << "\"declarations\": ";
-    object_value.get_declarations().accept(*this);
+    auto const declarations = object_value.get_declarations();
+    declarations.accept(*this);
     m_os << "\n";
     --m_indenter;
     m_os << m_indenter << "}";
@@ -271,7 +314,13 @@ void JsonWriter::visit(ReferenceFile const& reference_file) {
 }
 
 void JsonWriter::visit(Statement const& statement) {
-    std::visit([this](auto const& alt) { alt->accept(*this); }, statement);
+    std::visit(
+        [this](auto const& alt) {
+            using T = std::decay_t<decltype(alt)>;
+            if constexpr (!std::is_same_v<T, std::monostate>)
+                alt.accept(*this);
+        },
+        statement);
 }
 
 void JsonWriter::visit(Value const& value) {
@@ -280,8 +329,8 @@ void JsonWriter::visit(Value const& value) {
             using T = std::decay_t<decltype(alt)>;
             if constexpr (std::is_same_v<T, std::monostate>)
                 m_os << "undefined";
-            else if constexpr (std::is_same_v<T, std::unique_ptr<String> >)
-                m_os << "\"" << *alt << "\"";
+            else if constexpr (std::is_same_v<T, String>)
+                m_os << "\"" << alt << "\"";
             else if constexpr (std::is_same_v<T, bool>) {
                 auto const fmtflags = m_os.flags();
                 m_os << std::boolalpha << alt;
@@ -289,13 +338,12 @@ void JsonWriter::visit(Value const& value) {
             } else if constexpr (std::is_same_v<T, Number>) {
                 auto const precision = m_os.precision();
                 m_os << std::setprecision(m_precision) << alt << std::setprecision(precision);
-            } else if constexpr (std::is_same_v<T, std::unique_ptr<ConstValues> >)
-                write_array(*alt);
-            else if constexpr (std::is_same_v<T, std::unique_ptr<ExternalReferenceImport> > ||
-                               std::is_same_v<T, std::unique_ptr<ExternalReference> > ||
-                               std::is_same_v<T, std::unique_ptr<ObjectValue> >)
-                alt->accept(*this);
-            else if constexpr (std::is_same_v<T, std::nullptr_t>)
+            } else if constexpr (std::is_same_v<T, ValueRange>)
+                write_array(alt);
+            else if constexpr (std::is_same_v<T, ExternalReferenceImport> || std::is_same_v<T, ExternalReference> ||
+                               std::is_same_v<T, ObjectValue>) {
+                alt.accept(*this);
+            } else if constexpr (std::is_same_v<T, std::nullptr_t>)
                 m_os << "null";
         },
         value);
@@ -334,13 +382,13 @@ void JsonWriter::visit(VariantSet const& variant_set) {
 }
 
 template <typename InputRangeT>
-void JsonWriter::write_array(InputRangeT const& input_range) {
+void JsonWriter::write_array(InputRangeT const& array_range) {
     m_os << "[";
-    if (input_range.size()) {
+    if (array_range.size()) {
         m_os << "\n";
         ++m_indenter;
         std::size_t count = 0;
-        for (auto const& next : input_range) {
+        for (auto const& next : array_range) {
             if (count++) {
                 m_os << ",\n";
             }

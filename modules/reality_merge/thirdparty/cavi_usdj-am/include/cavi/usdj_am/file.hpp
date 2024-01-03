@@ -34,10 +34,10 @@
 #include <optional>
 
 // local
-#include "input_range.hpp"
+#include "array_range.hpp"
+#include "descriptor.hpp"
 #include "node.hpp"
 #include "number.hpp"
-#include "statement.hpp"
 
 // export interface USDA_File {
 //     version: number;
@@ -48,7 +48,7 @@
 namespace cavi {
 namespace usdj_am {
 
-class Descriptor;
+struct Statement;
 
 /// \brief Represents a "USDA_File" node in a syntax tree that was parsed out of
 ///        a USDA document, encoded as JSON and stored within an Automerge
@@ -57,7 +57,7 @@ class File : public Node {
 public:
     /// \brief Represents a range of "USDA_Statement" nodes within a "USDA_File"
     ///        node.
-    using Statements = ConstInputRange<Statement>;
+    using Statements = ArrayInputRange<Statement>;
 
     File() = delete;
 
@@ -75,10 +75,15 @@ public:
 
     File& operator=(File const&) = delete;
 
-    /// \brief Accepts a node visitor.
+    /// \brief Accepts a visitor that can only read this node.
     ///
     /// \param[in] visitor A node visitor.
-    void accept(Visitor& visitor) const;
+    void accept(Visitor& visitor) const& override;
+
+    /// \brief Accepts a visitor that can take ownership of this node.
+    ///
+    /// \param[in] visitor A node visitor.
+    void accept(Visitor& visitor) && override;
 
     AMobjId const* get_object_id() const;
 
