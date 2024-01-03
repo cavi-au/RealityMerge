@@ -38,7 +38,7 @@ file(GLOB_RECURSE MODULE_SOURCES modules/*.h**)
 add_custom_target(${PROJECT_NAME}_scons
                   ALL
                   # COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} --clean
-                  COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} target=${GODOT_TARGET} custom_modules=../modules platform=${GODOT_PLATFORM} showbuild=1 debug_symbols=yes dev_build=yes
+                  COMMAND ${CMAKE_COMMAND} -E env CMAKE_COMMAND=${CMAKE_COMMAND} ${SCONS_PROGRAM} target=${GODOT_TARGET} custom_modules=../modules platform=${GODOT_PLATFORM} showbuild=1 debug_symbols=yes dev_build=yes debug_crt=yes disable_exceptions=no
                   SOURCES ${GODOT_SOURCES} ${GODOT_HEADERS}
                   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/godot
                   VERBATIM

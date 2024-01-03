@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dedpob3njkrc0"]
+[gd_scene load_steps=12 format=3 uid="uid://dedpob3njkrc0"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_emkt5"]
 [ext_resource type="Texture2D" uid="uid://bonvg22275onu" path="res://addons/kenney_prototype_textures/dark/texture_02.png" id="2_2ykop"]
 [ext_resource type="PackedScene" uid="uid://ufdc2gyuc2g7" path="res://xr_origin_3d.tscn" id="3_sa0rd"]
 [ext_resource type="PackedScene" uid="uid://boskf6xgbtyjh" path="res://usd.tscn" id="4_ra5bv"]
+[ext_resource type="AutomergeResource" path="res://two-cubes.automerge" id="5_dsiiu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5jfx"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -48,3 +49,12 @@ mesh = SubResource("BoxMesh_txcm5")
 [node name="XROrigin3D" parent="." instance=ExtResource("3_sa0rd")]
 
 [node name="Usd" parent="." instance=ExtResource("4_ra5bv")]
+
+[node name="UsdjMediator" parent="Usd" index="0"]
+document_resource = ExtResource("5_dsiiu")
+document_path = "/data/scene"
+document_scan = true
+server_domain_name = "new.webstrates.net"
+server_path = "two-cubes"
+
+[editable path="Usd"]

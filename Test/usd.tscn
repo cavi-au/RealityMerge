@@ -1,9 +1,48 @@
 [gd_scene load_steps=2 format=3 uid="uid://boskf6xgbtyjh"]
 
-[ext_resource type="AutomergeResource" path="res://a-cube.automerge" id="1_enogr"]
+[sub_resource type="GDScript" id="GDScript_gkr4u"]
+script/source = "extends Node3D
+
+# var socket = WebSocketPeer.new()
+
+# We should be able to:
+# - GDScript
+# * Input the URL for a Webstrates server.
+# * Fetch a copy of the Webstrates server's Automerge document over HTTP.
+# * Save the fetched Automerge document into the project as a resource file.
+# * Load the saved Automerge document as the UsdjMediator's resource.
+# - GDScript
+# - C++
+# * Create a Websocket connection to the Webstrates server at the input URL.
+# * If I'm going to do interaction between the `WebSocketPeer`, which is in
+#   GDScript, and the Automerge document, which is in C/C++, then I'd need to
+#   expose the Automerge document to GDScript. It may make more sense to provide
+#   a member function on the UsdjMediator 
+# document and save it as a resource
+# Called when the node enters the scene tree for the first time.
+func _ready():
+#	socket.connect_to_url(\"https://new.webstrates.net/cube-island\")
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+#	socket.poll()
+#	var state = socket.get_ready_state()
+#	if state == WebSocketPeer.STATE_OPEN:
+#		while socket.get_available_packet_count():
+#			print(\"Packet: \", socket.get_packet())
+#	elif state == WebSocketPeer.STATE_CLOSING:
+#		# Keep polling to achieve proper close.
+#		pass
+#	elif state == WebSocketPeer.STATE_CLOSED:
+#		var code = socket.get_close_code()
+#		var reason = socket.get_close_reason()
+#		print(\"WebSocket closed with code: %d, reason %s. Clean: %s\" % [code, reason, code != -1])
+#		set_process(false) # Stop processing.
+	pass
+"
 
 [node name="Usd" type="Node3D"]
+script = SubResource("GDScript_gkr4u")
 
 [node name="UsdjMediator" type="UsdjMediator" parent="."]
-automerge_resource = ExtResource("1_enogr")
-usdj_path = "/data/scene"
