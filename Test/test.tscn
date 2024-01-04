@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bonvg22275onu" path="res://addons/kenney_prototype_textures/dark/texture_02.png" id="2_2ykop"]
 [ext_resource type="PackedScene" uid="uid://ufdc2gyuc2g7" path="res://xr_origin_3d.tscn" id="3_sa0rd"]
 [ext_resource type="PackedScene" uid="uid://boskf6xgbtyjh" path="res://usd.tscn" id="4_ra5bv"]
-[ext_resource type="AutomergeResource" path="res://two-cubes.automerge" id="5_dsiiu"]
+[ext_resource type="AutomergeResource" path="res://two-cubes.automerge" id="5_2yabn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5jfx"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,14 +19,18 @@ sky = SubResource("Sky_641qq")
 tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_784nd"]
-size = Vector3(10, 0.1, 10)
+size = Vector3(25, 0.001, 25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyndj"]
+transparency = 2
+alpha_scissor_threshold = 0.25
+alpha_antialiasing_mode = 0
+blend_mode = 2
 albedo_texture = ExtResource("2_2ykop")
 
 [sub_resource type="BoxMesh" id="BoxMesh_txcm5"]
 material = SubResource("StandardMaterial3D_jyndj")
-size = Vector3(10, 0.1, 10)
+size = Vector3(25, 0.001, 25)
 
 [node name="Test" type="Node3D"]
 script = ExtResource("1_emkt5")
@@ -38,7 +42,7 @@ environment = SubResource("Environment_g17ls")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.001, -1.25)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_784nd")
@@ -51,7 +55,7 @@ mesh = SubResource("BoxMesh_txcm5")
 [node name="Usd" parent="." instance=ExtResource("4_ra5bv")]
 
 [node name="UsdjMediator" parent="Usd" index="0"]
-document_resource = ExtResource("5_dsiiu")
+document_resource = ExtResource("5_2yabn")
 document_path = "/data/scene"
 document_scan = true
 server_domain_name = "new.webstrates.net"

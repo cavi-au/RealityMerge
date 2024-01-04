@@ -42,11 +42,11 @@ static Ref<ResourceFormatSaverAutomerge> resource_saver_automerge;
 
 void initialize_reality_merge_module(ModuleInitializationLevel p_level) {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDREGISTER_CLASS(UsdjMediator);
-        GDREGISTER_CLASS(UsdjStaticBody3D);
         return;
     }
     GDREGISTER_CLASS(AutomergeResource);
+    GDREGISTER_CLASS(UsdjMediator);
+    GDREGISTER_CLASS(UsdjStaticBody3D);
 
     resource_loader_automerge.instantiate();
     ResourceLoader::add_resource_format_loader(resource_loader_automerge, true);
@@ -59,7 +59,6 @@ void uninitialize_reality_merge_module(ModuleInitializationLevel p_level) {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
         return;
     }
-
     ResourceLoader::remove_resource_format_loader(resource_loader_automerge);
     resource_loader_automerge.unref();
 
