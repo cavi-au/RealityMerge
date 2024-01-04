@@ -50,7 +50,7 @@ cmake -E make_directory build
 cmake -B build -S .
 ```
 
-5. Build the project's extended version of Godot >= 4.1 e.g.
+5. Build the project's extended version of Godot >= 4.2 e.g.
 
 ```
 cmake --build build
@@ -58,7 +58,7 @@ cmake --build build
 
 ## Usage
 
-Launch the project's extended version of Godot >= 4.1 e.g.
+Launch the project's extended version of Godot >= 4.2 e.g.
 
 ```
 godot\bin\godot.windows.editor.x86_64.exe
