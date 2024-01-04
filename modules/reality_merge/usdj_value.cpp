@@ -41,6 +41,7 @@
 #include "usdj_projection.h"
 #include "usdj_quaternion.h"
 #include "usdj_real.h"
+#include "usdj_string.h"
 #include "usdj_value.h"
 #include "usdj_vector.h"
 
@@ -67,7 +68,10 @@ std::optional<UsdjValue> extract_UsdjValue(cavi::usdj_am::Declaration const& dec
                 break;
             }
             // case ValueTypeName::TIME_CODE:
-            // case ValueTypeName::STRING:
+            case ValueTypeName::STRING: {
+                usd_value.emplace(to_string(declaration.get_value()));
+                break;
+            }
             // case ValueTypeName::TOKEN:
             // case ValueTypeName::ASSET:
             // case ValueTypeName::INT_2:

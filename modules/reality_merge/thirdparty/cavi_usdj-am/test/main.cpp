@@ -90,29 +90,30 @@ TEST_CASE("Validate `File` with USDA.JSON files", "[File]") {
 TEST_CASE("Validate nested `File` with USDA.JSON files", "[File]") {
     using namespace cavi::usdj_am;
 
-    auto STEM = GENERATE(as<std::string>{}, "brave-ape-49", "a-cube", "two-cubes", "cube-island");
+    auto STEM = GENERATE(as<std::string>{}, "brave-ape-49", "a-cube", "two-cubes", "cube-island", "foolish-ape-51");
     auto usdj_am_path = ROOT / (STEM + ".automerge");
     auto document = utils::Document::load(usdj_am_path);
     CHECK(document != static_cast<AMdoc*>(nullptr));
     auto file = File{document, document.get_item() / "data" / "scene"};
-    // Match the indenting of the example USDA JSON files.
+    // Match the indenting of the canonical USDA JSON files.
     utils::JsonWriter json_writer{utils::JsonWriter::Indenter{' ', 2}};
     file.accept(json_writer);
-    // Format the canonical JSON file with jq.
     path const TEMP = temp_directory_path();
+    std::ostringstream command;
+    // Format the canonical JSON file with jq.
     auto usda_json_path = ROOT / (STEM + ".usda.json");
     auto lhs_jq_json_path = TEMP / (STEM + ".lhs.jq.json");
-    std::ostringstream command;
     command << "jq -S . " << usda_json_path << " > " << lhs_jq_json_path;
     CHECK(system(command.str().c_str()) == 0);
     CHECK(exists(lhs_jq_json_path));
-    // Format the JSON output with jq.
+    // Output the USDA JSON file.
     auto usdj_am_json_path = TEMP / (STEM + ".usda.json");
     std::ofstream ofs(usdj_am_json_path, std::ios::out);
     CHECK(ofs);
     ofs << json_writer.operator std::string();
     ofs.close();
     CHECK(exists(usdj_am_json_path));
+    // Format the JSON output with jq.
     auto rhs_jq_json_path = TEMP / (STEM + ".rhs.jq.json");
     command.str("");
     command << "jq -S . " << usdj_am_json_path << " > " << rhs_jq_json_path;

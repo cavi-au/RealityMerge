@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "descriptor": {
+    "description": null,
+    "assignments": [
+      {
+        "type": "assignment",
+        "keyword": null,
+        "identifier": "defaultPrim",
+        "value": "world"
+      },
+      {
+        "type": "assignment",
+        "keyword": null,
+        "identifier": "metersPerUnit",
+        "value": 1
+      },
+      {
+        "type": "assignment",
+        "keyword": null,
+        "identifier": "upAxis",
+        "value": "Y"
+      }
+    ]
+  },
+  "statements": [
+    {
+      "type": "definition",
+      "subType": "def",
+      "defType": "Xform",
+      "name": "world",
+      "descriptor": {
+        "description": null,
+        "assignments": [
+          {
+            "type": "assignment",
+            "keyword": null,
+            "identifier": "kind",
+            "value": "assembly"
+          }
+        ]
+      },
+      "statements": [
+        {
+          "type": "definition",
+          "subType": "def",
+          "defType": null,
+          "name": "DotDefa968263bcda142faaa2887f3cb654a6a",
+          "descriptor": {
+            "description": null,
+            "assignments": [
+              {
+                "type": "assignment",
+                "keyword": "prepend",
+                "identifier": "references",
+                "value": {
+                  "type": "externalReference",
+                  "referenceFile": {
+                    "type": "externalReferenceSrc",
+                    "src": "cube.usda",
+                    "descriptor": null
+                  },
+                  "toImport": null
+                }
+              }
+            ]
+          },
+          "statements": [
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "color3f[]",
+              "reference": "primvars:displayColor",
+              "value": [
+                [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:scale",
+              "value": [
+                0.9,
+                0.9,
+                0.9
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "float3",
+              "reference": "xformOp:translate",
+              "value": [
+                1,
+                2,
+                3
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": "uniform",
+              "defineType": "token[]",
+              "reference": "xformOpOrder",
+              "value": [
+                "xformOp:translate",
+                "xformOp:scale"
+              ],
+              "descriptor": null
+            },
+            {
+              "type": "declaration",
+              "keyword": null,
+              "defineType": "string",
+              "reference": "client",
+              "value": "b760494b-679b-4301-b6f0-297fd874ee68",
+              "descriptor": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

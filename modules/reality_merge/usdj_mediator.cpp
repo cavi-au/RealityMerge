@@ -270,6 +270,8 @@ void UsdjMediator::set_document_resource(Ref<AutomergeResource> const& p_resourc
 void UsdjMediator::set_document_scan(bool const p_scan) {
     if (p_scan != m_document_scan) {
         m_document_scan = p_scan && !(m_document_resource.is_null() || m_document_path.is_empty());
+        if (m_document_scan)
+            update_bodies();
     }
 }
 

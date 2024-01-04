@@ -1,5 +1,5 @@
 /**************************************************************************/
-/* usdj_value.h                                                           */
+/* usdj_string.h                                                          */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             RealityMerge                               */
@@ -27,53 +27,25 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#ifndef REALITY_MERGE_USDJ_VALUE_H
-#define REALITY_MERGE_USDJ_VALUE_H
-
-#include <optional>
-#include <variant>
+#ifndef REALITY_MERGE_USDJ_STRING_H
+#define REALITY_MERGE_USDJ_STRING_H
 
 // regional
-#include <core/math/basis.h>
-#include <core/math/color.h>
-#include <core/math/math_defs.h>
-#include <core/math/projection.h>
-#include <core/math/quaternion.h>
-#include <core/math/vector3.h>
-#include <core/math/vector3i.h>
-#include <core/math/vector4.h>
-#include <core/math/vector4i.h>
 #include <core/string/ustring.h>
-
-// local
-#include "usdj_reals.h"
 
 namespace cavi {
 namespace usdj_am {
 
-class Declaration;
+struct Value;
 
 }  // namespace usdj_am
 }  // namespace cavi
 
-using UsdjValue =
-    std::variant<real_t, Basis, Color, Projection, Quaternion, Reals, String, Vector3, Vector3i, Vector4, Vector4i>;
-
-/// \brief Extracts the Godot counterpart of a USD value from within the given
-///        USDJ declaration, if any.
+/// \brief Converts a USDJ value into a Godot string.
 ///
-/// \param[in] declaration A "USDA_Declaration" node.
-/// \returns A `UsdjValue` instance or `std::nullopt`.
-/// \throws `std::logic_error` if the type of the embedded USD value isn't supported.
-std::optional<UsdjValue> extract_UsdjValue(cavi::usdj_am::Declaration const& declaration);
+/// \param[in] value A USDA-to-JSON `Value`.
+/// \return A Godot `String` value.
+/// \throws std::invalid_argument
+String to_string(cavi::usdj_am::Value const& value);
 
-/// \brief Converts a USDJ declaration into the Godot counterpart of the USD
-///        value embedded within it.
-///
-/// \param[in] declaration A "USDA_Declaration" node.
-/// \return A `UsdjValue` instance.
-/// \throws `std::invalid_argument` if \p declaration doesn't contain a USD value.
-/// \throws `std::logic_error` if the type of the embedded USD value isn't supported.
-UsdjValue to_UsdjValue(cavi::usdj_am::Declaration const& declaration);
-
-#endif  // REALITY_MERGE_USDJ_VALUE_H
+#endif  // REALITY_MERGE_USDJ_STRING_H

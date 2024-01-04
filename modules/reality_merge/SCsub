@@ -116,6 +116,7 @@ env_reality_merge.add_source_files(
         "usdj_quaternion.cpp",
         "usdj_real.cpp",
         "usdj_reals.cpp",
+        "usdj_string.cpp",
         "usdj_static_body_3d.cpp",
         "usdj_transform_3d_extractor.cpp",
         "usdj_value.cpp",
