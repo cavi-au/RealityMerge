@@ -112,7 +112,7 @@ ArrayInputIterator<T> ArrayInputIterator<T>::operator++(int) {
 }
 
 template <typename T>
-typename T ArrayInputIterator<T>::operator*() {
+T ArrayInputIterator<T>::operator*() {
     AMitem const* const item = (m_items) ? AMitemsNext(&*m_items, 0) : nullptr;
     if (item) {
         return T{m_document, item};
