@@ -33,6 +33,16 @@
 #include <Rpc.h>
 
 #else
+
+#include <unistd.h>
+#include <algorithm>
+#include <cstdio>
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+#include <vector>
+
 #endif
 
 // local
@@ -50,6 +60,38 @@ String generate_uuidv4() {
         RpcStringFree(&c_str);
     }
 #else
+    // Call the uuidgen command to avoid LGPL entanglements.
+    static auto const TEMPLATE = "uuidgenXXXXXX";
+
+    std::vector<char> filename{};
+    for (auto next = TEMPLATE; *next; ++next) {
+        filename.push_back(*next);
+    }
+    filename.push_back('\0');
+    auto const fd = ::mkstemp(filename.data());
+    if (fd != -1) {
+        ::fflush(stdout);
+        auto const prev_stdout = ::dup(1);
+        ::dup2(fd, 1);
+        ::close(fd);
+        ::system("uuidgen");
+        ::fflush(stdout);
+        ::dup2(prev_stdout, 1);
+        ::close(prev_stdout);
+        std::ifstream ifs(filename.data());
+        if (ifs) {
+            std::vector<char> buffer;
+            std::copy(std::istreambuf_iterator<std::ifstream::char_type>(ifs),
+                      std::istreambuf_iterator<std::ifstream::char_type>(), std::back_inserter(buffer));
+            if (!buffer.empty()) {
+                // Ignore the linefeed.
+                result = String{buffer.data(), static_cast<int>(buffer.size() - 1)};
+            }
+            ifs.close();
+        }
+        ::remove(filename.data());
+    }
+
 #endif
     return result;
 }
