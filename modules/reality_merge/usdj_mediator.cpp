@@ -27,6 +27,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+#include <filesystem>
 #include <optional>
 #include <stdexcept>
 #include <string>
@@ -42,7 +43,9 @@ extern "C" {
 // regional
 #include <core/config/project_settings.h>
 #include <core/error/error_macros.h>
+#include <core/io/dir_access.h>
 #include <core/io/json.h>
+#include <core/io/resource_loader.h>
 #include <core/templates/vector.h>
 #include <core/variant/dictionary.h>
 
@@ -78,6 +81,38 @@ static String PING_TEXT() {
 }
 
 static char const* const RESOURCE_TYPE_NAME = "AutomergeResource";
+
+static String RESOURCE_EXTENSION() {
+    static std::optional<String> extension{};
+
+    if (!extension) {
+        List<String> extensions{};
+        ResourceLoader::get_recognized_extensions_for_type(RESOURCE_TYPE_NAME, &extensions);
+        if (!extensions.is_empty())
+            extension = *extensions.begin();
+    }
+    return *extension;
+}
+
+String find_document(String const& basename) {
+    List<String> extensions{};
+    ResourceLoader::get_recognized_extensions_for_type(RESOURCE_TYPE_NAME, &extensions);
+    auto dir = DirAccess::open("res://", nullptr);
+    if (!dir.is_null()) {
+        dir->list_dir_begin();
+        auto filename = dir->get_next();
+        while (!filename.is_empty()) {
+            if (!dir->current_is_dir() && filename.get_basename() == basename &&
+                extensions.find(filename.get_extension())) {
+                dir->list_dir_end();
+                return dir->get_current_dir().path_join(filename);
+            }
+            filename = dir->get_next();
+        }
+        dir->list_dir_end();
+    }
+    return String{};
+}
 
 }  // namespace
 
@@ -294,11 +329,33 @@ void UsdjMediator::set_server_path(String const& p_path) {
 }
 
 void UsdjMediator::set_server_sync(bool const p_sync) {
+    namespace fs = std::filesystem;
+    using cavi::usdj_am::utils::Document;
+
     if (p_sync != m_server_sync) {
         m_server_sync = p_sync && !(m_server_domain_name.is_empty() || m_server_path.is_empty());
         if (!m_server_sync && !m_server_socket.is_null()) {
             m_server_socket->close();
             m_server_socket.unref();
+        } else if (m_server_sync && m_document_resource.is_null()) {
+            // Search for an Automerge document named after the server path.
+            auto path = find_document(m_server_path);
+            if (path.is_empty()) {
+                // Create a new empty Automerge document named after the server path.
+                path = String{"res://"}.path_join(m_server_path) + "." + RESOURCE_EXTENSION();
+                try {
+                    auto const document = Document{ResultPtr{AMcreate(nullptr), AMresultFree}};
+                    auto const global_path = ProjectSettings::get_singleton()->globalize_path(path);
+                    auto const buffer = global_path.to_utf8_buffer();
+                    fs::path const filename{std::string{reinterpret_cast<std::string::const_pointer>(buffer.ptr()),
+                                                        static_cast<std::string::size_type>(buffer.size())}};
+                    document.save(filename);
+                } catch (std::invalid_argument const& thrown) {
+                    ERR_FAIL_MSG(thrown.what());
+                }
+            }
+            // Load the Automerge document.
+            set_document_resource(ResourceLoader::load(path));
         }
     }
 }

@@ -33,6 +33,9 @@
 #include <cstdint>
 #include <memory>
 
+// third-party
+#include <cavi/usdj_am/utils/document.hpp>
+
 // regional
 #include <core/error/error_list.h>
 #include <core/object/ref_counted.h>
@@ -109,7 +112,7 @@ protected:
     void update_bodies();
 
 private:
-    using ResultPtr = std::unique_ptr<AMresult, void (*)(AMresult*)>;
+    using ResultPtr = cavi::usdj_am::utils::Document::ResultPtr;
 
     String m_document_path;
     Ref<AutomergeResource> m_document_resource;
