@@ -175,7 +175,6 @@ Error UsdjMediator::connect_to_server() {
         m_server_socket->set_max_queued_packets(MAX_QUEUED_MESSAGES());
         m_server_socket->set_inbound_buffer_size(BUFFER_SIZE);
         m_server_socket->set_outbound_buffer_size(BUFFER_SIZE);
-        m_server_socket->set_no_delay(true);
     }
     auto ready_state = m_server_socket->get_ready_state();
     if (ready_state == WebSocketPeer::STATE_OPEN) {
@@ -197,6 +196,8 @@ Error UsdjMediator::connect_to_server() {
         ready_state = m_server_socket->get_ready_state();
     }
     if (ready_state == WebSocketPeer::STATE_OPEN) {
+        // Disable Nagle's algorithm.
+        m_server_socket->set_no_delay(true);
         // Request updates of the Automerge document.
         Dictionary request{};
         request["wa"] = "open";

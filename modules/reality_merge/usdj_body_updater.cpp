@@ -72,8 +72,14 @@ UsdjBodyUpdater::Updates UsdjBodyUpdater::operator()(cavi::usdj_am::utils::Docum
                                                      std::string const& path) {
     using cavi::usdj_am::File;
 
-    auto const file = File{document, document.get_item(path)};
-    file.accept(*this);
+    m_updates.clear();
+    try {
+        auto const file = File{document, document.get_item(path)};
+        file.accept(*this);
+    } catch (std::invalid_argument const&) {
+        // The document may be incomplete because it hasn't been fully
+        // downloaded from the server yet.
+    }
     // Any remaining bodies should be removed because they originated
     // from expired USD prims.
     while (!m_bodies.empty()) {
