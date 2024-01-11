@@ -58,6 +58,7 @@ mesh = SubResource("BoxMesh_txcm5")
 [node name="UsdjMediator" parent="Usd" index="0"]
 document_resource = ExtResource("5_s3f6g")
 document_path = "/data/scene"
+document_scan = true
 server_domain_name = "new.webstrates.net"
 server_path = "two-cubes"
 

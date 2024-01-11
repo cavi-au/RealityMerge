@@ -159,7 +159,6 @@ void UsdjMediator::_notification(int p_what) {
             break;
         }
         case NOTIFICATION_READY: {
-            update_bodies();
             set_process(true);
             break;
         }
