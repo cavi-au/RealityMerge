@@ -26,7 +26,8 @@ transparency = 2
 alpha_scissor_threshold = 0.25
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("2_2ykop")
-uv1_scale = Vector3(25, 25, 1)
+uv1_scale = Vector3(6, 4, 1)
+uv1_offset = Vector3(0.05, 0.35, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_txcm5"]
 material = SubResource("StandardMaterial3D_jyndj")
@@ -57,7 +58,6 @@ mesh = SubResource("BoxMesh_txcm5")
 [node name="UsdjMediator" parent="Usd" index="0"]
 document_resource = ExtResource("5_s3f6g")
 document_path = "/data/scene"
-document_scan = true
 server_domain_name = "new.webstrates.net"
 server_path = "two-cubes"
 
