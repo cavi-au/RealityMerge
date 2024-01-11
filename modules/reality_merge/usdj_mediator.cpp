@@ -116,7 +116,8 @@ String find_document(String const& basename) {
 
 }  // namespace
 
-UsdjMediator::UsdjMediator() : m_document_scan{false}, m_init_result{nullptr, nullptr}, m_server_sync{false} {}
+UsdjMediator::UsdjMediator()
+    : m_document_scan{false}, m_init_result{nullptr, nullptr}, m_init_syncing{false}, m_server_sync{false} {}
 
 UsdjMediator::~UsdjMediator() {}
 
@@ -165,7 +166,7 @@ void UsdjMediator::_notification(int p_what) {
     }
 }
 
-Error UsdjMediator::connect_to_server() {
+Error UsdjMediator::ensure_connection() {
     if (m_server_socket.is_null()) {
         m_server_socket = Ref<WebSocketPeer>(WebSocketPeer::create());
         ERR_FAIL_COND_V(m_server_socket.is_null(), ERR_CANT_CREATE);
@@ -190,7 +191,6 @@ Error UsdjMediator::connect_to_server() {
                        vformat("Unable to connect to server \"%s\": state is %s.", m_server_domain_name, ready_state));
     }
     // Wait for the WebSocket connection to open.
-    auto const time = OS::get_singleton()->get_ticks_msec();
     while (ready_state == WebSocketPeer::STATE_CONNECTING) {
         m_server_socket->poll();
         ready_state = m_server_socket->get_ready_state();
@@ -210,6 +210,7 @@ Error UsdjMediator::connect_to_server() {
         Ref<JSON> json;
         json.instantiate();
         ERR_FAIL_COND_V(m_server_socket->send_text(json->stringify(request, "\t", false)) != OK, ERR_QUERY_FAILED);
+        m_init_syncing = true;
     }
     return OK;
 }
@@ -261,7 +262,7 @@ bool UsdjMediator::get_server_sync() const {
 Error UsdjMediator::send_ping() {
     if (!m_server_sync)
         return OK;
-    connect_to_server();
+    ensure_connection();
     m_server_socket->poll();
     auto ready_state = m_server_socket->get_ready_state();
     // Wait for the WebSocket connection to open.
@@ -363,14 +364,18 @@ void UsdjMediator::set_server_sync(bool const p_sync) {
 }
 
 bool UsdjMediator::receive_changes() {
-    if (!m_server_sync)
+    static Ref<JSON> json_parser;
+
+    if (!m_server_sync || ensure_connection() != OK)
         return false;
-    connect_to_server();
+    bool result = false;
     m_server_socket->poll();
     auto const ready_state = m_server_socket->get_ready_state();
     switch (ready_state) {
         case WebSocketPeer::STATE_OPEN: {
-            std::vector<std::uint8_t> server_buffer{};
+            auto document = m_document_resource->get_document();
+            AMsyncState* client_state = nullptr;
+            ERR_FAIL_COND_V(!AMitemToSyncState(AMresultItem(m_init_result.get()), &client_state), false);
             auto packet_count = m_server_socket->get_available_packet_count();
             while (packet_count && m_server_socket->get_ready_state() == WebSocketPeer::STATE_OPEN) {
                 std::uint8_t const* r_buffer = nullptr;
@@ -378,30 +383,24 @@ bool UsdjMediator::receive_changes() {
                 auto const error = m_server_socket->get_packet(&r_buffer, r_buffer_size);
                 ERR_FAIL_COND_V(error != OK, false);
                 ERR_FAIL_COND_V(r_buffer_size <= 0, false);
-                server_buffer.insert(server_buffer.end(), r_buffer, r_buffer + r_buffer_size);
+                // Ignore a JSON message.
+                String const json_string{reinterpret_cast<char const*>(r_buffer), static_cast<int>(r_buffer_size)};
+                if (json_parser.is_null())
+                    json_parser.instantiate();
+                if (json_parser->parse(json_string) != OK) {
+                    // Ignore the prepended message type signifier byte.
+                    ResultPtr const decode_result{AMsyncMessageDecode(r_buffer + 1, r_buffer_size - 1), AMresultFree};
+                    AMsyncMessage const* server_message = nullptr;
+                    if (AMitemToSyncMessage(AMresultItem(decode_result.get()), &server_message)) {
+                        ResultPtr const receive_result{
+                            AMreceiveSyncMessage(document->get(), client_state, server_message), AMresultFree};
+                        ERR_FAIL_COND_V(AMresultStatus(receive_result.get()) != AM_STATUS_OK, ERR_BUG);
+                        result = true;
+                    }
+                }
                 --packet_count;
             }
-            if (!server_buffer.empty()) {
-                auto document = m_document_resource->get_document();
-                AMsyncState* client_state = nullptr;
-                ERR_FAIL_COND_V(!AMitemToSyncState(AMresultItem(m_init_result.get()), &client_state), false);
-                // Ignore a JSON message.
-                Ref<JSON> json;
-                json.instantiate();
-                String const json_string{reinterpret_cast<char const*>(server_buffer.data()),
-                                         static_cast<int>(server_buffer.size())};
-                if (json->parse(json_string) != OK) {
-                    // Ignore the prepended message type signifier byte.
-                    ResultPtr const decode_result{
-                        AMsyncMessageDecode(server_buffer.data() + 1, server_buffer.size() - 1), AMresultFree};
-                    AMsyncMessage const* server_message = nullptr;
-                    ERR_FAIL_COND_V(!AMitemToSyncMessage(AMresultItem(decode_result.get()), &server_message), false);
-                    ResultPtr const receive_result{AMreceiveSyncMessage(document->get(), client_state, server_message),
-                                                   AMresultFree};
-                    ERR_FAIL_COND_V(AMresultStatus(receive_result.get()) != AM_STATUS_OK, ERR_BUG);
-                    return true;
-                }
-                // Send a sync message regardless of what type of message the server sent.
+            if (result || m_init_syncing) {
                 ResultPtr const generate_result{AMgenerateSyncMessage(document->get(), client_state), AMresultFree};
                 AMsyncMessage const* client_message = nullptr;
                 if (AMitemToSyncMessage(AMresultItem(generate_result.get()), &client_message)) {
@@ -415,11 +414,13 @@ bool UsdjMediator::receive_changes() {
                                          client_message_bytes.src + client_message_bytes.count);
                     ERR_FAIL_COND_V(m_server_socket->put_packet(client_buffer.data(), client_buffer.size()) != OK,
                                     false);
+                    m_init_syncing = false;
                 }
             }
             break;
         }
         case WebSocketPeer::STATE_CLOSING:
+            // Keep polling until it's closed.
             break;
         case WebSocketPeer::STATE_CLOSED: {
             auto const code = m_server_socket->get_close_code();
@@ -429,7 +430,7 @@ bool UsdjMediator::receive_changes() {
             break;
         }
     }
-    return false;
+    return result;
 }
 
 void UsdjMediator::update_bodies() {

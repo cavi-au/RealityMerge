@@ -103,7 +103,10 @@ protected:
 
     void _notification(int p_what);
 
-    Error connect_to_server();
+    /// \brief Ensures that there's a connection to the server.
+    ///
+    /// \returns `Error::OK` if a connection exists.
+    Error ensure_connection();
 
     bool receive_changes();
 
@@ -118,6 +121,7 @@ private:
     Ref<AutomergeResource> m_document_resource;
     bool m_document_scan;
     ResultPtr m_init_result;
+    bool m_init_syncing;
     String m_server_domain_name;
     String m_server_path;
     String m_server_peer_id;
