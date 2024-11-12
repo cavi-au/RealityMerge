@@ -55,7 +55,7 @@ public:
 
     UsdjColorExtractor& operator=(UsdjColorExtractor const&) = delete;
 
-    UsdjColorExtractor& operator=(UsdjColorExtractor&&) = default;
+    UsdjColorExtractor& operator=(UsdjColorExtractor&&) = delete;
 
     std::optional<Color> operator()();
 

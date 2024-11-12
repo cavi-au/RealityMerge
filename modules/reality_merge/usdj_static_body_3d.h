@@ -74,7 +74,7 @@ public:
 
     UsdjStaticBody3D(UsdjStaticBody3D&&) = default;
 
-    UsdjStaticBody3D& operator=(UsdjStaticBody3D&&) = default;
+    UsdjStaticBody3D& operator=(UsdjStaticBody3D&&) = delete;
 
     AMobjId const* get_object_id() const;
 

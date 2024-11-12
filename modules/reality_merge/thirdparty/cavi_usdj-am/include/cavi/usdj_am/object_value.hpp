@@ -60,7 +60,7 @@ public:
     /// \throws std::invalid_argument
     ObjectValue(AMdoc const* const document, AMitem const* const map_object);
 
-    ObjectValue(ObjectValue const&) = default;
+    ObjectValue(ObjectValue const&) = delete;
 
     ObjectValue& operator=(ObjectValue const&) = delete;
 

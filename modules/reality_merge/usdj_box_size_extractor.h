@@ -54,7 +54,7 @@ public:
 
     UsdjBoxSizeExtractor& operator=(UsdjBoxSizeExtractor const&) = delete;
 
-    UsdjBoxSizeExtractor& operator=(UsdjBoxSizeExtractor&&) = default;
+    UsdjBoxSizeExtractor& operator=(UsdjBoxSizeExtractor&&) = delete;
 
     std::optional<Vector3> operator()();
 

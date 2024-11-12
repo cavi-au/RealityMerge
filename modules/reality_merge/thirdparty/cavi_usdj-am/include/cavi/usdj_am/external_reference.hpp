@@ -66,7 +66,7 @@ public:
     /// \throws std::invalid_argument
     ExternalReference(AMdoc const* const document, AMitem const* const map_object);
 
-    ExternalReference(ExternalReference const&) = default;
+    ExternalReference(ExternalReference const&) = delete;
 
     ExternalReference& operator=(ExternalReference const&) = delete;
 

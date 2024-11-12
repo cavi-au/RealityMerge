@@ -69,8 +69,8 @@ struct DefinitionStatement : public std::variant<std::monostate, Statement, Decl
     DefinitionStatement(DefinitionStatement const&) = delete;
     DefinitionStatement& operator=(DefinitionStatement const&) = delete;
 
-    DefinitionStatement(DefinitionStatement&&) = default;
-    DefinitionStatement& operator=(DefinitionStatement&&) = default;
+    DefinitionStatement(DefinitionStatement&&) = delete;
+    DefinitionStatement& operator=(DefinitionStatement&&) = delete;
 
     /// \note An inlined destructor can't delete incomplete types.
     ~DefinitionStatement();

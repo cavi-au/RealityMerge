@@ -71,7 +71,7 @@ public:
     /// \throws std::invalid_argument
     File(AMdoc const* const document, AMitem const* const map_object = nullptr);
 
-    File(File const&) = default;
+    File(File const&) = delete;
 
     File& operator=(File const&) = delete;
 

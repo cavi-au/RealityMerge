@@ -64,7 +64,7 @@ public:
 
     Visitor& operator=(Visitor const&) = delete;
 
-    Visitor& operator=(Visitor&&) = default;
+    Visitor& operator=(Visitor&&) = delete;
 
     virtual ~Visitor() = 0;
 

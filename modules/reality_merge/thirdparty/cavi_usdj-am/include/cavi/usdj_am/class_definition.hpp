@@ -76,7 +76,7 @@ public:
 
     ClassDefinition& operator=(ClassDefinition const&) = delete;
 
-    ClassDefinition& operator=(ClassDefinition&&) = default;
+    ClassDefinition& operator=(ClassDefinition&&) = delete;
 
     /// \brief Accepts a visitor that can only read this node.
     ///

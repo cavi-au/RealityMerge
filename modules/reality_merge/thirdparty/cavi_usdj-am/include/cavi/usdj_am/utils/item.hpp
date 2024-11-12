@@ -60,9 +60,9 @@ public:
 
     Item(Item&&) = default;
 
-    Item& operator=(Item const&) = default;
+    Item& operator=(Item const&) = delete;
 
-    Item& operator=(Item&&) = default;
+    Item& operator=(Item&&) = delete;
 
     operator AMitem const*() const;
 

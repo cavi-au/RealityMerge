@@ -76,7 +76,7 @@ public:
 
     Declaration& operator=(Declaration const&) = delete;
 
-    Declaration& operator=(Declaration&&) = default;
+    Declaration& operator=(Declaration&&) = delete;
 
     /// \brief Accepts a visitor that can only read this node.
     ///

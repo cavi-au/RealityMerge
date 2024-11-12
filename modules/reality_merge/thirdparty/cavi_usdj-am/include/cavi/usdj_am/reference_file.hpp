@@ -65,7 +65,7 @@ public:
     /// \throws std::invalid_argument
     ReferenceFile(AMdoc const* const document, AMitem const* const map_object);
 
-    ReferenceFile(ReferenceFile const&) = default;
+    ReferenceFile(ReferenceFile const&) = delete;
 
     ReferenceFile& operator=(ReferenceFile const&) = delete;
 

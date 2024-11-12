@@ -75,8 +75,8 @@ struct ObjectDeclarations : public std::variant<std::monostate, ObjectDeclaratio
     ObjectDeclarations(ObjectDeclarations const&) = delete;
     ObjectDeclarations& operator=(ObjectDeclarations const&) = delete;
 
-    ObjectDeclarations(ObjectDeclarations&&) = default;
-    ObjectDeclarations& operator=(ObjectDeclarations&&) = default;
+    ObjectDeclarations(ObjectDeclarations&&) = delete;
+    ObjectDeclarations& operator=(ObjectDeclarations&&) = delete;
 
     /// \note An inlined destructor can't delete incomplete types.
     ~ObjectDeclarations();
