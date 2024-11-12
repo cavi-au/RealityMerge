@@ -18,6 +18,8 @@ message(STATUS "SCons: ${SCONS_PROGRAM}")
 
 if(WIN32)
     set(GODOT_PLATFORM "windows")
+elseif(APPLE)
+    set(GODOT_PLATFORM "macos")
 else()
     set(GODOT_PLATFORM "linuxbsd")
 endif()
