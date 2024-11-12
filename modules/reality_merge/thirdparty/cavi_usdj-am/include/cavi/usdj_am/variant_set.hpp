@@ -68,7 +68,7 @@ public:
     /// \throws std::invalid_argument
     VariantSet(AMdoc const* const document, AMitem const* const map_object);
 
-    VariantSet(VariantSet const&) = default;
+    VariantSet(VariantSet const&) = delete;
 
     VariantSet& operator=(VariantSet const&) = delete;
 

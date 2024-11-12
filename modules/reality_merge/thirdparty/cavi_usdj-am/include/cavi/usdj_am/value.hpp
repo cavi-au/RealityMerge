@@ -104,8 +104,8 @@ struct Value : public std::variant<std::monostate,  // undefined
     Value(Value const&) = delete;
     Value& operator=(Value const&) = delete;
 
-    Value(Value&&) = default;
-    Value& operator=(Value&&) = default;
+    Value(Value&&) = delete;
+    Value& operator=(Value&&) = delete;
 
     /// \note An inlined destructor can't delete incomplete types.
     ~Value();

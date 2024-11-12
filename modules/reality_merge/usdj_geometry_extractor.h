@@ -65,7 +65,7 @@ public:
 
     UsdjGeometryExtractor& operator=(UsdjGeometryExtractor const&) = delete;
 
-    UsdjGeometryExtractor& operator=(UsdjGeometryExtractor&&) = default;
+    UsdjGeometryExtractor& operator=(UsdjGeometryExtractor&&) = delete;
 
     std::pair<MeshPtr, Shape3dPtr> operator()();
 

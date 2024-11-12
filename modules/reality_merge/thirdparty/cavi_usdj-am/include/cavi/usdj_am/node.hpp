@@ -106,7 +106,7 @@ protected:
 
     Node(Node&&) = default;
 
-    Node& operator=(Node&&) = default;
+    Node& operator=(Node&&) = delete;
 
     /// \brief Checks that the enum property under a given key matches the given
     ///        tag value.

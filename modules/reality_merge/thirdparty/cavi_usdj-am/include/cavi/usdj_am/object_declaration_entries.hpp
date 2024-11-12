@@ -70,7 +70,7 @@ public:
 
     ObjectDeclarationEntries& operator=(ObjectDeclarationEntries const&) = delete;
 
-    ObjectDeclarationEntries& operator=(ObjectDeclarationEntries&&) = default;
+    ObjectDeclarationEntries& operator=(ObjectDeclarationEntries&&) = delete;
 
     /// \brief Accepts a visitor that can only read this node.
     ///

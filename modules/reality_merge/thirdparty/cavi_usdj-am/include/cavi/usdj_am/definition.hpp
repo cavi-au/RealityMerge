@@ -80,7 +80,7 @@ public:
 
     Definition& operator=(Definition const&) = delete;
 
-    Definition& operator=(Definition&&) = default;
+    Definition& operator=(Definition&&) = delete;
 
     /// \brief Accepts a visitor that can only read this node.
     ///

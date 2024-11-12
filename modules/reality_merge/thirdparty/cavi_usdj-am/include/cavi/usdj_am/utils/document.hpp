@@ -79,7 +79,7 @@ public:
     Document& operator=(Document const&) = delete;
 
     Document(Document&&) = default;
-    Document& operator=(Document&&) = default;
+    Document& operator=(Document&&) = delete;
 
     operator AMdoc*() const;
 

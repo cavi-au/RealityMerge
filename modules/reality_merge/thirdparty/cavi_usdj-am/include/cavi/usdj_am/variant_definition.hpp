@@ -75,7 +75,7 @@ public:
     /// \throws std::invalid_argument
     VariantDefinition(AMdoc const* const document, AMitem const* const map_object);
 
-    VariantDefinition(VariantDefinition const&) = default;
+    VariantDefinition(VariantDefinition const&) = delete;
 
     VariantDefinition& operator=(VariantDefinition const&) = delete;
 

@@ -55,7 +55,7 @@ public:
 
         Indenter(Indenter&&) = default;
 
-        Indenter& operator=(Indenter const&) = default;
+        Indenter& operator=(Indenter const&) = delete;
 
         Indenter& operator=(Indenter&&) = delete;
 
@@ -93,7 +93,7 @@ public:
 
     JsonWriter& operator=(JsonWriter const&) = delete;
 
-    JsonWriter& operator=(JsonWriter&&) = default;
+    JsonWriter& operator=(JsonWriter&&) = delete;
 
     operator std::string() const;
 

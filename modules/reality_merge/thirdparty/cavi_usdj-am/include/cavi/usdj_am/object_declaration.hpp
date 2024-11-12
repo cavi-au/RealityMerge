@@ -76,11 +76,11 @@ public:
 
     ObjectDeclaration(ObjectDeclaration const&) = delete;
 
-    ObjectDeclaration(ObjectDeclaration&&) = default;
+    ObjectDeclaration(ObjectDeclaration&&) = delete;
 
     ObjectDeclaration& operator=(ObjectDeclaration const&) = delete;
 
-    ObjectDeclaration& operator=(ObjectDeclaration&&) = default;
+    ObjectDeclaration& operator=(ObjectDeclaration&&) = delete;
 
     /// \brief Accepts a visitor that can only read this node.
     ///

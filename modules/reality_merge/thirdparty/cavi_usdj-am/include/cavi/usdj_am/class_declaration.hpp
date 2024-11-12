@@ -70,7 +70,7 @@ struct ClassDeclaration : public std::variant<std::monostate, Definition, Declar
     ClassDeclaration& operator=(ClassDeclaration const&) = delete;
 
     ClassDeclaration(ClassDeclaration&&) = default;
-    ClassDeclaration& operator=(ClassDeclaration&&) = default;
+    ClassDeclaration& operator=(ClassDeclaration&&) = delete;
 
     /// \note An inlined destructor can't delete incomplete types.
     ~ClassDeclaration();

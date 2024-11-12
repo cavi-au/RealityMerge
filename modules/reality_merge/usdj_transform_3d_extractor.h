@@ -54,7 +54,7 @@ public:
 
     UsdjTransform3dExtractor& operator=(UsdjTransform3dExtractor const&) = delete;
 
-    UsdjTransform3dExtractor& operator=(UsdjTransform3dExtractor&&) = default;
+    UsdjTransform3dExtractor& operator=(UsdjTransform3dExtractor&&) = delete;
 
     std::optional<Transform3D> operator()();
 

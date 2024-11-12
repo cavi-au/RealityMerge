@@ -75,13 +75,13 @@ public:
 
     UsdjBodyUpdater(UsdjBodyUpdater const&) = delete;
 
-    UsdjBodyUpdater(UsdjBodyUpdater&&) = default;
+    UsdjBodyUpdater(UsdjBodyUpdater&&) = delete;
 
     ~UsdjBodyUpdater();
 
     UsdjBodyUpdater& operator=(UsdjBodyUpdater const&) = delete;
 
-    UsdjBodyUpdater& operator=(UsdjBodyUpdater&&) = default;
+    UsdjBodyUpdater& operator=(UsdjBodyUpdater&&) = delete;
 
     /// \brief Creates new physics bodies and sorts pre-existing ones into
     ///        categories of forgotten, kept and removed.

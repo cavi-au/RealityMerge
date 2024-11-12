@@ -63,7 +63,7 @@ struct Number : public std::variant<double,        // AM_VAL_TYPE_F64
     Number& operator=(Number const&) = delete;
 
     Number(Number&&) = default;
-    Number& operator=(Number&&) = default;
+    Number& operator=(Number&&) = delete;
 
     /// \brief Accepts a visitor that can only read this node.
     ///

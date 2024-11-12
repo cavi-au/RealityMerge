@@ -69,11 +69,11 @@ public:
 
     ObjectDeclarationList(ObjectDeclarationList const&) = delete;
 
-    ObjectDeclarationList(ObjectDeclarationList&&) = default;
+    ObjectDeclarationList(ObjectDeclarationList&&) = delete;
 
     ObjectDeclarationList& operator=(ObjectDeclarationList const&) = delete;
 
-    ObjectDeclarationList& operator=(ObjectDeclarationList&&) = default;
+    ObjectDeclarationList& operator=(ObjectDeclarationList&&) = delete;
 
     /// \brief Accepts a visitor that can only read this node.
     ///

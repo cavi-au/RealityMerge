@@ -54,7 +54,7 @@ public:
 
     UsdjVelocityExtractor& operator=(UsdjVelocityExtractor const&) = delete;
 
-    UsdjVelocityExtractor& operator=(UsdjVelocityExtractor&&) = default;
+    UsdjVelocityExtractor& operator=(UsdjVelocityExtractor&&) = delete;
 
     /// \throws std::invalid_argument
     std::optional<Vector3> operator()(cavi::usdj_am::usd::physics::TokenType const reference);
