@@ -1,3 +1,4 @@
+*.o
 *.obj
 CMakePresets.json
 build/
