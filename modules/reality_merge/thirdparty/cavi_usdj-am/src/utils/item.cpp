@@ -147,7 +147,7 @@ Item operator/(Item const& lhs, std::uint64_t const pos) {
 
 std::ostream& operator<<(std::ostream& os, Item const& in) {
     AMbyteSpan key;
-    std::uint64_t pos;
+    size_t pos;
     // The root of a document is a map object.
     AMvalType val_type = AM_VAL_TYPE_OBJ_TYPE;
     auto const fmtflags = os.flags();
@@ -158,7 +158,7 @@ std::ostream& operator<<(std::ostream& os, Item const& in) {
         AMitem const* const c_item = AMresultItem(result.get());
         if (AMitemKey(c_item, &key)) {
             os << "\"" << from_bytes(key) << "\"";
-        } else if (AMitemPos(c_item, &pos)) {
+        } else if (AMitemPos(c_item, reinterpret_cast<size_t*>(&pos))) {
             os << pos;
         }
         val_type = AMitemValType(c_item);
