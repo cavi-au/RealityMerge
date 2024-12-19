@@ -103,11 +103,6 @@ else()
             VERBATIM
         )
     else()
-        if (APPLE)
-            set(LTO_PLUGIN_OPT "")
-        else()
-            set(LTO_PLUGIN_OPT "--plugin /usr/lib/bfd-plugins/liblto_plugin.so")
-        endif()
         set(OBJECTS_DIR objects)
 
         set(AUTOMERGE-C_OBJECTS_DIR ${OBJECTS_DIR}/$<TARGET_NAME:${AUTOMERGE-C}>)
@@ -122,11 +117,11 @@ else()
             COMMAND
                 ${CMAKE_COMMAND} -E make_directory ${AUTOMERGE-C_OBJECTS_DIR}
             COMMAND
-                ${CMAKE_COMMAND} -E echo "${CMAKE_AR} -x  ${LTO_PLUGIN_OPT} $<TARGET_FILE:${AUTOMERGE-C}>"
+                ${CMAKE_COMMAND} -E echo "${CMAKE_AR} -x $<TARGET_FILE:${AUTOMERGE-C}>"
             COMMAND
-                ${CMAKE_COMMAND} -E chdir ${AUTOMERGE-C_OBJECTS_DIR} ${CMAKE_AR} -x ${LTO_PLUGIN_OPT} $<TARGET_FILE:${AUTOMERGE-C}>
+                ${CMAKE_COMMAND} -E chdir ${AUTOMERGE-C_OBJECTS_DIR} ${CMAKE_AR} -x $<TARGET_FILE:${AUTOMERGE-C}>
             COMMAND
-                ${CMAKE_COMMAND} -E echo "${CMAKE_AR} -rs ${LTO_PLUGIN_OPT} $<TARGET_FILE_NAME:${LIBRARY_NAME}> ${AUTOMERGE-C_OBJECTS_DIR}/*.o"
+                ${CMAKE_COMMAND} -E echo "${CMAKE_AR} -rs $<TARGET_FILE_NAME:${LIBRARY_NAME}> ${AUTOMERGE-C_OBJECTS_DIR}/*.o"
             COMMAND
                 ${CMAKE_AR} -rs ${LTO_PLUGIN_OPT} $<TARGET_FILE_NAME:${LIBRARY_NAME}> ${AUTOMERGE-C_OBJECTS_DIR}/*.o
             WORKING_DIRECTORY
