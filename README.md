@@ -17,6 +17,11 @@
 * Python >= 3.6
 * SCons >= 4.5.2
 
+
+On MacOS, you will also need two other things
+ * MoltenVK (follow [Godot instructions](https://docs.godotengine.org/en/stable/contributing/development/compiling/compiling_for_macos.html)
+ * llvm-ar (I used homebrew's llvm).
+
 #### Test Prerequisites
 
 * Catch2 >= 2.13.8
@@ -50,6 +55,12 @@ cmake -E make_directory build
 cmake -B build -S .
 ```
 
+On MacOS, you need to direct CMake to use your llvm-ar, perhaps like this:
+
+```
+cmake -DCMAKE_AR=/opt/homebrew/opt/llvm/bin/llvm-ar -B build -S .
+```
+
 5. Build the project's extended version of Godot >= 4.2 e.g.
 
 ```
@@ -63,6 +74,8 @@ Launch the project's extended version of Godot >= 4.2 e.g.
 ```
 godot\bin\godot.windows.editor.x86_64.exe
 ```
+
+(On other platforms, the binary name will be slightly different.)
 
 ## Roadmap
 

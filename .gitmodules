@@ -4,5 +4,5 @@
 	branch = 4.1
 [submodule "modules/reality_merge/thirdparty/automerge"]
 	path = modules/reality_merge/thirdparty/automerge
-	url = https://github.com/jkankiewicz/automerge.git
-    branch = automerge-c_RealityMerge
+	url = https://github.com/automerge/automerge.git
+    branch = main
